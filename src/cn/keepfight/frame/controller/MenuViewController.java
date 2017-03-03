@@ -51,4 +51,7 @@ public abstract class MenuViewController{
 	}
 
 
+	public TabPane getNode() {
+		return tabPane;
+	}
 }

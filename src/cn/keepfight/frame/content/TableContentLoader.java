@@ -1,9 +1,5 @@
 package cn.keepfight.frame.content;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
 import java.util.List;
 
 import cn.keepfight.frame.content.source.InvalidSourceException;
@@ -11,9 +7,7 @@ import cn.keepfight.frame.content.source.TableDataSource;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
@@ -25,115 +19,64 @@ import javafx.util.Callback;
  * @author Tom
  *
  */
-public class TableContentLoader extends AbstractContentLoader<TableDataSource>{
-
-	/**
-	 * 加载器操作的表格对象。
-	 */
-	TableView<ObservableList<StringProperty>> table_main;
+public class TableContentLoader
+		extends AbstractContentLoader<TableDataSource, TableView<ObservableList<StringProperty>>> {
 
 	/**
 	 * 默认每页显示纪录行数，可以通过调用函数{@link #setPageLimit(int)}}进行改变。
+	 *
 	 * @TODO 这里需要做成配置参数
 	 */
 	private int pageLimit = 10;
 
-	public TableContentLoader(TableView<ObservableList<StringProperty>> table_main) {
-		this.table_main = table_main;
+	public TableContentLoader(TableDataSource source, TableView<ObservableList<StringProperty>> node)
+			throws InvalidSourceException {
+		super(source, node);
 	}
-
 
 	@Override
 	public void clear() {
+		if (node != null) {
+			node.getItems().clear();
+			node.getColumns().clear();
+		}
 	}
 
 	/**
 	 * 设置每页显示条数
-	 * @param pageLimit 欲设置的显示数
+	 *
+	 * @param pageLimit
+	 *            欲设置的显示数
 	 */
 	public void setPageLimit(int pageLimit) {
 		this.pageLimit = pageLimit;
 	}
 
 	/**
-	 * 设置表格数据加载的数据源，在设置之前会检查一次数据源的有效性。<br/>
-	 * 覆盖方法，使其自动加载
-	 * @param source 欲设置的数据源
-	 * @throws InvalidSourceException 数据源无效异常
-	 */
-	@Override
-	public void setDataSource(TableDataSource source) throws InvalidSourceException{
-		super.setDataSource(source);
-		reload();
-	}
-
-	/**
-	 * 删除数据源，并清空数据。
-	 */
-	public void clearData() {
-		try {
-			table_main.getItems().clear();
-			table_main.getColumns().clear();
-			table_main.setPlaceholder(new Label("无数据！"));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-
-	/**
 	 * 清空原有表格数据并重加载数据。
 	 */
+	@Override
 	public void reload() {
-		clearData();
+		clear();
+		for (StringProperty p : source.getHeadList()) {
+			addColumn(p.getValue());
+		}
+		List<ObservableList<StringProperty>> dataList = source.getRowList(1, pageLimit);
+		for (ObservableList<StringProperty> observableList : dataList) {
+			appendRow(observableList);
+		}
 	}
 
 	/**
 	 *
 	 * @param columnTitle
 	 */
-	private void addColumn(String columnTitle) {
-
-	}
-
-	private void appendRow(List<String> row) {
-
-	}
-
-	public void loadSampleData() throws Exception {
-		clearData();
-		String urlSpec = "D:/iie_learning/testfile/goods_sale.csv";
-		File sinputFile = new File(urlSpec);
-		BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(sinputFile)));
-
-		final String headerLine = in.readLine();
-		final String[] headerValues = headerLine.split(",");
-		for (int column = 0; column < headerValues.length; column++) {
-			table_main.getColumns().add(createColumn(column, headerValues[column]));
-		}
-		// Data:
-		String dataLine;
-		while ((dataLine = in.readLine()) != null) {
-			final String[] dataValues = dataLine.split(",");
-			for (int columnIndex = table_main.getColumns().size(); columnIndex < dataValues.length; columnIndex++) {
-				table_main.getColumns().add(createColumn(columnIndex, ""));
-			}
-			// Add data to table:
-			ObservableList<StringProperty> data = FXCollections.observableArrayList();
-			for (String value : dataValues) {
-				data.add(new SimpleStringProperty(value));
-			}
-			table_main.getItems().add(data);
-		}
-		in.close();
-	}
-
-	private TableColumn<ObservableList<StringProperty>, String> createColumn(final int columnIndex,
-			String columnTitle) {
+	private TableColumn<ObservableList<StringProperty>, String> addColumn(String columnTitle) {
 		TableColumn<ObservableList<StringProperty>, String> column = new TableColumn<>();
 		String title;
+		final int columnIndex = node.getColumns().size();
 		if (columnTitle == null || columnTitle.trim().length() == 0) {
-			title = "Column " + (columnIndex + 1);
+			title = "Column " + columnIndex;
 		} else {
 			title = columnTitle;
 		}
@@ -151,6 +94,13 @@ public class TableContentLoader extends AbstractContentLoader<TableDataSource>{
 						}
 					}
 				});
+		node.getColumns().add(column);
 		return column;
+
 	}
+
+	private void appendRow(ObservableList<StringProperty> row) {
+		node.getItems().add(row);
+	}
+
 }

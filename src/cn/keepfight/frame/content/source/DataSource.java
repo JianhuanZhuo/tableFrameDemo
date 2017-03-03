@@ -13,7 +13,13 @@ public interface DataSource {
 	 * 获得该数据源的类型。
 	 * @return 数据源类型
 	 */
-	public abstract DataSourceType getSourceType();
+	public DataSourceType getSourceType();
+
+	/**
+	 * 获得资源标识名
+	 * @return 资源标识名
+	 */
+	public String getSourceIDName();
 
 	/**
 	 * 检查数据源的有效性进行简单的检查。

@@ -20,6 +20,10 @@ public class ViewPathUtil {
 	 * @return URL路径
 	 */
 	public static URL getFrameView(String viewURL) {
+		//@TODO 做出配置的方式
+		if (!viewURL.contains(".fxml")) {
+			System.out.println(viewURL+" do not contain .fxml! It's may wrong!");
+		}
 		return instance.getClass().getResource("/cn/keepfight/frame/view/"+viewURL);
 	}
 

@@ -2,6 +2,8 @@ package cn.keepfight.frame.content.source;
 
 import java.util.List;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -41,16 +43,16 @@ public abstract class TableDataSource implements DataSource{
 	 * 获得表格数据的列表头。
 	 * @return 列表头。
 	 */
-	public abstract ObservableList<String> getHeadList();
+	public abstract ObservableList<StringProperty> getHeadList();
 
 	/**
 	 * 允许在数据源不提供标题头的情况下获得标题头数据，如果使用默认的标题头：column_0...。
 	 * @return 标题头数据
 	 * @throws InvalidSourceException 数据源无效异常。
 	 */
-	public ObservableList<String> getHeadListWithDefault() throws InvalidSourceException{
+	public ObservableList<StringProperty> getHeadListWithDefault() throws InvalidSourceException{
 		if (hasHead()) {
-			ObservableList<String> headList = getHeadList();
+			ObservableList<StringProperty> headList = getHeadList();
 			if (headList == null) {
 				throw new InvalidSourceException("invalid head list!");
 			}
@@ -60,9 +62,9 @@ public abstract class TableDataSource implements DataSource{
 		if (columnNum < 1) {
 			throw new InvalidSourceException("invalid columnNum!");
 		}
-		ObservableList<String> resList = FXCollections.observableArrayList();
+		ObservableList<StringProperty> resList = FXCollections.observableArrayList();
 		for (int i = 0; i < columnNum; i++) {
-			resList.add("column_"+i);
+			resList.add(new SimpleStringProperty("column_"+i));
 		}
 		return resList;
 	}
@@ -79,5 +81,5 @@ public abstract class TableDataSource implements DataSource{
 	 * @param limit 获得表指定内容的范围。
 	 * @return 返回指定的内容列表，参数无效则返回 null。若数据源无数据，则返回大小为0的 List 对象。
 	 */
-	public abstract List<ObservableList<String>> getRowList(int startRow, int limit);
+	public abstract List<ObservableList<StringProperty>> getRowList(int startRow, int limit);
 }

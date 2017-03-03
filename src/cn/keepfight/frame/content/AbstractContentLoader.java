@@ -2,6 +2,7 @@ package cn.keepfight.frame.content;
 
 import cn.keepfight.frame.content.source.DataSource;
 import cn.keepfight.frame.content.source.InvalidSourceException;
+import javafx.scene.Node;
 
 /**
  * 内容加载器抽象类.
@@ -9,13 +10,23 @@ import cn.keepfight.frame.content.source.InvalidSourceException;
  * @param <T> 数据源泛型
  *
  */
-public abstract class AbstractContentLoader<T extends DataSource>{
+public abstract class AbstractContentLoader<T extends DataSource, K extends Node>{
 
 
 	/**
 	 * 数据源对象
 	 */
 	protected T source;
+
+	/**
+	 * 数据加载对象
+	 */
+	protected K node;
+
+	public AbstractContentLoader(T source, K node) throws InvalidSourceException {
+		setDataSource(source);
+		this.node = node;
+	}
 
 	/**
 	 * 设置数据源，会对数据源进行一次检查，但不自动加载

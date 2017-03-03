@@ -25,7 +25,7 @@ import javafx.scene.image.ImageView;
  * @author Tom
  *
  */
-public class MenuItemController extends Observable implements StateEffective{
+public class MenuItemController extends Observable{
 
 	@FXML
 	private ImageView pic;
@@ -129,16 +129,6 @@ public class MenuItemController extends Observable implements StateEffective{
 		if (tip != null) {
 			btn.setTooltip(new Tooltip(tip));
 		}
-	}
-
-	@Override
-	public void disable() {
-		btn.setDisable(true);
-	}
-
-	@Override
-	public void enable() {
-		btn.setDisable(false);
 	}
 
 	@FXML
