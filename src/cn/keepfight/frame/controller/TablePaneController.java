@@ -7,6 +7,7 @@ import cn.keepfight.frame.content.source.TableDataSource;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -41,6 +42,14 @@ public class TablePaneController extends PaneController{
 	 */
 	@FXML
 	Label totalPages;
+
+	@FXML
+	Button pageup;
+
+	@FXML
+	Button pagedown;
+
+
 
 	TableContentLoader loader;
 

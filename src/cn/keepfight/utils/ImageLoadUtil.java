@@ -20,6 +20,10 @@ public class ImageLoadUtil {
 	 */
 	public static Map<String, Image> reusableImageMap = new HashMap<>();
 
+	public static Image load(String imageName) {
+		return load(imageName, IMG_SIZE_32);
+	}
+
 	/**
 	 * 加载指定尺寸的图片，这种加载机制会缓存已加载完成的图片，<br/>
 	 * 对于第二次请求相同的图片，会直接使用之前加载的图片文件而不是从磁盘中再加载一次

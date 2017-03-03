@@ -21,6 +21,8 @@ public class MenuFactory {
 		switch (type) {
 		case TABLE:
 			return new TableMenuViewController();
+		case OPERATORCHAIN:
+			return new ChainMenuViewController();
 		default:
 			break;
 		}

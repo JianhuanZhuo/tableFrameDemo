@@ -42,6 +42,12 @@
             </HBox>
             <HBox spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
+                  <HBox spacing="7">
+                     <children>
+                        <Button fx:id="pageup" text="上一页" />
+                        <Button fx:id="pagedown" text="下一页" />
+                     </children>
+                  </HBox>
                   <HBox>
                      <children>
                         <Label text="转到第" />

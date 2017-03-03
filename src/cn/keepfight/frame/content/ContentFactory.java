@@ -3,6 +3,7 @@ package cn.keepfight.frame.content;
 import java.io.IOException;
 
 import cn.keepfight.frame.content.source.DataSourceType;
+import cn.keepfight.frame.controller.ChainPaneController;
 import cn.keepfight.frame.controller.PaneController;
 import cn.keepfight.frame.controller.TablePaneController;
 import cn.keepfight.utils.ViewPathUtil;
@@ -18,6 +19,8 @@ public class ContentFactory {
 		switch (type) {
 		case TABLE:
 			return new TablePaneController();
+		case OPERATORCHAIN:
+			return new ChainPaneController();
 		default:
 			break;
 		}

@@ -41,15 +41,13 @@ public class Main extends Application {
 //			primaryStage.setScene(scene);
 //			primaryStage.setTitle("表格与算子联动分析Demo");
 //			primaryStage.show();
-			System.out.println("xx");
 
 			TableDataSource source = new SampleTableDataSource();
-			TableTStage tStage = new TableTStage();
-			tStage.InitSource(source);
-			tStage.show();
-		} catch (IOException e) {
-			e.printStackTrace();
+			FrameFactory.generateBySource(source).show();
 		} catch (InvalidSourceException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

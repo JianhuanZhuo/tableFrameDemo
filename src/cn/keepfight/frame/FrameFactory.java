@@ -1,6 +1,11 @@
 package cn.keepfight.frame;
 
+import java.io.IOException;
+
+import cn.keepfight.frame.content.source.DataSource;
 import cn.keepfight.frame.content.source.DataSourceType;
+import cn.keepfight.frame.content.source.InvalidSourceException;
+import cn.keepfight.frame.content.source.TableDataSource;
 import javafx.stage.Stage;
 
 /**
@@ -13,10 +18,21 @@ public class FrameFactory {
 
 	/**
 	 * 指定数据源类型进行生成展示面板
-	 * @param type 资源类型
+	 * @param source 数据源
 	 * @return 展示面板
 	 */
-	public static TStage generate(DataSourceType type){
-		return null;
+	@SuppressWarnings({ "rawtypes" })
+	public static TStage generateBySource(DataSource source) throws InvalidSourceException, IOException {
+		source.checkValid();
+		TStage resTStage = null;
+		switch (source.getSourceType()) {
+		case TABLE:
+			resTStage = new TableTStage();
+			((TableTStage)resTStage).InitSource((TableDataSource)source);
+			break;
+		default:
+			break;
+		}
+		return resTStage;
 	}
 }

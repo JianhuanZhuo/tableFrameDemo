@@ -1,5 +1,7 @@
 package cn.keepfight.frame.model;
 
+import cn.keepfight.frame.content.source.DataSourceType;
+
 /**
  * 算子模型的描述类。
  * @author Tom
@@ -13,6 +15,8 @@ public class OperatorModel {
 	private String tips;//算子提示信息
 	private String icon;//算子图标
 	private String description;//算子描述信息
+//	private DataSourceType inputType;//输入类型
+//	private DataSourceType outputType;//输出类型
 
 	public OperatorModel(int id, String name) {
 		this.id = id;
