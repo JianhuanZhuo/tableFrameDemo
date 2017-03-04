@@ -119,6 +119,7 @@ public abstract class TStage<T extends DataSource, K extends MenuViewController,
 		}
 		//@FIXME 这里可能会出BUG
 		root.setTop(menuVC.getNode());
+		menuVC.getNode().setStyle("-fx-border-color:grey;-fx-border-width:0 0 1 0;");
 	}
 
 	@SuppressWarnings("unchecked")
