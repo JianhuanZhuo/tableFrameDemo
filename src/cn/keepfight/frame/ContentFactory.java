@@ -1,11 +1,12 @@
-package cn.keepfight.frame.content;
+package cn.keepfight.frame;
 
 import java.io.IOException;
 
+import cn.keepfight.frame.chain.ChainPaneController;
 import cn.keepfight.frame.content.source.DataSourceType;
-import cn.keepfight.frame.controller.ChainPaneController;
 import cn.keepfight.frame.controller.PaneController;
 import cn.keepfight.frame.controller.TablePaneController;
+import cn.keepfight.frame.operator.OperatorPaneController;
 import cn.keepfight.utils.ViewPathUtil;
 import javafx.fxml.FXMLLoader;
 
@@ -21,6 +22,8 @@ public class ContentFactory {
 			return new TablePaneController();
 		case OPERATORCHAIN:
 			return new ChainPaneController();
+		case OPERATOR:
+			return new OperatorPaneController();
 		default:
 			break;
 		}

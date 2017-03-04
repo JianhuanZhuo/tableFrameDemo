@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import cn.keepfight.frame.chain.OperatorResource;
 import cn.keepfight.frame.menu.MenuItemType;
-import cn.keepfight.frame.model.OperatorModel;
 import javafx.fxml.FXML;
 
 public class TableMenuViewController extends MenuViewController{
@@ -29,12 +29,12 @@ public class TableMenuViewController extends MenuViewController{
 	 * @param groupIndex 组索引，由0开始计数
 	 * @return 菜单项对应的控制器
 	 */
-	public MenuItemController addMenuItem(OperatorModel operatorModel, int groupIndex) {
+	public MenuItemController addMenuItem(OperatorResource operatorModel, int groupIndex) {
 		return addMenuItem(operatorModel, groupIndex, MenuItemType.TP_32_TOP);
 	}
 
 	@Override
-	public MenuItemController addMenuItem(OperatorModel operatorModel, int groupIndex, MenuItemType type) {
+	public MenuItemController addMenuItem(OperatorResource operatorModel, int groupIndex, MenuItemType type) {
 		MenuItemController controller = super.addMenuItem(operatorModel, groupIndex, type);
 		//将菜单项添加到状态可影响列表中。
 		mapState(controller);

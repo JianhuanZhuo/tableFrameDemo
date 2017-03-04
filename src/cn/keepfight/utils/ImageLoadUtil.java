@@ -14,6 +14,7 @@ public class ImageLoadUtil {
 
 	public static final int IMG_SIZE_16 = 16;
 	public static final int IMG_SIZE_32 = 32;
+	public static final int IMG_SIZE_64 = 64;
 
 	/**
 	 * 图像缓存
@@ -32,11 +33,11 @@ public class ImageLoadUtil {
 	 *            指定名字
 	 * @param size
 	 *            指定尺寸，仅支持 {@link #reusableImage16Map} 和
-	 *            {@link #reusableImage32Map}
+	 *            {@link #reusableImage32Map}和{@link #reusableImage64Map}
 	 * @return 图片对象，若对象不存在返回null。
 	 */
 	public static Image load(String imageName, int size) {
-		if (size == IMG_SIZE_16 || size == IMG_SIZE_32) {
+		if (size == IMG_SIZE_16 || size == IMG_SIZE_32 || size == IMG_SIZE_64) {
 			if (reusableImageMap.containsKey("g" + size + "/" + imageName)) {
 				return reusableImageMap.get("g" + size + "/" + imageName);
 			} else {
@@ -46,6 +47,7 @@ public class ImageLoadUtil {
 				try {
 					resImage = new Image(imageUrl, true);
 				} catch (Exception e) {
+					System.err.println("url is: "+imageUrl);
 					e.printStackTrace();
 				}
 				reusableImageMap.put("g" + size + "/" + imageName, resImage);

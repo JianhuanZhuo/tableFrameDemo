@@ -91,6 +91,8 @@ public class RubberBandSelection {
         @Override
         public void handle(MouseEvent event) {
 
+        	System.out.println("∑ΩøÈ Õ∑≈");
+
             if( !event.isShiftDown() && !event.isControlDown()) {
                 selectionModel.clear();
             }

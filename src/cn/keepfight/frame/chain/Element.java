@@ -19,12 +19,51 @@ public abstract class Element extends Region implements Dragable{
 	 */
 	List<Element> backEles = new ArrayList<Element>();
 
+
+	protected static class DirectedEdge{
+		Line line;
+		Element endEle;
+
+		/**
+		 * 指定终节点设置有向边
+		 * @param endEle 终节点
+		 * @throws GraphicException 终节点无效异常
+		 */
+		public DirectedEdge(Element endEle) throws GraphicException {
+			if (endEle==null) {
+				throw new GraphicException("end element do not allow null!");
+			}
+			this.endEle = endEle;
+			line = new Line();
+		}
+
+		protected void updateLine(double start_x, double start_y, double end_x, double end_y) {
+			line.setStartX(start_x);
+			line.setStartY(start_y);
+			line.setEndX(end_x);
+			line.setEndY(end_y);
+		}
+
+		protected void updateLineStart(double start_x, double start_y) {
+			line.setStartX(start_x);
+			line.setStartY(start_y);
+		}
+
+		protected void updateLineEnd(double end_x, double end_y) {
+			line.setEndX(end_x);
+			line.setEndY(end_y);
+		}
+
+		public Line getLine() {
+			return line;
+		}
+	}
+
 	/**
 	 * 出度目标节点
 	 */
-	Element frontEle;
+	List<DirectedEdge> frontEles = new ArrayList<DirectedEdge>();
 
-	Line line;
 
 
 	/**
@@ -37,7 +76,19 @@ public abstract class Element extends Region implements Dragable{
 
 	@Override
 	public void updatePosition() {
-		// TODO Auto-generated method stub
-		// 更新连接线
+
+		//@TODO 考虑终点和起点相叠加的情况
+
+		double x = getLayoutX()+getLayoutBounds().getWidth()/2;
+		double y = getLayoutY()+getLayoutBounds().getHeight()/2;
+		// 更新前任连接线
+		for (Element element : backEles) {
+			int index = element.frontEles.indexOf(this);
+			element.frontEles.get(index).updateLineEnd(x, y);
+		}
+		//更新下任连接线
+		for (DirectedEdge directedEdge : frontEles) {
+			directedEdge.updateLineStart(x, y);
+		}
 	}
 }

@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 
 /**
  * 表格面板控制器.
@@ -21,6 +22,12 @@ import javafx.scene.control.TextField;
 public class TablePaneController extends PaneController{
 
 	TableDataSource source;
+
+	/**
+	 * 画板的根布局
+	 */
+	@FXML
+	BorderPane pane;
 
 	@FXML
 	TableView<ObservableList<StringProperty>> table;
@@ -50,8 +57,12 @@ public class TablePaneController extends PaneController{
 	Button pagedown;
 
 
-
 	TableContentLoader loader;
+
+	@Override
+	public BorderPane getNode() {
+		return pane;
+	}
 
 	@Override
 	public void clearContent() {

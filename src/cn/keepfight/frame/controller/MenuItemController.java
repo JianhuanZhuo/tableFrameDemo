@@ -3,7 +3,7 @@ package cn.keepfight.frame.controller;
 import java.util.Observable;
 
 import cn.keepfight.frame.menu.MenuItemType;
-import cn.keepfight.frame.model.OperatorModel;
+import cn.keepfight.operator.AbstractOperator;
 import cn.keepfight.utils.ImageLoadUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -41,12 +41,12 @@ public class MenuItemController extends Observable{
 	/**
 	 * 菜单项所表示的算子
 	 */
-	private OperatorModel operator = OperatorModel.demoOperator();
+	private AbstractOperator operator;
 
 	public MenuItemController() {
 	}
 
-	public MenuItemController(MenuItemType itemType, OperatorModel operator) {
+	public MenuItemController(MenuItemType itemType, AbstractOperator operator) {
 		this.itemType = itemType;
 		this.operator = operator;
 	}
@@ -62,7 +62,7 @@ public class MenuItemController extends Observable{
 	 * 获得控制器所表示的算子模型对象
 	 * @return 算子模型对象
 	 */
-	public OperatorModel getOperator() {
+	public AbstractOperator getOperator() {
 		return operator;
 	}
 

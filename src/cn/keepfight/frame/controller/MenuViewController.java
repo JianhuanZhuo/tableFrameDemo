@@ -2,8 +2,8 @@ package cn.keepfight.frame.controller;
 
 import java.io.IOException;
 
+import cn.keepfight.frame.chain.OperatorResource;
 import cn.keepfight.frame.menu.MenuItemType;
-import cn.keepfight.frame.model.OperatorModel;
 import cn.keepfight.utils.ViewPathUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,7 +31,7 @@ public abstract class MenuViewController{
 	 * @param type 指定创建菜单项所使用的视图模板
 	 * @return 菜单项对应的控制器，出错返回null
 	 */
-	public MenuItemController addMenuItem(OperatorModel operatorModel, int groupIndex, MenuItemType type) {
+	public MenuItemController addMenuItem(OperatorResource operatorModel, int groupIndex, MenuItemType type) {
 		if (operatorModel==null || groupIndex<0 || groupIndex >= tabPane.getTabs().size()) {
 			return null;
 		}

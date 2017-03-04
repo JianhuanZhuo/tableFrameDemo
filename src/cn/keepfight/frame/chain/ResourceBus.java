@@ -22,6 +22,7 @@ public class ResourceBus {
 	 * @return
 	 */
 	public List<Resource> pullResources() {
+
 		return null;
 	}
 }

@@ -1,9 +1,7 @@
 package cn.keepfight.frame.content.source;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  *  ”Õº≥ÿ¿‡.
@@ -12,6 +10,8 @@ import java.util.Map;
  *
  */
 public class ViewPool {
+
+	private static ViewPool menuViewPool = new ViewPool("MenuView.fxml");
 
 	/**
 	 *  ”Õº≥ÿ
@@ -39,5 +39,9 @@ public class ViewPool {
 			return viewUrlList.get(0);
 		}
 		return null;
+	}
+
+	public static ViewPool getMenuViewPool() {
+		return menuViewPool;
 	}
 }

@@ -2,15 +2,12 @@ package cn.keepfight.frame;
 
 import java.io.IOException;
 
-import cn.keepfight.frame.content.ContentFactory;
 import cn.keepfight.frame.content.source.DataSource;
 import cn.keepfight.frame.content.source.InvalidSourceException;
-import cn.keepfight.frame.controller.MenuFactory;
 import cn.keepfight.frame.controller.MenuViewController;
 import cn.keepfight.frame.controller.PaneController;
 import cn.keepfight.utils.ViewPathUtil;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;

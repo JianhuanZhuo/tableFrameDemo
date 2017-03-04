@@ -1,13 +1,11 @@
-package cn.keepfight.frame.model;
-
-import cn.keepfight.frame.content.source.DataSourceType;
+package cn.keepfight.operator;
 
 /**
  * 算子模型的描述类。
  * @author Tom
  *
  */
-public class OperatorModel {
+public class AbstractOperator{
 
 	private int id;//算子ID
 	private String name;//算子名
@@ -18,13 +16,13 @@ public class OperatorModel {
 //	private DataSourceType inputType;//输入类型
 //	private DataSourceType outputType;//输出类型
 
-	public OperatorModel(int id, String name) {
+	public AbstractOperator(int id, String name) {
 		this.id = id;
 		this.name = name;
 	}
 
-	public static OperatorModel demoOperator() {
-		return new OperatorModel(-1, "");
+	public static AbstractOperator demoOperator() {
+		return new AbstractOperator(-1, "");
 	}
 
 	public String getName() {
@@ -57,5 +55,4 @@ public class OperatorModel {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
 }

@@ -2,11 +2,12 @@ package cn.keepfight.frame;
 
 import java.io.IOException;
 
+import cn.keepfight.frame.chain.ChainDataSource;
+import cn.keepfight.frame.chain.ChainTStage;
 import cn.keepfight.frame.content.source.DataSource;
-import cn.keepfight.frame.content.source.DataSourceType;
 import cn.keepfight.frame.content.source.InvalidSourceException;
 import cn.keepfight.frame.content.source.TableDataSource;
-import javafx.stage.Stage;
+import cn.keepfight.frame.operator.OperatorDataSource;
 
 /**
  * 显示面板工厂类，对应 {@link cn.keepfight.frame.content.source.DataSourceType} 进行生成面板实例。
@@ -29,6 +30,14 @@ public class FrameFactory {
 		case TABLE:
 			resTStage = new TableTStage();
 			((TableTStage)resTStage).InitSource((TableDataSource)source);
+			break;
+		case OPERATOR:
+			resTStage = new OperatorTStage();
+			((OperatorTStage)resTStage).InitSource((OperatorDataSource)source);
+			break;
+		case OPERATORCHAIN:
+			resTStage = new ChainTStage();
+			((ChainTStage)resTStage).InitSource((ChainDataSource)source);
 			break;
 		default:
 			break;

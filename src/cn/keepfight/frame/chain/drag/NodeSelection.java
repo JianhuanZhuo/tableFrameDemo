@@ -13,6 +13,9 @@ public class NodeSelection extends Application {
     DragMouseGestures dragMouseGestures = new DragMouseGestures();
     static Random rnd = new Random();
 
+    static Label xLabel ;
+    static Label yLabel ;
+
     @Override
     public void start(Stage primaryStage) {
 
@@ -42,12 +45,30 @@ public class NodeSelection extends Application {
 
         Label infoLabel = new Label( "Drag on scene for Rubberband Selection. Shift+Click to add to selection, CTRL+Click to toggle selection. Drag selected nodes for multi-dragging.");
         pane.getChildren().add( infoLabel);
+
+        Label xL = new Label( "x:");
+        xL.relocate(20, 20);
+        pane.getChildren().add( xL);
+        Label x = new Label( "00");
+        x.relocate(20, 40);
+        pane.getChildren().add( x);
+        xLabel = x;
+
+        Label yL = new Label( "y:");
+        yL.relocate(20, 60);
+        pane.getChildren().add( yL);
+        Label y = new Label( "00");
+        y.relocate(20, 80);
+        pane.getChildren().add( y);
+        yLabel = y;
+
         ScrollPane scrollPane = new ScrollPane(pane);
         Scene scene = new Scene( scrollPane, 1600, 900);
         scene.getStylesheets().add( getClass().getResource("highlight.css").toExternalForm());
 
         primaryStage.setScene( scene);
         primaryStage.show();
+
     }
 
 

@@ -2,7 +2,6 @@ package cn.keepfight.frame.controller;
 
 import cn.keepfight.frame.content.source.DataSource;
 import cn.keepfight.frame.content.source.InvalidSourceException;
-import javafx.fxml.FXML;
 import javafx.scene.layout.BorderPane;
 
 /**
@@ -13,19 +12,11 @@ import javafx.scene.layout.BorderPane;
 public abstract class PaneController {
 
 	/**
-	 * 画板的根布局
-	 */
-	@FXML
-	BorderPane pane;
-
-	/**
 	 * 清空画板内容
 	 */
 	public abstract void clearContent();
 
-	public BorderPane getNode() {
-		return pane;
-	}
+	public abstract BorderPane getNode();
 
 	/**
 	 * 指示画板开始加载画面或数据

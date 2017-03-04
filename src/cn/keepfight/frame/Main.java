@@ -1,31 +1,12 @@
 package cn.keepfight.frame;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 
+import cn.keepfight.frame.chain.SampleChainDataSource;
 import cn.keepfight.frame.content.source.InvalidSourceException;
-import cn.keepfight.frame.content.source.TableDataSource;
-import cn.keepfight.frame.controller.TableMenuViewController;
-import cn.keepfight.utils.ViewPathUtil;
+import cn.keepfight.frame.operator.SampleOperatorDataSource;
 import javafx.application.Application;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.CellDataFeatures;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 
 
 public class Main extends Application {
@@ -34,20 +15,12 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-//			BorderPane rootLayout;
-//			FXMLLoader loader = new FXMLLoader(getClass().getResource("view/TableMainView.fxml"));
-//			rootLayout = (BorderPane)loader.load();
-//			Scene scene = new Scene(rootLayout);
-//			primaryStage.setScene(scene);
-//			primaryStage.setTitle("表格与算子联动分析Demo");
-//			primaryStage.show();
-
-			TableDataSource source = new SampleTableDataSource();
-			FrameFactory.generateBySource(source).show();
+			FrameFactory.generateBySource(new SampleTableDataSource()).show();
+			FrameFactory.generateBySource(new SampleChainDataSource("行为信息分析链")).show();
+			FrameFactory.generateBySource(new SampleOperatorDataSource()).show();
 		} catch (InvalidSourceException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

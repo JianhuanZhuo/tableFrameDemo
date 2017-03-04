@@ -14,6 +14,11 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * 表格数据源样本
+ * @author Tom
+ *
+ */
 public class SampleTableDataSource extends TableDataSource {
 
 	ObservableList<StringProperty> headList = FXCollections.observableArrayList();;
@@ -43,13 +48,11 @@ public class SampleTableDataSource extends TableDataSource {
 
 	@Override
 	public int getRowNum() {
-		// TODO Auto-generated method stub
 		return dataList.size();
 	}
 
 	@Override
 	public boolean hasHead() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
