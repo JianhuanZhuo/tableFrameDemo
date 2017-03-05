@@ -1,15 +1,19 @@
 package cn.keepfight.frame.controller;
 
+import java.util.List;
 import java.util.Observable;
 
+import cn.keepfight.frame.chain.Resource;
 import cn.keepfight.frame.menu.MenuItemType;
 import cn.keepfight.operator.AbstractOperator;
 import cn.keepfight.utils.ImageLoadUtil;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 /**
  * 菜单项控制器类. 高度<br/>
@@ -46,16 +50,28 @@ public class MenuItemController extends Observable{
 	public MenuItemController() {
 	}
 
-	public MenuItemController(MenuItemType itemType, AbstractOperator operator) {
+	public void setMenuItemType(MenuItemType itemType){
 		this.itemType = itemType;
+	}
+
+	public void setOperator(AbstractOperator operator){
 		this.operator = operator;
+		setBtnText(operator.getLabel());
+		setPic(operator.getIcon());
+		setBtnText(operator.getTips());
+		btn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				List<Resource> resList = operator.onAction();
+				if (resList!=null) {
+					
+				}
+			}
+		});
 	}
 
 	@FXML
 	public void initialize() {
-		setBtnText(operator.getLabel());
-		setPic(operator.getIcon());
-		setBtnText(operator.getTips());
 	}
 
 	/**
@@ -130,11 +146,4 @@ public class MenuItemController extends Observable{
 			btn.setTooltip(new Tooltip(tip));
 		}
 	}
-
-	@FXML
-	public void onMenuItemClick() {
-		// @TODO 这里需要更严谨一点
-		notifyObservers(this);
-	}
-
 }

@@ -1,10 +1,13 @@
 package cn.keepfight.frame.text;
 
-import cn.keepfight.frame.chain.OperatorResource;
-import cn.keepfight.operator.AbstractOperator;
-import javafx.fxml.FXML;
+import java.util.ArrayList;
+import java.util.List;
 
-public class OperatorTranslate extends AbstractOperator{
+import cn.keepfight.frame.chain.OperatorResource;
+import cn.keepfight.frame.chain.Resource;
+import cn.keepfight.operator.AbstractOperator;
+
+public class OperatorTranslate extends AbstractOperator<TextTStage>{
 
 	private int id;//算子ID
 	private String name;//算子名
@@ -13,17 +16,7 @@ public class OperatorTranslate extends AbstractOperator{
 	private String icon;//算子图标
 	private String description;//算子描述信息
 
-	private TextPaneController pane;
-
-	/**
-	 * 这个构造函数要求用户给出输入、输出和环境。其中画板控制器是输入，算子链是输出，？？？是环境
-	 * @TODO 这个环境也是需要多加斟酌。
-	 *
-	 * @param paneController
-	 */
-	public OperatorTranslate(TextPaneController paneController) {
-		pane = paneController;
-	}
+	private TextTStage tStage;
 
 	@Override public int getId() { return id; }
 	@Override public String getName() { return name; }
@@ -33,14 +26,22 @@ public class OperatorTranslate extends AbstractOperator{
 	@Override public String getDescription() { return description; }
 
 	@Override
-	public void onAction() {
+	public List<Resource> onAction() {
+		List<Resource> res = new ArrayList<Resource>();
+		//@TODO 生成资源
 
+		return res;
 	}
 
 	@Override
 	public OperatorResource generateResource() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void setTStage(TextTStage tStage) {
+		this.tStage = tStage;
 	}
 
 }

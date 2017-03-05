@@ -20,6 +20,7 @@ public class ResourceElem extends Element{
 	    view.setFitWidth(32);
 	    view.setFitHeight(32);
         getChildren().add(view);
+        this.resource = resource;
 	}
 
 	public Resource getResource() {

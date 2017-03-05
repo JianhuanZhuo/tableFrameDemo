@@ -9,7 +9,6 @@ import cn.keepfight.frame.ContextMaster;
 import cn.keepfight.frame.ContextSlave;
 import cn.keepfight.frame.TStage;
 import cn.keepfight.frame.content.source.DataSource;
-import cn.keepfight.frame.controller.ChainMenuViewController;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
@@ -33,6 +32,9 @@ public class ChainTStage extends TStage<ChainDataSource,
 	protected void fixAfter() {
 		//添加选择对象高亮
 		getScene().getStylesheets().add( getClass().getResource("drag/highlight.css").toExternalForm());
+
+		// 加载本地菜单
+		getMenuVC().loadLocalMenu();
 	}
 
 	@Override

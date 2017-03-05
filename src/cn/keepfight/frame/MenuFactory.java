@@ -2,9 +2,9 @@ package cn.keepfight.frame;
 
 import java.io.IOException;
 
+import cn.keepfight.frame.chain.ChainMenuViewController;
 import cn.keepfight.frame.content.source.DataSourceType;
 import cn.keepfight.frame.content.source.ViewPool;
-import cn.keepfight.frame.controller.ChainMenuViewController;
 import cn.keepfight.frame.controller.MenuViewController;
 import cn.keepfight.frame.controller.TableMenuViewController;
 import cn.keepfight.frame.operator.OperatorMenuViewController;

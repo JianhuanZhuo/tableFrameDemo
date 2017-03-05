@@ -1,13 +1,18 @@
 package cn.keepfight.operator;
 
+import java.util.List;
+
+import cn.keepfight.frame.TStage;
 import cn.keepfight.frame.chain.OperatorResource;
+import cn.keepfight.frame.chain.Resource;
 
 /**
  * 算子模型的描述类。
  * @author Tom
  *
  */
-public abstract class AbstractOperator{
+@SuppressWarnings("rawtypes")
+public abstract class AbstractOperator<T extends TStage>{
 
 	/**
 	 * 获得算子 ID
@@ -48,12 +53,27 @@ public abstract class AbstractOperator{
 	/**
 	 * 规定在点击该算子时所指定的动作
 	 * @TODO 这个接口的规范貌似还需要多加斟酌
+	 * @return 算子运算结束产生的资源数，不产生资源或面板内操作则返回null
 	 */
-	public abstract void onAction();
+	public abstract List<Resource> onAction();
 
 	/**
 	 * 生成算子资源
 	 * @return 由该算子状态生成的算子资源
 	 */
-	public abstract OperatorResource generateResource();
+	public OperatorResource generateResource(){
+		OperatorResource res = new OperatorResource(getId(), getName());
+		res.setDescription(getDescription());
+		res.setIcon(getIcon());
+		res.setInputResource(new String[0]);
+		res.setOutputResource(new String[0]);
+		res.setParams(new String[0]);
+		return res;
+	}
+
+	/**
+	 * 使用这种方式引用舞台面板
+	 * @param tStage 面板对象
+	 */
+	public abstract void setTStage(T tStage);
 }

@@ -12,8 +12,8 @@ public class TextTStage extends TStage<TextDataSource, TextMenuViewController, T
 	@Override
 	protected void fixAfter() {
 		String target = "ÌìÐ«×ù";
-		int index = paneVC.textArea.getText().indexOf(target);
-		paneVC.textArea.selectRange(index, index+target.length());
+		int index = getPaneVC().textArea.getText().indexOf(target);
+		getPaneVC().textArea.selectRange(index, index+target.length());
 	}
 
 	@Override

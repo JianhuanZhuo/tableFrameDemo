@@ -1,6 +1,9 @@
 package cn.keepfight.frame.text;
 
+import java.util.List;
+
 import cn.keepfight.frame.chain.OperatorResource;
+import cn.keepfight.frame.chain.Resource;
 import cn.keepfight.operator.AbstractOperator;
 
 /**
@@ -8,26 +11,12 @@ import cn.keepfight.operator.AbstractOperator;
  * @author Tom
  *
  */
-public class OperatorLookup extends AbstractOperator{
+public class OperatorLookup extends AbstractOperator<TextTStage>{
 
 //	private int lineNum = -1;
 //	private int rayNum = -1;
 
-
-	/**
-	 * 文本画板视图控制器
-	 */
-	private TextPaneController pane;
-
-	/**
-	 * 这个构造函数要求用户给出输入、输出和环境。其中画板控制器是输入，算子链是输出，？？？是环境
-	 * @TODO 这个环境也是需要多加斟酌。
-	 *
-	 * @param paneController
-	 */
-	public OperatorLookup(TextPaneController paneController) {
-		pane = paneController;
-	}
+	TextTStage tStage;
 
 	private final int id = 222;
 	private final String name = "lookup";
@@ -44,15 +33,21 @@ public class OperatorLookup extends AbstractOperator{
 	@Override public String getDescription() { return description; }
 
 	@Override
-	public void onAction() {
+	public List<Resource> onAction() {
 		String target = "天蝎座";
-		int index = pane.textArea.getText().indexOf(target);
-		pane.textArea.selectRange(index, index+target.length());
+		int index = tStage.getPaneVC().textArea.getText().indexOf(target);
+		tStage.getPaneVC().textArea.selectRange(index, index+target.length());
+		return null;
 	}
 	@Override
 	public OperatorResource generateResource() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void setTStage(TextTStage tStage) {
+		this.tStage = tStage;
 	}
 
 }

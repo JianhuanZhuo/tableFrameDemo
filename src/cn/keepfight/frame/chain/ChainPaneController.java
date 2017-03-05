@@ -16,7 +16,6 @@ import cn.keepfight.frame.chain.drag.SelectionManager;
 import cn.keepfight.frame.content.source.DataSource;
 import cn.keepfight.frame.content.source.InvalidSourceException;
 import cn.keepfight.frame.controller.PaneController;
-import cn.keepfight.frame.operator.SampleOperatorDataSource;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseButton;
@@ -64,18 +63,18 @@ public class ChainPaneController extends PaneController {
 
 	@Override
 	public void clearContent() {
-		//@TODO 清空选择模型
+		// @TODO 清空选择模型
 
-		//清空连线
+		// 清空连线
 
-		//清空节点
+		// 清空节点
 
-		//清空其他
+		// 清空其他
 	}
 
 	@Override
 	public void load() {
-		//清空画板内容
+		// 清空画板内容
 		clearContent();
 
 		List<ResourceWithPosition> resources = source.getResources();
@@ -85,7 +84,7 @@ public class ChainPaneController extends PaneController {
 			try {
 				addElement(elem, resWithP.x, resWithP.y);
 			} catch (GraphicException e) {
-				//@TODO 这里需要作异常处理，现在仅作丢弃处理
+				// @TODO 这里需要作异常处理，现在仅作丢弃处理
 				e.printStackTrace();
 			}
 		}
@@ -94,7 +93,7 @@ public class ChainPaneController extends PaneController {
 			try {
 				addEdge(elemMap.get(edge.start), elemMap.get(edge.end));
 			} catch (GraphicException e) {
-				//@TODO 这里需要作异常处理，现在仅作丢弃处理
+				// @TODO 这里需要作异常处理，现在仅作丢弃处理
 				e.printStackTrace();
 			}
 		}
@@ -107,9 +106,8 @@ public class ChainPaneController extends PaneController {
 		}
 		source.checkValid();
 
-		this.source = (ChainDataSource)source;
+		this.source = (ChainDataSource) source;
 	}
-
 
 	@Override
 	@SuppressWarnings("rawtypes")
@@ -122,22 +120,36 @@ public class ChainPaneController extends PaneController {
 		return pane;
 	}
 
+	public void addResource(Resource newResource) {
+		ResourceElem elem = new ResourceElem(newResource);
+		elemMap.put(newResource, elem);
+		try {
+			addElement(elem, chainPane.getWidth()/2, chainPane.getHeight()/2);
+		} catch (Exception e) {
+		}
+	}
+
 	/**
-	 *指定位置添加节点
-	 * @param element 欲添加的节点
-	 * @param x 指定位置坐标x
-	 * @param y 指定位置坐标y
-	 * @throws GraphicException 图操作异常
+	 * 指定位置添加节点
+	 *
+	 * @param element
+	 *            欲添加的节点
+	 * @param x
+	 *            指定位置坐标x
+	 * @param y
+	 *            指定位置坐标y
+	 * @throws GraphicException
+	 *             图操作异常
 	 */
 	protected void addElement(Element element, Double x, Double y) throws GraphicException {
 		dag.addElem(element);
 		chainPane.getChildren().add(element);
 		element.relocate(x, y);
 
-		//添加其为可拖拽
+		// 添加其为可拖拽
 		dragMouseGestures.makeDraggable(element);
 
-		//添加双击打开面板
+		// 添加双击打开面板
 		element.addEventHandler(MouseEvent.MOUSE_CLICKED, onDoubleClickHander);
 	}
 
@@ -148,16 +160,16 @@ public class ChainPaneController extends PaneController {
 		target.updatePosition();
 	}
 
-    EventHandler<MouseEvent> onDoubleClickHander = new EventHandler<MouseEvent>() {
+	EventHandler<MouseEvent> onDoubleClickHander = new EventHandler<MouseEvent>() {
 
 		@Override
 		public void handle(MouseEvent event) {
-			if (!event.getButton().equals(MouseButton.PRIMARY) || event.getClickCount()!=2) {
-        		return;
+			if (!event.getButton().equals(MouseButton.PRIMARY) || event.getClickCount() != 2) {
+				return;
 			}
 
-			//检查是否已经打开面板
-			ResourceElem sElem = (ResourceElem)event.getSource();
+			// 检查是否已经打开面板
+			ResourceElem sElem = (ResourceElem) event.getSource();
 			if (tStage.hasContain(sElem.getResource())) {
 				tStage.resourceMapStage.get(sElem.getResource()).show();
 				tStage.resourceMapStage.get(sElem.getResource()).requestFocus();
@@ -167,7 +179,7 @@ public class ChainPaneController extends PaneController {
 			//
 			try {
 				@SuppressWarnings("rawtypes")
-				TStage newStage = FrameFactory.generateBySource(new SampleOperatorDataSource());
+				TStage newStage = FrameFactory.generateBySource(sElem.getResource().generateDataSource());
 				tStage.addMap(sElem.getResource(), newStage);
 				newStage.show();
 			} catch (InvalidSourceException e) {

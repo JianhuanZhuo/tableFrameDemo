@@ -1,6 +1,8 @@
 package cn.keepfight.frame.chain;
 
 import cn.keepfight.frame.content.source.DataSource;
+import cn.keepfight.frame.content.source.DataSourceType;
+import cn.keepfight.frame.operator.OperatorDataSource;
 
 /**
  * 算子资源的描述类。
@@ -14,9 +16,15 @@ public class OperatorResource extends Resource{
 	private String label;//算子图标按钮上的名字
 	private String icon;//算子图标
 	private String description;//算子描述信息
-	private String[] inputResource;//运算输入对象资源
-	private String[] outputResource;//运算输出对象资源
-	private String[] params;
+	private String[] inputResource = new String[0];//运算输入对象资源
+	private String[] outputResource = new String[0];//运算输出对象资源
+	private String[] params = new String[0];
+
+	@Override
+	public DataSourceType getDataSourceType() {
+		return DataSourceType.OPERATOR;
+	}
+
 	public String[] getInputResource() {
 		return inputResource;
 	}
@@ -75,7 +83,51 @@ public class OperatorResource extends Resource{
 
 	@Override
 	public DataSource generateDataSource() {
-		// TODO Auto-generated method stub
-		return null;
+		return new OperatorDataSource() {
+			@Override
+			public String getSourceIDName() {
+				return label+"-"+name+"-"+id;
+			}
+
+			@Override
+			public String[] getParams() {
+				return params;
+			}
+
+			@Override
+			public String[] getOutputResource() {
+				return outputResource;
+			}
+
+			@Override
+			public String getName() {
+				return name;
+			}
+
+			@Override
+			public String getLabel() {
+				return label;
+			}
+
+			@Override
+			public String[] getInputResource() {
+				return inputResource;
+			}
+
+			@Override
+			public int getId() {
+				return id;
+			}
+
+			@Override
+			public String getIcon() {
+				return icon;
+			}
+
+			@Override
+			public String getDescription() {
+				return description;
+			}
+		};
 	}
 }

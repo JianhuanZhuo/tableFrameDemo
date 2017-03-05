@@ -13,7 +13,12 @@ public abstract class Resource {
 	private static int id_count=1;
 
 	int id = id_count++;
-	DataSourceType type;
+
+	/**
+	 * 获得资源类型
+	 * @return 资源类型
+	 */
+	public abstract DataSourceType getDataSourceType();
 
 	/**
 	 * 生成数据源
@@ -26,7 +31,7 @@ public abstract class Resource {
 	 * @return 图标URL
 	 */
 	public String getIconURL() {
-		return type.getIconURL();
+		return getDataSourceType().getIconURL();
 	}
 
 	/**
@@ -34,6 +39,6 @@ public abstract class Resource {
 	 * @return 资源实例名字符串
 	 */
 	public String getName() {
-		return type.getTypeName_cn()+"——"+id;
+		return getDataSourceType().getTypeName_cn()+"——"+id;
 	}
 }

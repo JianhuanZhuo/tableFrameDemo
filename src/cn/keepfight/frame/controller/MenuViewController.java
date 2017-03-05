@@ -2,6 +2,8 @@ package cn.keepfight.frame.controller;
 
 import java.io.IOException;
 
+import cn.keepfight.frame.TStage;
+import cn.keepfight.frame.TableTStage;
 import cn.keepfight.frame.menu.MenuItemType;
 import cn.keepfight.operator.AbstractOperator;
 import cn.keepfight.utils.ViewPathUtil;
@@ -19,7 +21,7 @@ import javafx.scene.layout.HBox;
  *
  * @param <T> T参数表示菜单视图状态，需要在其他子菜单视图控制器中得到具体实现
  */
-public abstract class MenuViewController implements Initializable{
+public abstract class MenuViewController{
 
 	@FXML
 	TabPane tabPane;
@@ -32,7 +34,7 @@ public abstract class MenuViewController implements Initializable{
 	 * @param type 指定创建菜单项所使用的视图模板
 	 * @return 菜单项对应的控制器，出错返回null
 	 */
-	public MenuItemController addMenuItem(AbstractOperator operator, int groupIndex, MenuItemType type) {
+	public MenuItemController addMenuItem(@SuppressWarnings("rawtypes") AbstractOperator operator, int groupIndex, MenuItemType type) {
 		if (operator==null || groupIndex<0 || groupIndex >= tabPane.getTabs().size()) {
 			return null;
 		}
@@ -44,6 +46,10 @@ public abstract class MenuViewController implements Initializable{
 			hBox.getChildren().add(gridPane);
 
 			MenuItemController controller = loader.getController();
+
+			// 设置类型和算子
+			controller.setMenuItemType(type);
+			controller.setOperator(operator);
 
 			// 设置图标与文字
 			controller.setPic(operator.getIcon());
@@ -61,4 +67,8 @@ public abstract class MenuViewController implements Initializable{
 	public TabPane getNode() {
 		return tabPane;
 	}
+
+	@SuppressWarnings("rawtypes")
+	public abstract void setTStage(TStage tStage);
+
 }

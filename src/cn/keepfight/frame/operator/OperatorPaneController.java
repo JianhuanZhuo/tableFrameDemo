@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 import cn.keepfight.frame.OperatorTStage;
 import cn.keepfight.frame.TStage;
-import cn.keepfight.frame.TableTStage;
 import cn.keepfight.frame.content.source.DataSource;
 import cn.keepfight.frame.content.source.InvalidSourceException;
 import cn.keepfight.frame.controller.PaneController;
@@ -49,6 +48,7 @@ public class OperatorPaneController extends PaneController {
 
 
 	private OperatorTStage tStage;
+
 	OperatorDataSource source;
 
 	@Override

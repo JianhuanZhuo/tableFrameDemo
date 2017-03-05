@@ -3,12 +3,16 @@ package cn.keepfight.frame.text;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import cn.keepfight.frame.TStage;
 import cn.keepfight.frame.controller.MenuViewController;
-import javafx.fxml.Initializable;
 
 public class TextMenuViewController extends MenuViewController{
 
+	TextTStage tStage;
+
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {
+	@SuppressWarnings("rawtypes")
+	public void setTStage(TStage tStage) {
+		this.tStage = (TextTStage) tStage;
 	}
 }

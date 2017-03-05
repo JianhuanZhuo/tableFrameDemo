@@ -33,25 +33,6 @@ public class Main extends Application {
 //	public void start(Stage primaryStage) {
 //		try {
 ////			FXMLLoader loader = new FXMLLoader(getClass().getResource("view/TableMainFrame.fxml"));
-//			FXMLLoader loader = new FXMLLoader(ViewPathUtil.getFrameView("MenuItemViewp33test.fxml"));
-//			loader.setController(new MenuItemController());
-//			rootLayout = (GridPane)loader.load();
-////			AnchorPane tableMenuAnchorPane = (AnchorPane)rootLayout.lookup("#tableMenu");
-////			AnchorPane.setRightAnchor(tableMenuAnchorPane, 0.0);
-////			AnchorPane.setLeftAnchor(tableMenuAnchorPane, 0.0);
-//			Scene scene = new Scene(rootLayout);
-//			primaryStage.setScene(scene);
-//			primaryStage.setTitle("表格与算子联动分析Demo");
-//			primaryStage.show();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
-
-//	@Override
-//	public void start(Stage primaryStage) {
-//		try {
-////			FXMLLoader loader = new FXMLLoader(getClass().getResource("view/TableMainFrame.fxml"));
 //			FXMLLoader loader = new FXMLLoader(ViewPathUtil.getFrameView("TableMenuView.fxml"));
 //			loader.setController(new TableMenuViewController());
 //			rootLayout = loader.load();

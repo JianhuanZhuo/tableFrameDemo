@@ -41,10 +41,11 @@ public abstract class TStage<T extends DataSource, K extends MenuViewController,
 	 */
 	protected K menuVC;
 
+
 	/**
 	 * 画板视图控制器
 	 */
-	protected J paneVC;
+	private J paneVC;
 
 	/**
 	 * 根节点
@@ -86,15 +87,16 @@ public abstract class TStage<T extends DataSource, K extends MenuViewController,
 		setTitleWithType(source.getSourceIDName());
 
 		//为画板设置数据源
-		paneVC.setDataSource(source);
+		getPaneVC().setDataSource(source);
 
-		paneVC.setTStage(this);
+		getPaneVC().setTStage(this);
+		getMenuVC().setTStage(this);
 
 		//调用用户自定义接口
 		fixAfter();
 
 		//初始化加载数据
-		paneVC.load();
+		getPaneVC().load();
 	}
 
 	private void loadRootView() throws IOException{
@@ -133,6 +135,15 @@ public abstract class TStage<T extends DataSource, K extends MenuViewController,
 		//初始化，加载画板和添加内容加载器
 		paneVC = (J) ContentFactory.generateContentVC(source.getSourceType());
 		//@FIXME 这里可能会出BUG
-		root.setCenter(paneVC.getNode());
+		root.setCenter(getPaneVC().getNode());
+	}
+
+
+	public J getPaneVC() {
+		return paneVC;
+	}
+
+	public K getMenuVC() {
+		return menuVC;
 	}
 }
