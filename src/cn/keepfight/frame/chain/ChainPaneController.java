@@ -1,22 +1,44 @@
 package cn.keepfight.frame.chain;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import cn.keepfight.frame.FrameFactory;
+import cn.keepfight.frame.TStage;
 import cn.keepfight.frame.chain.ChainDataSource.Edge;
 import cn.keepfight.frame.chain.ChainDataSource.ResourceWithPosition;
 import cn.keepfight.frame.chain.Element.DirectedEdge;
+import cn.keepfight.frame.chain.drag.DragMouseGestures;
+import cn.keepfight.frame.chain.drag.RubberBandSelection;
+import cn.keepfight.frame.chain.drag.SelectionManager;
 import cn.keepfight.frame.content.source.DataSource;
 import cn.keepfight.frame.content.source.InvalidSourceException;
 import cn.keepfight.frame.controller.PaneController;
+import cn.keepfight.frame.operator.SampleOperatorDataSource;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 public class ChainPaneController extends PaneController {
 
 	private DAGGraph dag = new DAGGraph();
+
+	private ChainTStage tStage;
+
+	/**
+	 * 选择管理器
+	 */
+	private SelectionManager selectionManager = new SelectionManager();
+
+	/**
+	 * 拖拽行为
+	 */
+	private DragMouseGestures dragMouseGestures = new DragMouseGestures(selectionManager);
 
 	/**
 	 * 资源到的节点映射，用于根据资源查找节点
@@ -34,12 +56,17 @@ public class ChainPaneController extends PaneController {
 	@FXML
 	Pane chainPane;
 
+	@FXML
+	private void initialize() {
+		// 拖拽方块支持
+		new RubberBandSelection(chainPane, selectionManager);
+	}
+
 	@Override
 	public void clearContent() {
 		//@TODO 清空选择模型
 
 		//清空连线
-
 
 		//清空节点
 
@@ -83,6 +110,13 @@ public class ChainPaneController extends PaneController {
 		this.source = (ChainDataSource)source;
 	}
 
+
+	@Override
+	@SuppressWarnings("rawtypes")
+	public void setTStage(TStage tStage) {
+		this.tStage = (ChainTStage) tStage;
+	}
+
 	@Override
 	public BorderPane getNode() {
 		return pane;
@@ -99,6 +133,12 @@ public class ChainPaneController extends PaneController {
 		dag.addElem(element);
 		chainPane.getChildren().add(element);
 		element.relocate(x, y);
+
+		//添加其为可拖拽
+		dragMouseGestures.makeDraggable(element);
+
+		//添加双击打开面板
+		element.addEventHandler(MouseEvent.MOUSE_CLICKED, onDoubleClickHander);
 	}
 
 	protected void addEdge(Element source, Element target) throws GraphicException {
@@ -107,4 +147,34 @@ public class ChainPaneController extends PaneController {
 		source.updatePosition();
 		target.updatePosition();
 	}
+
+    EventHandler<MouseEvent> onDoubleClickHander = new EventHandler<MouseEvent>() {
+
+		@Override
+		public void handle(MouseEvent event) {
+			if (!event.getButton().equals(MouseButton.PRIMARY) || event.getClickCount()!=2) {
+        		return;
+			}
+
+			//检查是否已经打开面板
+			ResourceElem sElem = (ResourceElem)event.getSource();
+			if (tStage.hasContain(sElem.getResource())) {
+				tStage.resourceMapStage.get(sElem.getResource()).show();
+				tStage.resourceMapStage.get(sElem.getResource()).requestFocus();
+				return;
+			}
+
+			//
+			try {
+				@SuppressWarnings("rawtypes")
+				TStage newStage = FrameFactory.generateBySource(new SampleOperatorDataSource());
+				tStage.addMap(sElem.getResource(), newStage);
+				newStage.show();
+			} catch (InvalidSourceException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	};
 }

@@ -1,6 +1,5 @@
 package cn.keepfight.frame.chain.drag;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,15 +9,15 @@ import javafx.scene.Node;
  * 选择模型类，用于记录当前已选择的
  *
  */
-public class SelectionModel {
+public class SelectionManager {
 
-	private static SelectionModel instance = new SelectionModel();
+	private static SelectionManager instance = new SelectionManager();
 
 	/**
 	 * 单例模式支持
 	 * @return 选择模型单例
 	 */
-	public static SelectionModel getInstance() {return instance;}
+	public static SelectionManager getInstance() {return instance;}
 
     Set<Node> selection = new HashSet<>();
 
@@ -51,7 +50,7 @@ public class SelectionModel {
     }
 
     public void log() {
-        System.out.println( "Items in model: " + Arrays.asList( selection.toArray()));
+//        System.out.println( "Items in model: " + Arrays.asList( selection.toArray()));
     }
 
 }

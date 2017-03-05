@@ -1,11 +1,13 @@
 package cn.keepfight.frame.controller;
 
+import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.ResourceBundle;
 
-import cn.keepfight.frame.chain.OperatorResource;
 import cn.keepfight.frame.menu.MenuItemType;
+import cn.keepfight.operator.AbstractOperator;
 import javafx.fxml.FXML;
 
 public class TableMenuViewController extends MenuViewController{
@@ -29,13 +31,13 @@ public class TableMenuViewController extends MenuViewController{
 	 * @param groupIndex 组索引，由0开始计数
 	 * @return 菜单项对应的控制器
 	 */
-	public MenuItemController addMenuItem(OperatorResource operatorModel, int groupIndex) {
-		return addMenuItem(operatorModel, groupIndex, MenuItemType.TP_32_TOP);
+	public MenuItemController addMenuItem(AbstractOperator operator, int groupIndex) {
+		return addMenuItem(operator, groupIndex, MenuItemType.TP_32_TOP);
 	}
 
 	@Override
-	public MenuItemController addMenuItem(OperatorResource operatorModel, int groupIndex, MenuItemType type) {
-		MenuItemController controller = super.addMenuItem(operatorModel, groupIndex, type);
+	public MenuItemController addMenuItem(AbstractOperator operator, int groupIndex, MenuItemType type) {
+		MenuItemController controller = super.addMenuItem(operator, groupIndex, type);
 		//将菜单项添加到状态可影响列表中。
 		mapState(controller);
 		return controller;
@@ -47,6 +49,12 @@ public class TableMenuViewController extends MenuViewController{
 	}
 
 	private void addLocalMenuItems(){
+
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
 
 	}
 }

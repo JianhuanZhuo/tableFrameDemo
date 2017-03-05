@@ -11,4 +11,9 @@ public class OperatorTStage extends TStage<OperatorDataSource,
 	protected void fixAfter() {
 	}
 
+	@Override
+	public void onDelete() {
+		this.close();
+	}
+
 }

@@ -36,7 +36,7 @@ public abstract class ChainDataSource implements DataSource{
 
 	@Override
 	public DataSourceType getSourceType() {
-		return DataSourceType.OPERATORCHAIN;
+		return DataSourceType.CHAIN;
 	}
 
 	@Override

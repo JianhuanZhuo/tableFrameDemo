@@ -1,5 +1,8 @@
 package cn.keepfight.frame.controller;
 
+import cn.keepfight.frame.TStage;
+import cn.keepfight.frame.TableTStage;
+import cn.keepfight.frame.chain.ChainTStage;
 import cn.keepfight.frame.content.TableContentLoader;
 import cn.keepfight.frame.content.source.DataSource;
 import cn.keepfight.frame.content.source.InvalidSourceException;
@@ -22,6 +25,8 @@ import javafx.scene.layout.BorderPane;
 public class TablePaneController extends PaneController{
 
 	TableDataSource source;
+
+	private TableTStage tStage;
 
 	/**
 	 * 画板的根布局
@@ -80,6 +85,13 @@ public class TablePaneController extends PaneController{
 			}
 			loader.setDataSource((TableDataSource)source);
 		}
+	}
+
+
+	@Override
+	@SuppressWarnings("rawtypes")
+	public void setTStage(TStage tStage) {
+		this.tStage = (TableTStage) tStage;
 	}
 
 	@Override

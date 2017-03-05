@@ -1,7 +1,13 @@
 package cn.keepfight.frame.chain.drag;
 
+import java.io.IOException;
+
+import cn.keepfight.frame.FrameFactory;
+import cn.keepfight.frame.content.source.InvalidSourceException;
+import cn.keepfight.frame.operator.SampleOperatorDataSource;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -13,7 +19,11 @@ public class DragMouseGestures {
 	/**
 	 * 选择群
 	 */
-    SelectionModel selectionModel = SelectionModel.getInstance();
+    SelectionManager selectionModel;
+
+    public DragMouseGestures( SelectionManager selectionModel) {
+		this.selectionModel = selectionModel;
+	}
 
     /**
      * 拖拽坐标辅助类，提供可变化的异步访问
@@ -37,6 +47,7 @@ public class DragMouseGestures {
         node.setOnMousePressed(onMousePressedEventHandler);
         node.setOnMouseDragged(onMouseDraggedEventHandler);
         node.setOnMouseReleased(onMouseReleasedEventHandler);
+//        node.setOnMouseClicked(onDoubleClickHander);
     }
 
     /**
@@ -46,6 +57,15 @@ public class DragMouseGestures {
 
         @Override
         public void handle(MouseEvent event) {
+
+//        	System.out.println("x1:"+event.getClickCount());
+
+        	if (!event.getButton().equals(MouseButton.PRIMARY)) {
+        		return;
+			}
+
+//        	System.out.println("danji");
+
 
             // don't do anything if the user is in the process of adding to the selection model
             // 本身就事选择的意思
@@ -79,6 +99,9 @@ public class DragMouseGestures {
         @Override
         public void handle(MouseEvent event) {
 
+        	if (!event.getButton().equals(MouseButton.PRIMARY)) {
+        		return;
+			}
             if(!enabled){
                 return;
             }
@@ -87,20 +110,20 @@ public class DragMouseGestures {
             for( Node node: selectionModel.selection) {
                 node.setTranslateX( dragContext.x + event.getSceneX());
                 node.setTranslateY( dragContext.y + event.getSceneY());
-                NodeSelection.xLabel.setText(
-                		"LayoutX:"+node.getLayoutX()+
-                		" node.getLayoutBounds().getWidth()"+node.getLayoutBounds().getWidth()+
-                		" TranslateX:"+node.getTranslateX()+
-                		" eventSceneX:"+event.getSceneX()+
-                		" node.getScene().getX():"+node.getScene().getX()+
-                		" node.getScene().getHeight():"+node.getScene().getHeight());
-                NodeSelection.yLabel.setText(
-                		"LayoutY:"+node.getLayoutY()+
-                		" node.getLayoutBounds().getHeight()"+node.getLayoutBounds().getHeight()+
-                		" TranslateY:"+node.getTranslateY()+
-                		" eventSceneX:"+event.getSceneY()+
-                		" node.getScene().getY():"+node.getScene().getY()+
-                		" node.getScene().getWidth():"+node.getScene().getWidth());
+//                NodeSelection.xLabel.setText(
+//                		"LayoutX:"+node.getLayoutX()+
+//                		" node.getLayoutBounds().getWidth()"+node.getLayoutBounds().getWidth()+
+//                		" TranslateX:"+node.getTranslateX()+
+//                		" eventSceneX:"+event.getSceneX()+
+//                		" node.getScene().getX():"+node.getScene().getX()+
+//                		" node.getScene().getHeight():"+node.getScene().getHeight());
+//                NodeSelection.yLabel.setText(
+//                		"LayoutY:"+node.getLayoutY()+
+//                		" node.getLayoutBounds().getHeight()"+node.getLayoutBounds().getHeight()+
+//                		" TranslateY:"+node.getTranslateY()+
+//                		" eventSceneX:"+event.getSceneY()+
+//                		" node.getScene().getY():"+node.getScene().getY()+
+//                		" node.getScene().getWidth():"+node.getScene().getWidth());
             }
         }
     };
@@ -109,10 +132,15 @@ public class DragMouseGestures {
 
         @Override
         public void handle(MouseEvent event) {
-        	System.out.println("释放响应");
+
+        	if (!event.getButton().equals(MouseButton.PRIMARY)) {
+        		return;
+			}
+
+//        	System.out.println("释放响应");
             // prevent rubberband selection handler
             if(enabled) {
-            	System.out.println("释放响应2");
+//            	System.out.println("释放响应2");
                 // set node's layout position to current position,remove translate coordinates
                 for( Node node: selectionModel.selection) {
                     fixPosition(node);
@@ -136,8 +164,8 @@ public class DragMouseGestures {
 
         node.relocate(node.getLayoutX() + x, node.getLayoutY() + y);
 
-        NodeSelection.xLabel.setText("LayoutX:"+node.getLayoutX()+" TranslateX:"+x);
-        NodeSelection.yLabel.setText("LayoutY:"+node.getLayoutY()+" TranslateY:"+y);
+//        NodeSelection.xLabel.setText("LayoutX:"+node.getLayoutX()+" TranslateX:"+x);
+//        NodeSelection.yLabel.setText("LayoutY:"+node.getLayoutY()+" TranslateY:"+y);
 
         node.setTranslateX(0);
         node.setTranslateY(0);

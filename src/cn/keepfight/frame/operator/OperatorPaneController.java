@@ -2,6 +2,9 @@ package cn.keepfight.frame.operator;
 
 import java.util.Arrays;
 
+import cn.keepfight.frame.OperatorTStage;
+import cn.keepfight.frame.TStage;
+import cn.keepfight.frame.TableTStage;
 import cn.keepfight.frame.content.source.DataSource;
 import cn.keepfight.frame.content.source.InvalidSourceException;
 import cn.keepfight.frame.controller.PaneController;
@@ -44,6 +47,8 @@ public class OperatorPaneController extends PaneController {
 	@FXML
 	private TextArea description;
 
+
+	private OperatorTStage tStage;
 	OperatorDataSource source;
 
 	@Override
@@ -84,6 +89,12 @@ public class OperatorPaneController extends PaneController {
 			throw new InvalidSourceException("source is not instanceof OperatorResource!");
 		}
 		this.source = (OperatorDataSource) source;
+	}
+
+	@Override
+	@SuppressWarnings("rawtypes")
+	public void setTStage(TStage tStage) {
+		this.tStage = (OperatorTStage) tStage;
 	}
 
 	@FXML

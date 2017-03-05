@@ -21,4 +21,8 @@ public class ResourceElem extends Element{
 	    view.setFitHeight(32);
         getChildren().add(view);
 	}
+
+	public Resource getResource() {
+		return resource;
+	}
 }

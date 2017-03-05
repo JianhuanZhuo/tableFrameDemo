@@ -2,11 +2,12 @@ package cn.keepfight.frame.controller;
 
 import java.io.IOException;
 
-import cn.keepfight.frame.chain.OperatorResource;
 import cn.keepfight.frame.menu.MenuItemType;
+import cn.keepfight.operator.AbstractOperator;
 import cn.keepfight.utils.ViewPathUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -18,7 +19,7 @@ import javafx.scene.layout.HBox;
  *
  * @param <T> T参数表示菜单视图状态，需要在其他子菜单视图控制器中得到具体实现
  */
-public abstract class MenuViewController{
+public abstract class MenuViewController implements Initializable{
 
 	@FXML
 	TabPane tabPane;
@@ -31,8 +32,8 @@ public abstract class MenuViewController{
 	 * @param type 指定创建菜单项所使用的视图模板
 	 * @return 菜单项对应的控制器，出错返回null
 	 */
-	public MenuItemController addMenuItem(OperatorResource operatorModel, int groupIndex, MenuItemType type) {
-		if (operatorModel==null || groupIndex<0 || groupIndex >= tabPane.getTabs().size()) {
+	public MenuItemController addMenuItem(AbstractOperator operator, int groupIndex, MenuItemType type) {
+		if (operator==null || groupIndex<0 || groupIndex >= tabPane.getTabs().size()) {
 			return null;
 		}
 
@@ -43,6 +44,12 @@ public abstract class MenuViewController{
 			hBox.getChildren().add(gridPane);
 
 			MenuItemController controller = loader.getController();
+
+			// 设置图标与文字
+			controller.setPic(operator.getIcon());
+			controller.setBtnText(operator.getLabel());;
+			controller.setTipText(operator.getTips());
+
 			return controller;
 		} catch (IOException e) {
 			e.printStackTrace();

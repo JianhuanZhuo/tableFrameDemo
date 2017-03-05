@@ -7,6 +7,7 @@ import cn.keepfight.frame.content.source.DataSourceType;
 import cn.keepfight.frame.controller.PaneController;
 import cn.keepfight.frame.controller.TablePaneController;
 import cn.keepfight.frame.operator.OperatorPaneController;
+import cn.keepfight.frame.text.TextPaneController;
 import cn.keepfight.utils.ViewPathUtil;
 import javafx.fxml.FXMLLoader;
 
@@ -20,10 +21,12 @@ public class ContentFactory {
 		switch (type) {
 		case TABLE:
 			return new TablePaneController();
-		case OPERATORCHAIN:
+		case CHAIN:
 			return new ChainPaneController();
 		case OPERATOR:
 			return new OperatorPaneController();
+		case TEXT:
+			return new TextPaneController();
 		default:
 			break;
 		}

@@ -5,6 +5,7 @@ import java.io.IOException;
 import cn.keepfight.frame.chain.SampleChainDataSource;
 import cn.keepfight.frame.content.source.InvalidSourceException;
 import cn.keepfight.frame.operator.SampleOperatorDataSource;
+import cn.keepfight.frame.text.SampleTextDataSource;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -15,9 +16,10 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			FrameFactory.generateBySource(new SampleTableDataSource()).show();
+//			FrameFactory.generateBySource(new SampleTableDataSource()).show();
 			FrameFactory.generateBySource(new SampleChainDataSource("行为信息分析链")).show();
-			FrameFactory.generateBySource(new SampleOperatorDataSource()).show();
+//			FrameFactory.generateBySource(new SampleOperatorDataSource()).show();
+//			FrameFactory.generateBySource(new SampleTextDataSource(primaryStage)).show();
 		} catch (InvalidSourceException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

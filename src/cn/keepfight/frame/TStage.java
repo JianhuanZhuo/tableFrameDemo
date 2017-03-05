@@ -6,6 +6,7 @@ import cn.keepfight.frame.content.source.DataSource;
 import cn.keepfight.frame.content.source.InvalidSourceException;
 import cn.keepfight.frame.controller.MenuViewController;
 import cn.keepfight.frame.controller.PaneController;
+import cn.keepfight.utils.ImageLoadUtil;
 import cn.keepfight.utils.ViewPathUtil;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -26,7 +27,7 @@ import javafx.stage.Stage;
  * @param <K> 菜单视图控制器类型
  */
 public abstract class TStage<T extends DataSource, K extends MenuViewController,
-		J extends PaneController> extends Stage{
+		J extends PaneController> extends Stage implements ContextSlave{
 
 	//需要考虑面板间通信问题
 
@@ -86,10 +87,14 @@ public abstract class TStage<T extends DataSource, K extends MenuViewController,
 
 		//为画板设置数据源
 		paneVC.setDataSource(source);
-		paneVC.load();
+
+		paneVC.setTStage(this);
 
 		//调用用户自定义接口
 		fixAfter();
+
+		//初始化加载数据
+		paneVC.load();
 	}
 
 	private void loadRootView() throws IOException{
@@ -106,7 +111,8 @@ public abstract class TStage<T extends DataSource, K extends MenuViewController,
 	public void setTitleWithType(String title) {
 		setTitle("["+source.getSourceType().getTypeName_cn()+"面板] "+title);
 
-		//TODO 添加类型图标
+		//TODO 添加类型图标，改成16*16，, ImageLoadUtil.IMG_SIZE_16
+		getIcons().add(ImageLoadUtil.load(source.getSourceType().getIconURL()));
 	}
 
 	@SuppressWarnings("unchecked")

@@ -1,58 +1,59 @@
 package cn.keepfight.operator;
 
+import cn.keepfight.frame.chain.OperatorResource;
+
 /**
  * 算子模型的描述类。
  * @author Tom
  *
  */
-public class AbstractOperator{
+public abstract class AbstractOperator{
 
-	private int id;//算子ID
-	private String name;//算子名
-	private String label;//算子图标按钮上的名字
-	private String tips;//算子提示信息
-	private String icon;//算子图标
-	private String description;//算子描述信息
-//	private DataSourceType inputType;//输入类型
-//	private DataSourceType outputType;//输出类型
+	/**
+	 * 获得算子 ID
+	 * @return 算子 ID
+	 */
+	public abstract int getId();
 
-	public AbstractOperator(int id, String name) {
-		this.id = id;
-		this.name = name;
-	}
+	/**
+	 * 获得算子名，指算子的标识名，如列分割算子是 spilt
+	 * @return 算子的标识名
+	 */
+	public abstract String getName();
 
-	public static AbstractOperator demoOperator() {
-		return new AbstractOperator(-1, "");
-	}
+	/**
+	 * 获得算子名，用于显示的，如列分割算子是 "列分割"
+	 * @return 用于显示的算子名
+	 */
+	public abstract String getLabel();
 
-	public String getName() {
-		return name;
-	}
-	public String getIcon() {
-		return icon;
-	}
-	public String getTips() {
-		return tips;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public int getId() {
-		return id;
-	}
-	public String getLabel() {
-		return label;
-	}
-	public void setLabel(String label) {
-		this.label = label;
-	}
-	public void setTips(String tips) {
-		this.tips = tips;
-	}
-	public void setIcon(String icon) {
-		this.icon = icon;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
+	/**
+	 * 获得算子图标
+	 * @return 算子图标
+	 */
+	public abstract String getIcon();
+
+	/**
+	 * 获得算子提示字符串
+	 * @return 算子提示字符串
+	 */
+	public abstract String getTips();
+
+	/**
+	 * 获得算子释义字符串
+	 * @return 算子的解释说明字符串
+	 */
+	public abstract String getDescription();
+
+	/**
+	 * 规定在点击该算子时所指定的动作
+	 * @TODO 这个接口的规范貌似还需要多加斟酌
+	 */
+	public abstract void onAction();
+
+	/**
+	 * 生成算子资源
+	 * @return 由该算子状态生成的算子资源
+	 */
+	public abstract OperatorResource generateResource();
 }

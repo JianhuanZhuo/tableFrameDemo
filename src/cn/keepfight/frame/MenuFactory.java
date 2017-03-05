@@ -8,6 +8,7 @@ import cn.keepfight.frame.controller.ChainMenuViewController;
 import cn.keepfight.frame.controller.MenuViewController;
 import cn.keepfight.frame.controller.TableMenuViewController;
 import cn.keepfight.frame.operator.OperatorMenuViewController;
+import cn.keepfight.frame.text.TextMenuViewController;
 import cn.keepfight.utils.ViewPathUtil;
 import javafx.fxml.FXMLLoader;
 
@@ -26,10 +27,12 @@ public class MenuFactory {
 		switch (type) {
 		case TABLE:
 			return new TableMenuViewController();
-		case OPERATORCHAIN:
+		case CHAIN:
 			return new ChainMenuViewController();
 		case OPERATOR:
 			return new OperatorMenuViewController();
+		case TEXT:
+			return new TextMenuViewController();
 		default:
 			break;
 		}

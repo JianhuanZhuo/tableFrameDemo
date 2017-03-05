@@ -72,7 +72,7 @@
             </HBox>
             <Separator prefWidth="200.0" />
             <Label text="算子描述：" />
-            <TextArea fx:id="description" maxHeight="80.0" maxWidth="308.0" prefHeight="80.0" prefWidth="213.0" text="ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" />
+            <TextArea fx:id="description" wrapText="true" maxHeight="80.0" maxWidth="308.0" prefHeight="80.0" prefWidth="213.0" text="ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" />
          </children>
       </VBox>
    </center>

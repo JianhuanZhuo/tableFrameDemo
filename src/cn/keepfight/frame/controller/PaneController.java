@@ -1,5 +1,6 @@
 package cn.keepfight.frame.controller;
 
+import cn.keepfight.frame.TStage;
 import cn.keepfight.frame.content.source.DataSource;
 import cn.keepfight.frame.content.source.InvalidSourceException;
 import javafx.scene.layout.BorderPane;
@@ -9,7 +10,7 @@ import javafx.scene.layout.BorderPane;
  * @author Tom
  *
  */
-public abstract class PaneController {
+public abstract class PaneController{
 
 	/**
 	 * 清空画板内容
@@ -28,4 +29,7 @@ public abstract class PaneController {
 	 * @param source 数据源
 	 */
 	public abstract void setDataSource(DataSource source) throws InvalidSourceException;
+
+	@SuppressWarnings("rawtypes")
+	public abstract void setTStage(TStage tStage);
 }

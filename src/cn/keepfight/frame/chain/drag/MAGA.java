@@ -4,9 +4,9 @@ import cn.keepfight.utils.ImageLoadUtil;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
-public class Selectable extends Pane {
+public class MAGA extends Pane implements Dragable{
     ImageView view;
-    public Selectable( double width, double height, String image) {
+    public MAGA( double width, double height, String image) {
         view = new ImageView( ImageLoadUtil.load(image));
         view.setFitWidth(width);
         view.setFitHeight(height);
@@ -15,4 +15,9 @@ public class Selectable extends Pane {
 
         this.setPrefSize(width, height);
     }
+
+
+	@Override
+	public void updatePosition() {
+	}
 }

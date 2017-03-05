@@ -8,6 +8,8 @@ import cn.keepfight.frame.content.source.DataSource;
 import cn.keepfight.frame.content.source.InvalidSourceException;
 import cn.keepfight.frame.content.source.TableDataSource;
 import cn.keepfight.frame.operator.OperatorDataSource;
+import cn.keepfight.frame.text.TextDataSource;
+import cn.keepfight.frame.text.TextTStage;
 
 /**
  * 显示面板工厂类，对应 {@link cn.keepfight.frame.content.source.DataSourceType} 进行生成面板实例。
@@ -35,9 +37,13 @@ public class FrameFactory {
 			resTStage = new OperatorTStage();
 			((OperatorTStage)resTStage).InitSource((OperatorDataSource)source);
 			break;
-		case OPERATORCHAIN:
+		case CHAIN:
 			resTStage = new ChainTStage();
 			((ChainTStage)resTStage).InitSource((ChainDataSource)source);
+			break;
+		case TEXT:
+			resTStage = new TextTStage();
+			((TextTStage)resTStage).InitSource((TextDataSource)source);
 			break;
 		default:
 			break;

@@ -45,7 +45,7 @@ public class ImageLoadUtil {
 				String imageUrl = "cn/keepfight/resources/g" + size + "/" + imageName;
 				Image resImage = null;
 				try {
-					resImage = new Image(imageUrl, true);
+					resImage = new Image(imageUrl);
 				} catch (Exception e) {
 					System.err.println("url is: "+imageUrl);
 					e.printStackTrace();

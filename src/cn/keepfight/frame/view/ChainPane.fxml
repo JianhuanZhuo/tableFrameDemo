@@ -378,39 +378,39 @@
                   </TitledPane>
               </panes>
             </Accordion>
-            <ScrollPane fitToHeight="true" fitToWidth="true" minWidth="600.0">
-               <content>
-                  <BorderPane minWidth="500.0" prefHeight="700.0" prefWidth="500.0">
-                     <center>
-                        <Pane fx:id="chainPane" BorderPane.alignment="CENTER" />
-                     </center>
-                     <top>
-                        <HBox BorderPane.alignment="CENTER">
+            <BorderPane minWidth="500.0" prefHeight="700.0" prefWidth="500.0">
+               <top>
+                  <HBox BorderPane.alignment="CENTER">
+                     <children>
+                        <HBox prefWidth="200.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <HBox prefWidth="200.0" HBox.hgrow="ALWAYS">
-                                 <children>
-                                    <Button mnemonicParsing="false" text="Button" />
-                                    <Button mnemonicParsing="false" text="Button" />
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" prefWidth="200.0" HBox.hgrow="ALWAYS">
-                                 <children>
-                                    <Button mnemonicParsing="false" text="Button" />
-                                    <Button mnemonicParsing="false" text="Button" />
-                                 </children>
-                              </HBox>
-                              <HBox alignment="TOP_RIGHT" prefWidth="200.0" HBox.hgrow="ALWAYS">
-                                 <children>
-                                    <Button mnemonicParsing="false" text="Button" />
-                                    <Button mnemonicParsing="false" text="Button" />
-                                 </children>
-                              </HBox>
+                              <Button mnemonicParsing="false" text="Button" />
+                              <Button mnemonicParsing="false" text="Button" />
                            </children>
                         </HBox>
-                     </top>
-                  </BorderPane>
-               </content>
-            </ScrollPane>
+                        <HBox alignment="CENTER" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Button mnemonicParsing="false" text="Button" />
+                              <Button mnemonicParsing="false" text="Button" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="TOP_RIGHT" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Button mnemonicParsing="false" text="Button" />
+                              <Button mnemonicParsing="false" text="Button" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </top>
+               <center>
+                  <ScrollPane fitToHeight="true" fitToWidth="true" minWidth="600.0" BorderPane.alignment="CENTER">
+                     <content>
+                        <Pane fx:id="chainPane" />
+                     </content>
+                  </ScrollPane>
+               </center>
+            </BorderPane>
          </items>
       </SplitPane>
    </center>
