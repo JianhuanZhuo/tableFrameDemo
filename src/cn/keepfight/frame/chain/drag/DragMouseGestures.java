@@ -1,10 +1,5 @@
 package cn.keepfight.frame.chain.drag;
 
-import java.io.IOException;
-
-import cn.keepfight.frame.FrameFactory;
-import cn.keepfight.frame.content.source.InvalidSourceException;
-import cn.keepfight.frame.operator.SampleOperatorDataSource;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.MouseButton;
@@ -110,6 +105,7 @@ public class DragMouseGestures {
             for( Node node: selectionModel.selection) {
                 node.setTranslateX( dragContext.x + event.getSceneX());
                 node.setTranslateY( dragContext.y + event.getSceneY());
+
 //                NodeSelection.xLabel.setText(
 //                		"LayoutX:"+node.getLayoutX()+
 //                		" node.getLayoutBounds().getWidth()"+node.getLayoutBounds().getWidth()+
@@ -157,7 +153,7 @@ public class DragMouseGestures {
      * 重定位指定客体Node
      * @param node 指定客体Node
      */
-    private void fixPosition( Node node) {
+    private void fixPosition(Node node) {
 
         double x = node.getTranslateX();
         double y = node.getTranslateY();
@@ -169,6 +165,10 @@ public class DragMouseGestures {
 
         node.setTranslateX(0);
         node.setTranslateY(0);
+
+        if (node instanceof Dragable) {
+        	((Dragable)node).updatePosition();
+		}
     }
 
 }

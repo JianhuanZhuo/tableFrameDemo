@@ -2,7 +2,6 @@ package cn.keepfight.operator;
 
 import java.util.List;
 
-import cn.keepfight.frame.TStage;
 import cn.keepfight.frame.chain.OperatorResource;
 import cn.keepfight.frame.chain.Resource;
 
@@ -11,8 +10,7 @@ import cn.keepfight.frame.chain.Resource;
  * @author Tom
  *
  */
-@SuppressWarnings("rawtypes")
-public abstract class AbstractOperator<T extends TStage>{
+public abstract class AbstractOperator{
 
 	/**
 	 * 获得算子 ID
@@ -70,10 +68,4 @@ public abstract class AbstractOperator<T extends TStage>{
 		res.setParams(new String[0]);
 		return res;
 	}
-
-	/**
-	 * 使用这种方式引用舞台面板
-	 * @param tStage 面板对象
-	 */
-	public abstract void setTStage(T tStage);
 }

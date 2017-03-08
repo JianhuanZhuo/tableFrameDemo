@@ -1,6 +1,5 @@
-package cn.keepfight.frame.controller;
+package cn.keepfight.frame;
 
-import cn.keepfight.frame.TStage;
 import cn.keepfight.frame.content.source.DataSource;
 import cn.keepfight.frame.content.source.InvalidSourceException;
 import javafx.scene.layout.BorderPane;

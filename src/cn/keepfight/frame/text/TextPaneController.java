@@ -3,11 +3,10 @@ package cn.keepfight.frame.text;
 import java.io.BufferedReader;
 import java.io.IOException;
 
-import cn.keepfight.frame.OperatorTStage;
+import cn.keepfight.frame.PaneController;
 import cn.keepfight.frame.TStage;
 import cn.keepfight.frame.content.source.DataSource;
 import cn.keepfight.frame.content.source.InvalidSourceException;
-import cn.keepfight.frame.controller.PaneController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -71,5 +70,9 @@ public class TextPaneController extends PaneController{
 	@SuppressWarnings("rawtypes")
 	public void setTStage(TStage tStage) {
 		this.tStage = (TextTStage) tStage;
+	}
+
+	public TextTStage getTStage() {
+		return tStage;
 	}
 }

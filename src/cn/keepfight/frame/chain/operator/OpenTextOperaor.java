@@ -15,7 +15,7 @@ import javafx.stage.FileChooser;
  * @author Tom
  *
  */
-public class OpenTextOperaor extends AbstractOperator<ChainTStage>{
+public class OpenTextOperaor extends AbstractOperator{
 
 	File targetFile;
 	ChainTStage tStage;
@@ -57,10 +57,4 @@ public class OpenTextOperaor extends AbstractOperator<ChainTStage>{
 		OperatorResource res = super.generateResource();
 		return res;
 	}
-
-	@Override
-	public void setTStage(ChainTStage tStage) {
-		this.tStage = tStage;
-	}
-
 }

@@ -1,10 +1,15 @@
-package cn.keepfight.frame.controller;
+package cn.keepfight.frame.menu;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Observable;
 
+import cn.keepfight.frame.PaneController;
+import cn.keepfight.frame.TStage;
+import cn.keepfight.frame.chain.ChainTStage;
 import cn.keepfight.frame.chain.Resource;
-import cn.keepfight.frame.menu.MenuItemType;
+import cn.keepfight.frame.content.source.DataSource;
+import cn.keepfight.frame.content.source.InvalidSourceException;
 import cn.keepfight.operator.AbstractOperator;
 import cn.keepfight.utils.ImageLoadUtil;
 import javafx.event.EventHandler;
@@ -37,6 +42,9 @@ public class MenuItemController extends Observable{
 	@FXML
 	private Button btn;
 
+	@SuppressWarnings("rawtypes")
+	private TStage tStage;
+
 	/**
 	 * 菜单按钮类型
 	 */
@@ -47,9 +55,14 @@ public class MenuItemController extends Observable{
 	 */
 	private AbstractOperator operator;
 
+
 	public MenuItemController() {
 	}
 
+	@SuppressWarnings("rawtypes")
+	public void attachTStage(TStage tStage){
+		this.tStage = tStage;
+	}
 	public void setMenuItemType(MenuItemType itemType){
 		this.itemType = itemType;
 	}
@@ -58,14 +71,25 @@ public class MenuItemController extends Observable{
 		this.operator = operator;
 		setBtnText(operator.getLabel());
 		setPic(operator.getIcon());
-		setBtnText(operator.getTips());
+		setTipText(operator.getTips());
 		btn.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
 				List<Resource> resList = operator.onAction();
-				if (resList!=null) {
-					
+				if (resList==null) {
+					//本地算子，不生成结果
+					return;
 				}
+				if (resList.size()==1) {
+					DataSource resDataSource = tStage.getContextMaster().doOperate(tStage, operator.generateResource(), resList.get(0));
+					try {
+						tStage.reSetSource(resDataSource);
+					} catch (InvalidSourceException | IOException e) {
+						//@TODO 做数据源无效的判断哦！！！
+						e.printStackTrace();
+					}
+				}
+				//@TODO 做多输出的
 			}
 		});
 	}

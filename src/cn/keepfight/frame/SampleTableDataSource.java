@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.keepfight.frame.content.source.InvalidSourceException;
-import cn.keepfight.frame.content.source.TableDataSource;
+import cn.keepfight.frame.table.TableDataSource;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -92,6 +92,16 @@ public class SampleTableDataSource extends TableDataSource {
 			dataList.add(data);
 		}
 		in.close();
+	}
+
+	@Override
+	public String getDB() {
+		return "";
+	}
+
+	@Override
+	public String getEntityName() {
+		return "";
 	}
 
 

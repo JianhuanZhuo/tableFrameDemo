@@ -19,6 +19,11 @@ public abstract class Element extends Region implements Dragable{
 	 */
 	List<Element> backEles = new ArrayList<Element>();
 
+	/**
+	 * 出度目标节点
+	 */
+	List<DirectedEdge> frontEles = new ArrayList<DirectedEdge>();
+
 
 	protected static class DirectedEdge{
 		Line line;
@@ -37,13 +42,6 @@ public abstract class Element extends Region implements Dragable{
 			line = new Line();
 		}
 
-		protected void updateLine(double start_x, double start_y, double end_x, double end_y) {
-			line.setStartX(start_x);
-			line.setStartY(start_y);
-			line.setEndX(end_x);
-			line.setEndY(end_y);
-		}
-
 		protected void updateLineStart(double start_x, double start_y) {
 			line.setStartX(start_x);
 			line.setStartY(start_y);
@@ -60,13 +58,6 @@ public abstract class Element extends Region implements Dragable{
 	}
 
 	/**
-	 * 出度目标节点
-	 */
-	List<DirectedEdge> frontEles = new ArrayList<DirectedEdge>();
-
-
-
-	/**
 	 * 检查是否为起始节点
 	 * @return 是返回true，否则返回false
 	 */
@@ -74,17 +65,34 @@ public abstract class Element extends Region implements Dragable{
 		return backEles.isEmpty();
 	}
 
+	/**
+	 * 查找当前节点中所有末端包含指定节点的边
+	 * @param frontElem 指定末端节点
+	 * @return 所有符合条件的边
+	 */
+	public DirectedEdge[] getFrontEdge(Element frontElem){
+		List<DirectedEdge> edges = new ArrayList<>();
+
+		for (DirectedEdge directedEdge : frontEles) {
+			if (directedEdge.endEle==frontElem) {
+				edges.add(directedEdge);
+			}
+		}
+
+		return edges.toArray(new DirectedEdge[edges.size()]);
+	}
+
 	@Override
 	public void updatePosition() {
 
 		//@TODO 考虑终点和起点相叠加的情况
-
 		double x = getLayoutX()+getLayoutBounds().getWidth()/2;
 		double y = getLayoutY()+getLayoutBounds().getHeight()/2;
 		// 更新前任连接线
 		for (Element element : backEles) {
-			int index = element.frontEles.indexOf(this);
-			element.frontEles.get(index).updateLineEnd(x, y);
+			for (DirectedEdge edge : element.getFrontEdge(this)) {
+				edge.updateLineEnd(x, y);
+			};
 		}
 		//更新下任连接线
 		for (DirectedEdge directedEdge : frontEles) {

@@ -4,9 +4,8 @@ import java.io.IOException;
 
 import cn.keepfight.frame.chain.ChainPaneController;
 import cn.keepfight.frame.content.source.DataSourceType;
-import cn.keepfight.frame.controller.PaneController;
-import cn.keepfight.frame.controller.TablePaneController;
 import cn.keepfight.frame.operator.OperatorPaneController;
+import cn.keepfight.frame.table.TablePaneController;
 import cn.keepfight.frame.text.TextPaneController;
 import cn.keepfight.utils.ViewPathUtil;
 import javafx.fxml.FXMLLoader;

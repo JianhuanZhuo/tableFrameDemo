@@ -11,7 +11,7 @@ import cn.keepfight.operator.AbstractOperator;
  * @author Tom
  *
  */
-public class OperatorLookup extends AbstractOperator<TextTStage>{
+public class OperatorLookup extends AbstractOperator{
 
 //	private int lineNum = -1;
 //	private int rayNum = -1;
@@ -44,10 +44,4 @@ public class OperatorLookup extends AbstractOperator<TextTStage>{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public void setTStage(TextTStage tStage) {
-		this.tStage = tStage;
-	}
-
 }

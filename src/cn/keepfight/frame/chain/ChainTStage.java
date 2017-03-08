@@ -32,9 +32,6 @@ public class ChainTStage extends TStage<ChainDataSource,
 	protected void fixAfter() {
 		//添加选择对象高亮
 		getScene().getStylesheets().add( getClass().getResource("drag/highlight.css").toExternalForm());
-
-		// 加载本地菜单
-		getMenuVC().loadLocalMenu();
 	}
 
 	@Override
@@ -62,8 +59,22 @@ public class ChainTStage extends TStage<ChainDataSource,
 
 	@Override
 	public DataSource doOperate(ContextSlave slave, Resource operator, Resource result) {
-		// TODO Auto-generated method stub
-		return null;
+		//查找奴隶节点
+		ResourceElem sElem = getPaneVC().getElemMap().get(stageMapResource.get(slave));
+
+		//添加算子节点、结果节点
+		ResourceElem operatorElem = getPaneVC().addResource(operator);
+		ResourceElem eElem = getPaneVC().addResource(result);
+
+		try {
+			getPaneVC().addEdge(sElem, operatorElem);
+			getPaneVC().addEdge(operatorElem, eElem);
+		} catch (GraphicException e) {
+			e.printStackTrace();
+		}
+
+		//返回结果资源的数据源
+		return eElem.getResource().generateDataSource();
 	}
 
 	@Override

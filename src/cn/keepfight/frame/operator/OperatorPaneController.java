@@ -3,10 +3,10 @@ package cn.keepfight.frame.operator;
 import java.util.Arrays;
 
 import cn.keepfight.frame.OperatorTStage;
+import cn.keepfight.frame.PaneController;
 import cn.keepfight.frame.TStage;
 import cn.keepfight.frame.content.source.DataSource;
 import cn.keepfight.frame.content.source.InvalidSourceException;
-import cn.keepfight.frame.controller.PaneController;
 import cn.keepfight.utils.ImageLoadUtil;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -78,9 +78,9 @@ public class OperatorPaneController extends PaneController {
 		oper_label.setText("" + source.getLabel());
 		oper_name.setText("" + source.getName());
 		description.setText(source.getDescription());
-		input_res.setItems(FXCollections.observableArrayList(Arrays.asList(source.getInputResource())));
-		out_res.setItems(FXCollections.observableArrayList(Arrays.asList(source.getOutputResource())));
-		params.setItems(FXCollections.observableArrayList(Arrays.asList(source.getParams())));
+		input_res.setItems(FXCollections.observableArrayList(Arrays.asList(source.getInputResource()==null?new String[0]:source.getInputResource())));
+		out_res.setItems(FXCollections.observableArrayList(Arrays.asList(source.getOutputResource()==null?new String[0]:source.getOutputResource())));
+		params.setItems(FXCollections.observableArrayList(Arrays.asList(source.getParams()==null?new String[0]:source.getParams())));
 	}
 	@Override
 	public void setDataSource(DataSource source) throws InvalidSourceException {
@@ -89,6 +89,7 @@ public class OperatorPaneController extends PaneController {
 			throw new InvalidSourceException("source is not instanceof OperatorResource!");
 		}
 		this.source = (OperatorDataSource) source;
+
 	}
 
 	@Override

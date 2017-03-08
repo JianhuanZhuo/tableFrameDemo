@@ -2,7 +2,7 @@ package cn.keepfight.frame.operator;
 
 import cn.keepfight.frame.OperatorTStage;
 import cn.keepfight.frame.TStage;
-import cn.keepfight.frame.controller.MenuViewController;
+import cn.keepfight.frame.menu.MenuViewController;
 
 public class OperatorMenuViewController extends MenuViewController{
 
@@ -11,5 +11,10 @@ public class OperatorMenuViewController extends MenuViewController{
 	@Override
 	public void setTStage(@SuppressWarnings("rawtypes") TStage tStage) {
 		this.operatorTStage = (OperatorTStage) tStage;
+	}
+
+	@Override
+	public void addMenuItem() {
+
 	}
 }

@@ -1,7 +1,10 @@
-package cn.keepfight.frame.content.source;
+package cn.keepfight.frame.table;
 
 import java.util.List;
 
+import cn.keepfight.frame.content.source.DataSource;
+import cn.keepfight.frame.content.source.DataSourceType;
+import cn.keepfight.frame.content.source.InvalidSourceException;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -14,6 +17,9 @@ import javafx.collections.ObservableList;
  *
  */
 public abstract class TableDataSource implements DataSource{
+
+	public abstract String getDB();
+	public abstract String getEntityName();
 
 	@Override
 	public DataSourceType getSourceType() {

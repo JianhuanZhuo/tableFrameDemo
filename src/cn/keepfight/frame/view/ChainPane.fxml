@@ -406,7 +406,7 @@
                <center>
                   <ScrollPane fitToHeight="true" fitToWidth="true" minWidth="600.0" BorderPane.alignment="CENTER">
                      <content>
-                        <Pane fx:id="chainPane" />
+                        <Pane id="chain_pane" fx:id="chainPane" stylesheets="@css/style.css" />
                      </content>
                   </ScrollPane>
                </center>

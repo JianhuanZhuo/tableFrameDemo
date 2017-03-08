@@ -2,9 +2,10 @@ package cn.keepfight.frame;
 
 import java.util.Optional;
 
-import cn.keepfight.frame.content.source.TableDataSource;
-import cn.keepfight.frame.controller.TableMenuViewController;
-import cn.keepfight.frame.controller.TablePaneController;
+import cn.keepfight.frame.content.source.DataSource;
+import cn.keepfight.frame.table.TableDataSource;
+import cn.keepfight.frame.table.TableMenuViewController;
+import cn.keepfight.frame.table.TablePaneController;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;

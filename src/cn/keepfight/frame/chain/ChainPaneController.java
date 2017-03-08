@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import cn.keepfight.frame.FrameFactory;
+import cn.keepfight.frame.PaneController;
 import cn.keepfight.frame.TStage;
 import cn.keepfight.frame.chain.ChainDataSource.Edge;
 import cn.keepfight.frame.chain.ChainDataSource.ResourceWithPosition;
@@ -15,7 +16,6 @@ import cn.keepfight.frame.chain.drag.RubberBandSelection;
 import cn.keepfight.frame.chain.drag.SelectionManager;
 import cn.keepfight.frame.content.source.DataSource;
 import cn.keepfight.frame.content.source.InvalidSourceException;
-import cn.keepfight.frame.controller.PaneController;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseButton;
@@ -72,6 +72,10 @@ public class ChainPaneController extends PaneController {
 		// 清空其他
 	}
 
+	protected Map<Resource, ResourceElem> getElemMap() {
+		return elemMap;
+	}
+
 	@Override
 	public void load() {
 		// 清空画板内容
@@ -120,13 +124,14 @@ public class ChainPaneController extends PaneController {
 		return pane;
 	}
 
-	public void addResource(Resource newResource) {
+	public ResourceElem addResource(Resource newResource) {
 		ResourceElem elem = new ResourceElem(newResource);
 		elemMap.put(newResource, elem);
 		try {
 			addElement(elem, chainPane.getWidth()/2, chainPane.getHeight()/2);
 		} catch (Exception e) {
 		}
+		return elem;
 	}
 
 	/**
@@ -156,9 +161,18 @@ public class ChainPaneController extends PaneController {
 	protected void addEdge(Element source, Element target) throws GraphicException {
 		DirectedEdge edge = dag.addEdge(source, target);
 		chainPane.getChildren().add(edge.getLine());
+
+		//调整后者位置
+		target.relocate(source.getLayoutX()+50, source.getLayoutY());
+
 		source.updatePosition();
 		target.updatePosition();
 	}
+
+	public ChainTStage getTStage() {
+		return tStage;
+	}
+
 
 	EventHandler<MouseEvent> onDoubleClickHander = new EventHandler<MouseEvent>() {
 
@@ -171,15 +185,19 @@ public class ChainPaneController extends PaneController {
 			// 检查是否已经打开面板
 			ResourceElem sElem = (ResourceElem) event.getSource();
 			if (tStage.hasContain(sElem.getResource())) {
-				tStage.resourceMapStage.get(sElem.getResource()).show();
-				tStage.resourceMapStage.get(sElem.getResource()).requestFocus();
+				try {
+					tStage.resourceMapStage.get(sElem.getResource()).show(sElem.getResource().generateDataSource());
+				} catch (InvalidSourceException | IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				return;
 			}
 
 			//
 			try {
 				@SuppressWarnings("rawtypes")
-				TStage newStage = FrameFactory.generateBySource(sElem.getResource().generateDataSource());
+				TStage newStage = FrameFactory.generateBySource(tStage, sElem.getResource().generateDataSource());
 				tStage.addMap(sElem.getResource(), newStage);
 				newStage.show();
 			} catch (InvalidSourceException e) {

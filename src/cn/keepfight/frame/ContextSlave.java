@@ -1,5 +1,10 @@
 package cn.keepfight.frame;
 
+import java.io.IOException;
+
+import cn.keepfight.frame.content.source.DataSource;
+import cn.keepfight.frame.content.source.InvalidSourceException;
+
 public interface ContextSlave {
 
 	public void onDelete();
@@ -7,7 +12,11 @@ public interface ContextSlave {
 	/**
 	 * 使得该子面板获得焦点
 	 */
-	public void requestFocus();
+	public void show(DataSource source) throws InvalidSourceException, IOException;
 
-	public void show();
+	public void close();
+
+	public ContextMaster getContextMaster();
+
+	public void setContextMaster(ContextMaster master);
 }

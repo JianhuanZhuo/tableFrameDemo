@@ -2,7 +2,6 @@ package cn.keepfight.frame.chain.drag;
 
 import javafx.event.EventHandler;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -91,7 +90,11 @@ public class RubberBandSelection {
             rect.setWidth(0);
             rect.setHeight(0);
 
-            group.getChildren().add(rect);
+            try {
+                group.getChildren().add(rect);
+			} catch (Exception e) {
+				//@TODO 解决这个异常
+			}
 
             event.consume();
         }

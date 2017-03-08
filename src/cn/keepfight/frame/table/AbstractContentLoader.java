@@ -1,4 +1,4 @@
-package cn.keepfight.frame.content;
+package cn.keepfight.frame.table;
 
 import cn.keepfight.frame.content.source.DataSource;
 import cn.keepfight.frame.content.source.InvalidSourceException;

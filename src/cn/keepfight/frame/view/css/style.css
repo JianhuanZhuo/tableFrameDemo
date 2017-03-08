@@ -1,0 +1,8 @@
+#chain_pane{
+	-fx-background-image: url("../image/background_line.png");
+	-fx-background-repeat: repeat;
+}
+
+.cloumn_selection{
+	-fx-border-color:red ;
+}

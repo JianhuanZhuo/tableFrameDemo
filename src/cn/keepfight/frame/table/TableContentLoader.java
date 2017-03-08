@@ -1,15 +1,20 @@
-package cn.keepfight.frame.content;
+package cn.keepfight.frame.table;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.keepfight.frame.content.source.InvalidSourceException;
-import cn.keepfight.frame.content.source.TableDataSource;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.scene.control.TableView;
 import javafx.util.Callback;
 
@@ -28,6 +33,17 @@ public class TableContentLoader
 	 * @TODO 这里需要做成配置参数
 	 */
 	private int pageLimit = 10;
+
+	private int pageNow = 1;
+
+	/**
+	 * 列头点击事件响应
+	 */
+	private EventHandler<? super MouseEvent> handler;
+
+	public void setHandler(EventHandler<? super MouseEvent> handler) {
+		this.handler = handler;
+	}
 
 	public TableContentLoader(TableDataSource source, TableView<ObservableList<StringProperty>> node)
 			throws InvalidSourceException {
@@ -50,6 +66,11 @@ public class TableContentLoader
 	 */
 	public void setPageLimit(int pageLimit) {
 		this.pageLimit = pageLimit;
+		reload();
+	}
+
+	public int getPageLimit() {
+		return pageLimit;
 	}
 
 	/**
@@ -61,7 +82,7 @@ public class TableContentLoader
 		for (StringProperty p : source.getHeadList()) {
 			addColumn(p.getValue());
 		}
-		List<ObservableList<StringProperty>> dataList = source.getRowList(1, pageLimit);
+		List<ObservableList<StringProperty>> dataList = source.getRowList((pageNow - 1) * pageLimit, pageLimit);
 		for (ObservableList<StringProperty> observableList : dataList) {
 			appendRow(observableList);
 		}
@@ -80,6 +101,10 @@ public class TableContentLoader
 		} else {
 			title = columnTitle;
 		}
+
+		// 设置为不可排序
+		column.setSortable(false);
+
 		column.setText(title);
 		column.setCellValueFactory(
 				new Callback<TableColumn.CellDataFeatures<ObservableList<StringProperty>, String>, ObservableValue<String>>() {
@@ -95,12 +120,62 @@ public class TableContentLoader
 					}
 				});
 		node.getColumns().add(column);
-		return column;
 
+		// 更换表头，并添加事件监听
+		VBox vBox = new VBox(new Label(columnTitle));
+		vBox.setAlignment(Pos.CENTER);
+		vBox.getProperties().put("column_object", columnIndex);
+		vBox.getProperties().put("column_name", columnTitle);
+		column.setGraphic(vBox);
+		column.setText("");
+		column.getGraphic().addEventFilter(MouseEvent.MOUSE_CLICKED, handler);
+		return column;
 	}
 
 	private void appendRow(ObservableList<StringProperty> row) {
 		node.getItems().add(row);
 	}
 
+	public int getPageNow() {
+		return pageNow;
+	}
+
+	public void setPageNow(int pageNow) {
+		if (pageNow <= 0 || pageNow > getPageTotalNum()) {
+			return;
+		}
+		this.pageNow = pageNow;
+		reload();
+	}
+
+	public int getPageTotalNum() {
+		return (source.getRowNum() / pageLimit) + 1;
+	}
+
+	public boolean loadNextPage() {
+		if (pageNow >= getPageTotalNum()) {
+			return false;
+		}
+		pageNow = pageNow + 1;
+		reload();
+		return true;
+	}
+
+	public boolean loadPrePage() {
+		if (pageNow <= 1) {
+			return false;
+		}
+		pageNow = pageNow - 1;
+		reload();
+		return true;
+	}
+
+	public List<String> allColumns() {
+		List<String> res = new ArrayList<String>();
+		source.getHeadList()
+				.stream()
+				.map(p -> p.getValue())
+				.forEach(s -> res.add(s));
+		return res;
+	}
 }

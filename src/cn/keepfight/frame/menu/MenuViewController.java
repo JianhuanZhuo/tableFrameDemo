@@ -1,15 +1,11 @@
-package cn.keepfight.frame.controller;
+package cn.keepfight.frame.menu;
 
 import java.io.IOException;
 
 import cn.keepfight.frame.TStage;
-import cn.keepfight.frame.TableTStage;
-import cn.keepfight.frame.menu.MenuItemType;
-import cn.keepfight.operator.AbstractOperator;
 import cn.keepfight.utils.ViewPathUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -26,6 +22,9 @@ public abstract class MenuViewController{
 	@FXML
 	TabPane tabPane;
 
+	@SuppressWarnings("rawtypes")
+	private TStage tStage;
+
 	/**
 	 * 为算子添加到指定索引的菜单组中
 	 * 重载方法默认使用 {@link cn.keepfight.frame.menu.MenuItemType.TP_32_TOP} 作为图标类型。
@@ -34,8 +33,8 @@ public abstract class MenuViewController{
 	 * @param type 指定创建菜单项所使用的视图模板
 	 * @return 菜单项对应的控制器，出错返回null
 	 */
-	public MenuItemController addMenuItem(@SuppressWarnings("rawtypes") AbstractOperator operator, int groupIndex, MenuItemType type) {
-		if (operator==null || groupIndex<0 || groupIndex >= tabPane.getTabs().size()) {
+	public MenuItemController createMenuItem(int groupIndex, MenuItemType type) {
+		if (groupIndex<0 || groupIndex >= tabPane.getTabs().size()) {
 			return null;
 		}
 
@@ -49,12 +48,9 @@ public abstract class MenuViewController{
 
 			// 设置类型和算子
 			controller.setMenuItemType(type);
-			controller.setOperator(operator);
 
-			// 设置图标与文字
-			controller.setPic(operator.getIcon());
-			controller.setBtnText(operator.getLabel());;
-			controller.setTipText(operator.getTips());
+			// 关联面板
+			controller.attachTStage(tStage);
 
 			return controller;
 		} catch (IOException e) {
@@ -69,6 +65,16 @@ public abstract class MenuViewController{
 	}
 
 	@SuppressWarnings("rawtypes")
+	public void attachTStage(TStage tStage){
+		this.tStage = tStage;
+		setTStage(tStage);
+	}
+
+	@SuppressWarnings("rawtypes")
 	public abstract void setTStage(TStage tStage);
 
+	/**
+	 * 添加菜单项，将在初始化时被调用
+	 */
+	public abstract void addMenuItem();
 }
