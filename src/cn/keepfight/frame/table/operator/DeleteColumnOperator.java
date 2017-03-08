@@ -19,17 +19,21 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.util.Pair;
 import net.sf.json.JSONObject;
 
-public class MergeColumnOperator extends AbstractOperator{
+/**
+ * 未完成
+ * @author Tom
+ *
+ */
+public class DeleteColumnOperator extends AbstractOperator{
 
 	TableTStage tStage;
-
 
 	private String[] inputResource;
 	private String[] outputResource;
 	private String[] params;
 
 
-	public MergeColumnOperator(TableTStage tStage) {
+	public DeleteColumnOperator(TableTStage tStage) {
 		this.tStage = tStage;
 	}
 
@@ -38,16 +42,16 @@ public class MergeColumnOperator extends AbstractOperator{
 		return 333;
 	}
 
-	@Override public String getName() {return "merge-column";}
+	@Override public String getName() {return "insert-column";}
 
 	@Override
 	public String getLabel() {
-		return "列合并";
+		return "插入列";
 	}
 
 	@Override
 	public String getIcon() {
-		return "merge-column.png";
+		return "insert-column.png";
 	}
 
 	@Override
@@ -70,7 +74,7 @@ public class MergeColumnOperator extends AbstractOperator{
 		if (resList==null) { return null; }
 
 		//获得输入新列名
-		TextInputDialog dialog = new TextInputDialog("");
+		TextInputDialog dialog = new TextInputDialog("walter");
 		dialog.setTitle("列合并");
 		dialog.setHeaderText("请为新列选择列名");
 		dialog.setContentText("列名输入:");

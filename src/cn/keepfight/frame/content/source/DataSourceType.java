@@ -19,6 +19,7 @@ public enum DataSourceType {
 	VIDEO("视频", 	new ViewPool(), 					"video.png"),     // 视频数据类型
 	TEXT("文本",  	new ViewPool("TextPane.fxml"),	 	"text.png"),      // TEXT文本文件数据类型
 	FILE("文件", 	new ViewPool(), 					"file.png"),      // 文件数据类型
+	FILES("文件群", 	new ViewPool("FilesPane.fxml"), 	"files.png"),     // 文件群数据类型
 	URL("链接", 		new ViewPool(), 					"URL.png"),       // URL数据类型
 	DEVICE("设备", 	new ViewPool(), 					"device.png"),    // 设备数据类型
 	CODE("代码", 	new ViewPool(), 					"code.png"),      // 代码数据类型

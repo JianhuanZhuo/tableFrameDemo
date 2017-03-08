@@ -1,5 +1,6 @@
 package cn.keepfight.frame.chain;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,8 +8,10 @@ import java.util.Optional;
 
 import cn.keepfight.frame.ContextMaster;
 import cn.keepfight.frame.ContextSlave;
+import cn.keepfight.frame.FrameFactory;
 import cn.keepfight.frame.TStage;
 import cn.keepfight.frame.content.source.DataSource;
+import cn.keepfight.frame.content.source.InvalidSourceException;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
@@ -25,8 +28,8 @@ public class ChainTStage extends TStage<ChainDataSource,
 	 * 使用双哈希保存两者间的相互映射
 	 * @TODO 此处需改进
 	 */
-	Map<ContextSlave, Resource> stageMapResource = new HashMap<>();
-	Map<Resource, ContextSlave> resourceMapStage = new HashMap<>();
+	Map<ContextSlave, ResourceElem> stageMapElem = new HashMap<>();
+	Map<ResourceElem, ContextSlave> elemMapStage = new HashMap<>();
 
 	@Override
 	protected void fixAfter() {
@@ -58,9 +61,9 @@ public class ChainTStage extends TStage<ChainDataSource,
 	}
 
 	@Override
-	public DataSource doOperate(ContextSlave slave, Resource operator, Resource result) {
+	public void doOperate(ContextSlave slave, Resource operator, Resource result) {
 		//查找奴隶节点
-		ResourceElem sElem = getPaneVC().getElemMap().get(stageMapResource.get(slave));
+		ResourceElem sElem = stageMapElem.get(slave);
 
 		//添加算子节点、结果节点
 		ResourceElem operatorElem = getPaneVC().addResource(operator);
@@ -74,31 +77,49 @@ public class ChainTStage extends TStage<ChainDataSource,
 		}
 
 		//返回结果资源的数据源
-		return eElem.getResource().generateDataSource();
+		DataSource resDataSource = eElem.getResource().generateDataSource();
+		/****************************************************************
+		try {
+			slave.reSetSource(resDataSource);
+			elemMapStage.put(eElem, slave);
+			stageMapElem.put(slave, eElem);
+		} catch (InvalidSourceException | IOException e) {
+
+		****************************************************************/
+		try {
+			ContextSlave newSlave = FrameFactory.generateBySource(this, resDataSource);
+			addMap(eElem, newSlave);
+			slave.close();
+			newSlave.showup();
+		} catch (InvalidSourceException | IOException e1) {
+			System.err.println("Source InvalidSourceException!");
+			e1.printStackTrace();
+		}
+		return ;
 	}
 
 	@Override
-	public List<DataSource> doOperate(ContextSlave slave, Resource operator, List<Resource> results) {
+	public void doOperate(ContextSlave slave, Resource operator, List<Resource> results) {
 		// TODO Auto-generated method stub
-		return null;
+		return ;
 	}
 
 	@Override
-	public List<DataSource> doOperate(List<ContextSlave> slaves, Resource operator, List<Resource> results) {
+	public void doOperate(List<ContextSlave> slaves, Resource operator, List<Resource> results) {
 		// TODO Auto-generated method stub
-		return null;
+		return ;
 	}
 
 	public boolean hasContain(ContextSlave slave) {
-		return stageMapResource.containsKey(slave);
+		return stageMapElem.containsKey(slave);
 	}
 
-	public boolean hasContain(Resource resource) {
-		return resourceMapStage.containsKey(resource);
+	public boolean hasContain(ResourceElem elem) {
+		return elemMapStage.containsKey(elem);
 	}
 
-	protected void addMap(Resource resource, ContextSlave slave){
-		resourceMapStage.put(resource, slave);
-		stageMapResource.put(slave, resource);
+	protected void addMap(ResourceElem elem, ContextSlave slave){
+		elemMapStage.put(elem, slave);
+		stageMapElem.put(slave, elem);
 	}
 }

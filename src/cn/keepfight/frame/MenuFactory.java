@@ -5,6 +5,7 @@ import java.io.IOException;
 import cn.keepfight.frame.chain.ChainMenuViewController;
 import cn.keepfight.frame.content.source.DataSourceType;
 import cn.keepfight.frame.content.source.ViewPool;
+import cn.keepfight.frame.files.FilesMenuViewController;
 import cn.keepfight.frame.menu.MenuViewController;
 import cn.keepfight.frame.operator.OperatorMenuViewController;
 import cn.keepfight.frame.table.TableMenuViewController;
@@ -33,6 +34,8 @@ public class MenuFactory {
 			return new OperatorMenuViewController();
 		case TEXT:
 			return new TextMenuViewController();
+		case FILES:
+			return new FilesMenuViewController();
 		default:
 			break;
 		}

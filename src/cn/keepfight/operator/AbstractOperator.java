@@ -52,8 +52,9 @@ public abstract class AbstractOperator{
 	 * 规定在点击该算子时所指定的动作
 	 * @TODO 这个接口的规范貌似还需要多加斟酌
 	 * @return 算子运算结束产生的资源数，不产生资源或面板内操作则返回null
+	 * @exception Exception 算子运行中产生的各种异常
 	 */
-	public abstract List<Resource> onAction();
+	public abstract List<Resource> onAction() throws Exception ;
 
 	/**
 	 * 生成算子资源
@@ -62,6 +63,7 @@ public abstract class AbstractOperator{
 	public OperatorResource generateResource(){
 		OperatorResource res = new OperatorResource(getId(), getName());
 		res.setDescription(getDescription());
+		res.setLabel(getLabel());
 		res.setIcon(getIcon());
 		res.setInputResource(new String[0]);
 		res.setOutputResource(new String[0]);

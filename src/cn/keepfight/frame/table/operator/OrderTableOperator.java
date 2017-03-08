@@ -70,7 +70,7 @@ public class OrderTableOperator extends AbstractOperator{
 	}
 
 	@Override
-	public List<Resource> onAction() {
+	public List<Resource> onAction() throws Exception{
 
 		TablePaneController tPaneController = tStage.getPaneVC();
 		List<String> selectList = tPaneController.getTableSelect().getColumnStrings();
@@ -99,11 +99,7 @@ public class OrderTableOperator extends AbstractOperator{
 		String url = "http://127.0.0.1:8080/dap/dataLoad/createView.htm";
 		System.out.println(url);
 		String res = "";
-		try {
-			res = HttpUtils.simpleGetWithEncode(url, paramPairs);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		res = HttpUtils.simpleGetWithEncode(url, paramPairs);
 		JSONObject resx = JSONObject.fromObject(res);
 		System.out.println(resx.getBoolean("flag"));
 		String viewName = resx.getString("view");

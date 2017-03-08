@@ -104,27 +104,25 @@ public abstract class TStage<T extends DataSource, K extends MenuViewController,
 	/**
 	 *
 	 */
-	public void reSetSource(T source) throws InvalidSourceException, IOException {
+	@SuppressWarnings("unchecked")
+	public void reSetSource(DataSource source) throws InvalidSourceException, IOException {
 		source.checkValid();
 		//检查两个源是否同类型，不是同类型则应该更换面板
-		if (this.source.getClass().equals(source.getClass())) {
-			this.source = source;
-
-			//设置标题
-			setTitleWithType(source.getSourceIDName());
-			//为画板设置新数据源
-			getPaneVC().setDataSource(source);
-
-			//调用用户自定义接口
-			fixAfter();
-
-			//初始化加载数据
-			getPaneVC().load();
-		}else {
-			//更换面板
-			close();
-			FrameFactory.generateBySource(master, source).show();
+		if (!this.source.getClass().equals(source.getClass())) {
+			throw new InvalidSourceException("class of target is not equals class of source!");
 		}
+		this.source = (T) source;
+
+		//设置标题
+		setTitleWithType(source.getSourceIDName());
+		//为画板设置新数据源
+		getPaneVC().setDataSource(source);
+
+		//调用用户自定义接口
+		fixAfter();
+
+		//初始化加载数据
+		getPaneVC().load();
 	}
 
 	private void loadRootView() throws IOException{
@@ -190,10 +188,7 @@ public abstract class TStage<T extends DataSource, K extends MenuViewController,
 	}
 
 	@Override
-	public void show(DataSource source) throws InvalidSourceException, IOException{
-		if(this.getSource()!=source){
-			reSetSource((T)source);
-		}
+	public void showup(){
 		super.show();
 		super.requestFocus();
 	}

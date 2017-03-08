@@ -6,6 +6,8 @@ import cn.keepfight.frame.chain.ChainDataSource;
 import cn.keepfight.frame.chain.ChainTStage;
 import cn.keepfight.frame.content.source.DataSource;
 import cn.keepfight.frame.content.source.InvalidSourceException;
+import cn.keepfight.frame.files.FilesDataSource;
+import cn.keepfight.frame.files.FilesTStage;
 import cn.keepfight.frame.operator.OperatorDataSource;
 import cn.keepfight.frame.table.TableDataSource;
 import cn.keepfight.frame.text.TextDataSource;
@@ -45,6 +47,10 @@ public class FrameFactory {
 		case TEXT:
 			resTStage = new TextTStage();
 			((TextTStage)resTStage).initSource(master, (TextDataSource)source);
+			break;
+		case FILES:
+			resTStage = new FilesTStage();
+			((FilesTStage)resTStage).initSource(master, (FilesDataSource)source);
 			break;
 		default:
 			break;

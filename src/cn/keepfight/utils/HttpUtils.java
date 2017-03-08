@@ -3,6 +3,8 @@ package cn.keepfight.utils;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -44,6 +46,17 @@ public class HttpUtils {
 		for (Pair<String, String> p : params) {
 			paramStr += "&"+p.getKey()+"="+URLEncoder.encode(p.getValue(), "utf-8");
 		}
+		System.out.println();
+		params.stream()
+				.map(p -> {
+					try {
+						return p.getKey()+"="+URLEncoder.encode(p.getValue(), "utf-8");
+					} catch (UnsupportedEncodingException e) {
+						e.printStackTrace();
+					}
+					return null;
+				})
+				.collect(Collectors.joining("&"));
 		return simpleGet(url+"?"+paramStr.substring(1));
 	}
 

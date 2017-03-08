@@ -12,11 +12,13 @@ public interface ContextSlave {
 	/**
 	 * 使得该子面板获得焦点
 	 */
-	public void show(DataSource source) throws InvalidSourceException, IOException;
+	public void showup();
 
 	public void close();
 
 	public ContextMaster getContextMaster();
 
 	public void setContextMaster(ContextMaster master);
+
+	public void reSetSource(DataSource resDataSource) throws InvalidSourceException, IOException ;
 }

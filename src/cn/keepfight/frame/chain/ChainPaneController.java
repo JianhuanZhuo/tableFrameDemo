@@ -163,7 +163,7 @@ public class ChainPaneController extends PaneController {
 		chainPane.getChildren().add(edge.getLine());
 
 		//调整后者位置
-		target.relocate(source.getLayoutX()+50, source.getLayoutY());
+		target.relocate(source.getLayoutX()+50, source.getLayoutY()+(source.frontEles.size()-1)*50);
 
 		source.updatePosition();
 		target.updatePosition();
@@ -184,21 +184,15 @@ public class ChainPaneController extends PaneController {
 
 			// 检查是否已经打开面板
 			ResourceElem sElem = (ResourceElem) event.getSource();
-			if (tStage.hasContain(sElem.getResource())) {
-				try {
-					tStage.resourceMapStage.get(sElem.getResource()).show(sElem.getResource().generateDataSource());
-				} catch (InvalidSourceException | IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+			if (tStage.hasContain(sElem)) {
+				tStage.elemMapStage.get(sElem).showup();
 				return;
 			}
-
 			//
 			try {
 				@SuppressWarnings("rawtypes")
 				TStage newStage = FrameFactory.generateBySource(tStage, sElem.getResource().generateDataSource());
-				tStage.addMap(sElem.getResource(), newStage);
+				tStage.addMap(sElem, newStage);
 				newStage.show();
 			} catch (InvalidSourceException e) {
 				e.printStackTrace();

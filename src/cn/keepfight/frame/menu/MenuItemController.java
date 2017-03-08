@@ -34,7 +34,7 @@ import javafx.scene.input.MouseEvent;
  * @author Tom
  *
  */
-public class MenuItemController extends Observable{
+public class MenuItemController{
 
 	@FXML
 	private ImageView pic;
@@ -75,19 +75,19 @@ public class MenuItemController extends Observable{
 		btn.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				List<Resource> resList = operator.onAction();
+				List<Resource> resList;
+				try {
+					resList = operator.onAction();
+				} catch (Exception e) {
+					e.printStackTrace();
+					return ;
+				}
 				if (resList==null) {
 					//本地算子，不生成结果
 					return;
 				}
 				if (resList.size()==1) {
-					DataSource resDataSource = tStage.getContextMaster().doOperate(tStage, operator.generateResource(), resList.get(0));
-					try {
-						tStage.reSetSource(resDataSource);
-					} catch (InvalidSourceException | IOException e) {
-						//@TODO 做数据源无效的判断哦！！！
-						e.printStackTrace();
-					}
+					tStage.getContextMaster().doOperate(tStage, operator.generateResource(), resList.get(0));
 				}
 				//@TODO 做多输出的
 			}

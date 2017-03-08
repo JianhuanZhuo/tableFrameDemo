@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import cn.keepfight.frame.chain.ChainPaneController;
 import cn.keepfight.frame.content.source.DataSourceType;
+import cn.keepfight.frame.files.FilesPaneController;
 import cn.keepfight.frame.operator.OperatorPaneController;
 import cn.keepfight.frame.table.TablePaneController;
 import cn.keepfight.frame.text.TextPaneController;
@@ -26,6 +27,8 @@ public class ContentFactory {
 			return new OperatorPaneController();
 		case TEXT:
 			return new TextPaneController();
+		case FILES:
+			return new FilesPaneController();
 		default:
 			break;
 		}

@@ -45,4 +45,10 @@ public class ViewPathUtil {
 	public static FXMLLoader getLoader(String viewURL) {
 		return new FXMLLoader(ViewPathUtil.getFrameView(viewURL));
 	}
+
+	public static Object loadViewForController(String viewURL) throws IOException {
+		FXMLLoader loader = getLoader(viewURL);
+		loader.load();
+		return loader.getController();
+	}
 }
