@@ -1,9 +1,9 @@
 package cn.keepfight.frame.files.operator;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -57,18 +57,17 @@ public class FilesFilterOperator extends AbstractOperator{
 		//过滤文件
 		List<File> resFileList = tStage.getSource().getFiles().parallelStream()
 			.filter(f->{
-						try {
-							return Files.newBufferedReader(Paths.get(f.getPath())).lines()
-									.anyMatch(line->
-											Arrays.asList(sp).stream()
-											.anyMatch(keyStr -> (line.indexOf(keyStr)!=-1))
-											);
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-						return false;
-					}
-			)
+				try (BufferedReader br = new BufferedReader(new FileReader(f))) {
+                    br.lines()
+						.anyMatch(line->
+							Arrays.asList(sp).stream()
+								.anyMatch(keyStr -> (line.indexOf(keyStr)!=-1))
+						);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				return false;
+			})
 			.collect(Collectors.toList());
 
 		//包装结果

@@ -2,7 +2,6 @@ package cn.keepfight.frame;
 
 import java.util.Optional;
 
-import cn.keepfight.frame.content.source.DataSource;
 import cn.keepfight.frame.table.TableDataSource;
 import cn.keepfight.frame.table.TableMenuViewController;
 import cn.keepfight.frame.table.TablePaneController;

@@ -77,14 +77,15 @@ public class Main extends Application {
 			System.out.println(resx.getBoolean("flag"));
 		}
 
-//		{
-//			String url = "http://127.0.0.1:8080/dap/dataLoad/test2.htm";
-//			String res = HttpUtils.simplePost(url, URLEncoder.encode(resx.toString(), "utf-8"));
-//			System.out.println(res.length());
-//			System.out.println(res);
-//			JSONObject json = JSONObject.fromObject(res);
-//			System.out.println(json.getBoolean("flag"));
-//		}
+		{
+			String url = "http://127.0.0.1:8080/dap/dataLoad/getTables.htm?db=wz";
+			System.out.println(url);
+			String res = HttpUtils.simpleGet(url);
+			System.out.println(res.length());
+			System.out.println(res);
+			resx = JSONObject.fromObject(res);
+			System.out.println(resx.getBoolean("flag"));
+		}
 
 	}
 

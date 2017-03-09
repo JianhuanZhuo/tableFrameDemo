@@ -100,6 +100,8 @@ public class OrderTableOperator extends AbstractOperator{
 		System.out.println(url);
 		String res = "";
 		res = HttpUtils.simpleGetWithEncode(url, paramPairs);
+
+
 		JSONObject resx = JSONObject.fromObject(res);
 		System.out.println(resx.getBoolean("flag"));
 		String viewName = resx.getString("view");

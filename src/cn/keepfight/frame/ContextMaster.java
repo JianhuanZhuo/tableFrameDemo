@@ -3,7 +3,6 @@ package cn.keepfight.frame;
 import java.util.List;
 
 import cn.keepfight.frame.chain.Resource;
-import cn.keepfight.frame.content.source.DataSource;
 
 /**
  * 内容管理者接口

@@ -1,6 +1,7 @@
 package cn.keepfight.frame.chain;
 
 import cn.keepfight.frame.TStage;
+import cn.keepfight.frame.chain.operator.OpenDBEntityOperaor;
 import cn.keepfight.frame.chain.operator.OpenFilesOperaor;
 import cn.keepfight.frame.chain.operator.OpenTextOperaor;
 import cn.keepfight.frame.menu.MenuItemType;
@@ -17,6 +18,7 @@ public class ChainMenuViewController extends MenuViewController{
 
 	@Override
 	public void addMenuItem() {
+		createMenuItem(0, MenuItemType.TP_32_TOP).setOperator(new OpenDBEntityOperaor(chainTStage));
 		createMenuItem(0, MenuItemType.TP_32_TOP).setOperator(new OpenTextOperaor(chainTStage));
 		createMenuItem(0, MenuItemType.TP_32_TOP).setOperator(new OpenFilesOperaor(chainTStage));
 	}

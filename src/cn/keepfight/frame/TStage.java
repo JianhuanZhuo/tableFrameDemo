@@ -1,16 +1,27 @@
 package cn.keepfight.frame;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
+import cn.keepfight.frame.chain.Resource;
 import cn.keepfight.frame.content.source.DataSource;
 import cn.keepfight.frame.content.source.InvalidSourceException;
 import cn.keepfight.frame.menu.MenuViewController;
+import cn.keepfight.operator.AbstractOperator;
 import cn.keepfight.utils.ImageLoadUtil;
 import cn.keepfight.utils.ViewPathUtil;
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 
 /**
  *
@@ -60,6 +71,11 @@ public abstract class TStage<T extends DataSource, K extends MenuViewController,
 	 */
 	protected abstract void fixAfter();
 
+	/**
+	 * 正在执行的算子队列，若空则为空闲
+	 */
+	@SuppressWarnings("rawtypes")
+	private Queue<Pair<Task, EventHandler>> taskQueue = new LinkedList<>();
 	/**
 	 * 使用指定的数据源初始化面板
 	 * @param master 面板所属父面板
@@ -191,5 +207,45 @@ public abstract class TStage<T extends DataSource, K extends MenuViewController,
 	public void showup(){
 		super.show();
 		super.requestFocus();
+	}
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public void setBusy(final Task busyTask, final EventHandler handler) {
+		System.out.println("busy");
+		if (taskQueue.isEmpty()) {
+			busyTask.setOnSucceeded(new EventHandler<WorkerStateEvent>(){
+				@Override
+				public void handle(WorkerStateEvent event) {
+					clearBusy(busyTask.getValue(), handler, event);
+				}
+			});
+			busyTask.setOnFailed(e->{popBusy();});
+			new Thread(busyTask).start();
+		}
+		taskQueue.add(new Pair<Task, EventHandler>(busyTask, handler));
+	}
+
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	private void clearBusy(Object input, EventHandler handler, WorkerStateEvent event) {
+		handler.handle(event);
+		popBusy();
+		System.out.println("idle");
+	}
+
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	private void popBusy() {
+		taskQueue.poll();
+		if (!taskQueue.isEmpty()) {
+			Pair<Task, EventHandler> taskPair = taskQueue.peek();
+			Task busyTask = taskPair.getKey();
+			busyTask.setOnSucceeded(new EventHandler<WorkerStateEvent>(){
+				@Override
+				public void handle(WorkerStateEvent event) {
+					clearBusy(busyTask.getValue(), taskPair.getValue(), event);
+				}
+			});
+			busyTask.setOnFailed(e->{popBusy();});
+			new Thread(busyTask).start();
+		}
 	}
 }

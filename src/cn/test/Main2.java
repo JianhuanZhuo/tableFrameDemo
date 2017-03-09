@@ -5,11 +5,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import javafx.application.Application;
@@ -28,29 +30,32 @@ public class Main2 extends Application {
 		List<File> targetList = fileChooser.showOpenMultipleDialog(primaryStage);
 		if (targetList == null) {
 			System.out.println("targetList none");
-	    }
-		targetList.parallelStream()
-				.filter(f->{
-							try {
-								return Files.newBufferedReader(Paths.get(f.getPath())).lines()
-										.anyMatch(line-> (line.indexOf(",")!=-1));
-							} catch (IOException e) {
-								e.printStackTrace();
-							}
-							return false;
-						}
-				)
-				.forEach(f->System.out.println(f.getName()));
+		}
+		long a = System.currentTimeMillis();
+		System.out.println("a:" + a);
+		long s = targetList.parallelStream().map(f -> {
+			try (BufferedReader br = new BufferedReader(new FileReader(f))) {
+				return br.lines().parallel().filter(line -> line.contains("Ь")).count();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return 0;
+		}).count();
 
-//				.flatMap(f->{
-//					List<String> contList = new ArrayList<>();
-//					BufferedReader bf = new BufferedReader(new FileReader(f));
-//					while (bf.lines()) {
-//
-//					}
-//					return contList;
-//					return new BufferedReader(new FileReader(f)).lines();
-//				})
+		System.out.println(s);
+		long b = System.currentTimeMillis();
+		System.out.println("b:" + b);
+		System.out.println("a->b: " + (b - a));
+
+		// .flatMap(f->{
+		// List<String> contList = new ArrayList<>();
+		// BufferedReader bf = new BufferedReader(new FileReader(f));
+		// while (bf.lines()) {
+		//
+		// }
+		// return contList;
+		// return new BufferedReader(new FileReader(f)).lines();
+		// })
 
 	}
 
