@@ -78,12 +78,12 @@ public abstract class TableDataSource implements DataSource{
 	/**
 	 * 获得指定起始和指定范围的行内容。<br/>
 	 * <pre>
-	 * getRowList(1, 10); //获得1~10行内容
-	 * getRowList(11, 10);//获得11~20行内容
+	 * getRowList(0, 10); //获得1~10行内容
+	 * getRowList(10, 10);//获得11~20行内容
 	 * </pre>
-	 * 我们约定从 1 计起，即startRow 参数应大于等于 1，且参数 limit 应大于1。
+	 * 我们约定从 0 计起，即startRow 参数应大于等于 0，且参数 limit 应大于0。
 	 *
-	 * @param startRow 获得表指定的范围内容的起始行号，最小为 1。
+	 * @param startRow 获得表指定的范围内容的起始行号，最小为 0。
 	 * @param limit 获得表指定内容的范围。
 	 * @return 返回指定的内容列表，参数无效则返回 null。若数据源无数据，则返回大小为0的 List 对象。
 	 */

@@ -6,6 +6,7 @@ import cn.keepfight.frame.chain.ChainPaneController;
 import cn.keepfight.frame.content.source.DataSourceType;
 import cn.keepfight.frame.files.FilesPaneController;
 import cn.keepfight.frame.operator.OperatorPaneController;
+import cn.keepfight.frame.picture.PicturePaneController;
 import cn.keepfight.frame.table.TablePaneController;
 import cn.keepfight.frame.text.TextPaneController;
 import cn.keepfight.utils.ViewPathUtil;
@@ -29,6 +30,8 @@ public class ContentFactory {
 			return new TextPaneController();
 		case FILES:
 			return new FilesPaneController();
+		case PICTURE:
+			return new PicturePaneController();
 		default:
 			break;
 		}

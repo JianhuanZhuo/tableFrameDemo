@@ -1,7 +1,6 @@
 package cn.keepfight.frame.menu;
 
 import cn.keepfight.frame.TStage;
-import cn.keepfight.frame.chain.ChainTStage;
 import cn.keepfight.operator.AbstractOperator;
 import cn.keepfight.utils.ImageLoadUtil;
 import javafx.event.EventHandler;
@@ -82,9 +81,12 @@ public class MenuItemController{
 					if (actionResult.resList.size()==1) {
 						tStage.getContextMaster()
 						.doOperate(tStage, operator.generateResource(), actionResult.resList.get(0));
+					}else {
+						//@TODO 做多输出的
+						tStage.getContextMaster()
+						.doOperate(tStage, operator.generateResource(), actionResult.resList);
 					}
 				}
-				//@TODO 做多输出的
 			}
 		});
 	}

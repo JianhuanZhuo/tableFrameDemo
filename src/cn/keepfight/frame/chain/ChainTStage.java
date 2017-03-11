@@ -101,8 +101,24 @@ public class ChainTStage extends TStage<ChainDataSource,
 
 	@Override
 	public void doOperate(ContextSlave slave, Resource operator, List<Resource> results) {
-		// TODO Auto-generated method stub
-		return ;
+		//查找奴隶节点
+		ResourceElem sElem = stageMapElem.get(slave);
+
+		//添加算子节点、结果节点
+		ResourceElem operatorElem = getPaneVC().addResource(operator);
+		//结果节点集合
+		List<ResourceElem> eElemList = results.stream()
+				.map(result->getPaneVC().addResource(result))
+				.collect(Collectors.toList());
+
+		try {
+			getPaneVC().addEdge(sElem, operatorElem);
+			for (ResourceElem eElem : eElemList) {
+				getPaneVC().addEdge(operatorElem, eElem);
+			}
+		} catch (GraphicException e) {
+			e.printStackTrace();
+		}
 	}
 
 //	@Override
@@ -170,4 +186,5 @@ public class ChainTStage extends TStage<ChainDataSource,
 		}
 		return ;
 	}
+
 }

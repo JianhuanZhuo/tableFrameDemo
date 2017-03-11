@@ -9,8 +9,10 @@ import cn.keepfight.frame.TableTStage;
 import cn.keepfight.frame.menu.MenuItemController;
 import cn.keepfight.frame.menu.MenuItemType;
 import cn.keepfight.frame.menu.MenuViewController;
+import cn.keepfight.frame.table.operator.ColumnStaticOperator;
 import cn.keepfight.frame.table.operator.MergeColumnOperator;
 import cn.keepfight.frame.table.operator.OrderTableOperator;
+import cn.keepfight.frame.table.operator.QueryOperator;
 
 public class TableMenuViewController extends MenuViewController{
 
@@ -28,25 +30,6 @@ public class TableMenuViewController extends MenuViewController{
 
 	TableTStage tableTStage;
 
-//	/**
-//	 * 为算子添加到指定索引的菜单组中
-//	 * 重载方法默认使用 {@link cn.keepfight.frame.menu.MenuItemType.TP_32_TOP} 作为图标类型。
-//	 * @param operatorModel 欲添加菜单项的算子。
-//	 * @param groupIndex 组索引，由0开始计数
-//	 * @return 菜单项对应的控制器
-//	 */
-//	public MenuItemController addMenuItem(AbstractOperator<TableTStage> operator, int groupIndex) {
-//		return createMenuItem(operator, groupIndex, MenuItemType.TP_32_TOP);
-//	}
-//
-//	public MenuItemController createMenuItem(AbstractOperator operator, int groupIndex, MenuItemType type) {
-//		MenuItemController controller = super.createMenuItem(operator, groupIndex, type);
-//		//将菜单项添加到状态可影响列表中。
-//		mapState(controller);
-//		return controller;
-//	}
-
-
 	@Override
 	public void setTStage(@SuppressWarnings("rawtypes") TStage tStage) {
 		this.tableTStage = (TableTStage) tStage;
@@ -57,5 +40,7 @@ public class TableMenuViewController extends MenuViewController{
 	public void addMenuItem() {
 		createMenuItem(0, MenuItemType.TP_32_TOP).setOperator(new OrderTableOperator(tableTStage));
 		createMenuItem(0, MenuItemType.TP_32_TOP).setOperator(new MergeColumnOperator(tableTStage));
+		createMenuItem(0, MenuItemType.TP_32_TOP).setOperator(new QueryOperator(tableTStage));
+		createMenuItem(0, MenuItemType.TP_32_TOP).setOperator(new ColumnStaticOperator(tableTStage));
 	}
 }

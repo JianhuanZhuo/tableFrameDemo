@@ -16,6 +16,8 @@ public class ImageLoadUtil {
 	public static final int IMG_SIZE_32 = 32;
 	public static final int IMG_SIZE_64 = 64;
 
+	public static final String VIEW_IMAGE_URL = "cn/keepfight/frame/view/image/";
+
 	/**
 	 * Í¼Ïñ»º´æ
 	 */
@@ -55,5 +57,9 @@ public class ImageLoadUtil {
 			}
 		}
 		return null;
+	}
+
+	public static Image loadViewImage(String imageName){
+		return new Image(VIEW_IMAGE_URL+imageName);
 	}
 }

@@ -8,6 +8,7 @@ import cn.keepfight.frame.content.source.ViewPool;
 import cn.keepfight.frame.files.FilesMenuViewController;
 import cn.keepfight.frame.menu.MenuViewController;
 import cn.keepfight.frame.operator.OperatorMenuViewController;
+import cn.keepfight.frame.picture.PictureMenuViewController;
 import cn.keepfight.frame.table.TableMenuViewController;
 import cn.keepfight.frame.text.TextMenuViewController;
 import cn.keepfight.utils.ViewPathUtil;
@@ -36,6 +37,8 @@ public class MenuFactory {
 			return new TextMenuViewController();
 		case FILES:
 			return new FilesMenuViewController();
+		case PICTURE:
+			return new PictureMenuViewController();
 		default:
 			break;
 		}

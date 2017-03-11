@@ -15,7 +15,7 @@ public enum DataSourceType {
 	/**
 	 * 图片数据类型
 	 */
-	PICTURE("图片", 	new ViewPool(), 					"picture.png"),
+	PICTURE("图片", 	new ViewPool("PicturePane.fxml"), 	"picture.png"),
 	VIDEO("视频", 	new ViewPool(), 					"video.png"),     // 视频数据类型
 	TEXT("文本",  	new ViewPool("TextPane.fxml"),	 	"text.png"),      // TEXT文本文件数据类型
 	FILE("文件", 	new ViewPool(), 					"file.png"),      // 文件数据类型

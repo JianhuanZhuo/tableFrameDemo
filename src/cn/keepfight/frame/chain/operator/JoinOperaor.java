@@ -85,6 +85,7 @@ public class JoinOperaor extends AbstractOperator{
 		new WaitDialog<Boolean>(new Task<Boolean>() {
 			@Override
 			protected Boolean call() throws Exception {
+				entityMapFields.clear();
 				for (int i = 0; i < selectResList.size(); i++) {
 					DBTableDataSource dbTableSource = ((DBTableDataSource)selectResList.get(i).getResource().generateDataSource());
 					entityMapFields.put(

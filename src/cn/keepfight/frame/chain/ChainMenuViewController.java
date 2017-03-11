@@ -4,6 +4,7 @@ import cn.keepfight.frame.TStage;
 import cn.keepfight.frame.chain.operator.JoinOperaor;
 import cn.keepfight.frame.chain.operator.OpenDBEntityOperaor;
 import cn.keepfight.frame.chain.operator.OpenFilesOperaor;
+import cn.keepfight.frame.chain.operator.OpenPictureOperaor;
 import cn.keepfight.frame.chain.operator.OpenTextOperaor;
 import cn.keepfight.frame.menu.MenuItemType;
 import cn.keepfight.frame.menu.MenuViewController;
@@ -23,6 +24,7 @@ public class ChainMenuViewController extends MenuViewController{
 		createMenuItem(0, MenuItemType.TP_32_TOP).setOperator(new OpenTextOperaor(chainTStage));
 		createMenuItem(0, MenuItemType.TP_32_TOP).setOperator(new OpenFilesOperaor(chainTStage));
 		createMenuItem(0, MenuItemType.TP_32_TOP).setOperator(new JoinOperaor(chainTStage));
+		createMenuItem(0, MenuItemType.TP_32_TOP).setOperator(new OpenPictureOperaor(chainTStage));
 	}
 
 }

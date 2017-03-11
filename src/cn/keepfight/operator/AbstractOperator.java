@@ -47,7 +47,8 @@ public abstract class AbstractOperator{
 	public abstract String getDescription();
 
 	/**
-	 * 规定在点击该算子时所指定的动作
+	 * 规定在点击该算子时所指定的动作<br/>
+	 * 这个动作需要注意的是，执行一次动作后，这个算子如果保存有状态（内部变量），那么下次执行时可能会受到这个算子的影响，因为算子没变过
 	 * @TODO 这个接口的规范貌似还需要多加斟酌
 	 * @return 算子运算结束产生的资源结果，不产生资源则返回null
 	 * @exception Exception 算子运行中产生的各种异常
