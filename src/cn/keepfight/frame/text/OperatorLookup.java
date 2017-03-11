@@ -4,6 +4,7 @@ import java.util.List;
 
 import cn.keepfight.frame.chain.OperatorResource;
 import cn.keepfight.frame.chain.Resource;
+import cn.keepfight.frame.menu.ActionResult;
 import cn.keepfight.operator.AbstractOperator;
 
 /**
@@ -33,7 +34,7 @@ public class OperatorLookup extends AbstractOperator{
 	@Override public String getDescription() { return description; }
 
 	@Override
-	public List<Resource> onAction() {
+	public ActionResult onAction() {
 		String target = "ÌìÐ«×ù";
 		int index = tStage.getPaneVC().textArea.getText().indexOf(target);
 		tStage.getPaneVC().textArea.selectRange(index, index+target.length());

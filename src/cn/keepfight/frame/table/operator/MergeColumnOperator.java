@@ -10,6 +10,7 @@ import cn.keepfight.frame.TableTStage;
 import cn.keepfight.frame.chain.OperatorResource;
 import cn.keepfight.frame.chain.Resource;
 import cn.keepfight.frame.chain.TableResource;
+import cn.keepfight.frame.menu.ActionResult;
 import cn.keepfight.operator.AbstractOperator;
 import cn.keepfight.utils.HttpUtils;
 import javafx.scene.control.Alert;
@@ -61,7 +62,7 @@ public class MergeColumnOperator extends AbstractOperator{
 	}
 
 	@Override
-	public List<Resource> onAction() throws Exception {
+	public ActionResult onAction() throws Exception {
 
 		List<String> resList = tStage.getPaneVC().columnSelectUtil.selectColumn(
 				this,
@@ -119,7 +120,7 @@ public class MergeColumnOperator extends AbstractOperator{
 		inputResource[0] = tStage.getSource().getSourceIDName();
 		outputResource = new String[1];
 		outputResource[0] = resultResource.getName();
-		return resResources;
+		return new ActionResult(resResources);
 	}
 
 

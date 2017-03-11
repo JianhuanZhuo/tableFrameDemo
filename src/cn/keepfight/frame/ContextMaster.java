@@ -3,6 +3,7 @@ package cn.keepfight.frame;
 import java.util.List;
 
 import cn.keepfight.frame.chain.Resource;
+import cn.keepfight.frame.chain.ResourceElem;
 
 /**
  * 内容管理者接口
@@ -38,5 +39,9 @@ public interface ContextMaster {
 	 * @param operator 操作算子资源，需要在算子链中生成图标的
 	 * @param results 运算结果集合
 	 */
-	public void doOperate(List<ContextSlave> slaves, Resource operator, List<Resource> results);
+//	public void doOperate(List<ContextSlave> slaves, Resource operator, List<Resource> results);
+
+
+	public void doOperate(List<ResourceElem> slaves, Resource operator, Resource result);
+
 }

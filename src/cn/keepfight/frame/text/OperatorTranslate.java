@@ -9,9 +9,15 @@ import java.util.Optional;
 import cn.keepfight.frame.chain.OperatorResource;
 import cn.keepfight.frame.chain.Resource;
 import cn.keepfight.frame.chain.TableResource;
+import cn.keepfight.frame.menu.ActionResult;
 import cn.keepfight.operator.AbstractOperator;
+import cn.keepfight.operator.WaitDialog;
 import cn.keepfight.utils.HttpUtils;
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.ChoiceDialog;
+import javafx.util.Pair;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -46,7 +52,7 @@ public class OperatorTranslate extends AbstractOperator{
 	@Override public String getDescription() { return description; }
 
 	@Override
-	public List<Resource> onAction() {
+	public ActionResult onAction() {
 		List<Resource> res = new ArrayList<Resource>();
 
 		List<String> choices = new ArrayList<>();
@@ -83,12 +89,10 @@ public class OperatorTranslate extends AbstractOperator{
 					default:
 						break;
 					}
-//			    	JSONObject lineObj = new JSONObject();
 			    	JSONArray lineObj = new JSONArray();
 			    	String[] dataStrings = line.split(reg);
 			    	for (int i = 0; i < dataStrings.length; i++) {
 						String s = dataStrings[i];
-//						lineObj.put("co"+i, s);
 						lineObj.add(s);
 					}
 			    	json.add(lineObj);
@@ -99,13 +103,20 @@ public class OperatorTranslate extends AbstractOperator{
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-//			JSONObject jsonCont = new JSONObject();
-//			jsonCont.put("content", json);
-			String url = "http://127.0.0.1:8080/dap/dataLoad/test2.htm";
-			String resObj;
+			String resObj = new WaitDialog<String>(new Task<String>() {
+				@Override
+				protected String call() throws Exception {
+					String url = "http://127.0.0.1:8080/dap/dataLoad/test2.htm";
+					return HttpUtils.simplePostJSONWithUTG8(url, new Pair<String, String>("yy", json.toString()));
+				}
+			}).justWait();
+
+			if (resObj==null) {
+				return null;
+			}
+
 			JSONObject resJsonObject;
 			try {
-				resObj = HttpUtils.simplePostJSONWithUTG8(url, "yy="+json.toString());
 				System.out.println(resObj);
 				resJsonObject = JSONObject.fromObject(resObj);
 			} catch (Exception e) {
@@ -123,11 +134,35 @@ public class OperatorTranslate extends AbstractOperator{
 			outputResource = new String[1];
 			outputResource[0]=resultResource.getName();
 
-			return res;
+			return new ActionResult(res);
 		}
 
 		return null;
 	}
+
+	public boolean justWait() {
+
+		Task<List<String>> download = new Task<List<String>>() {
+
+			@Override
+			protected List<String> call() throws Exception {
+
+				return null;
+			}
+		};
+
+		download.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+
+			@Override
+			public void handle(WorkerStateEvent event) {
+
+
+			}
+		});
+
+		return true;
+	}
+
 
 	@Override
 	public OperatorResource generateResource() {

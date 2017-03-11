@@ -7,6 +7,8 @@ import cn.keepfight.frame.PaneController;
 import cn.keepfight.frame.TStage;
 import cn.keepfight.frame.content.source.DataSource;
 import cn.keepfight.frame.content.source.InvalidSourceException;
+import cn.keepfight.operator.WaitDialog;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -44,17 +46,35 @@ public class TextPaneController extends PaneController{
 
 	@Override
 	public void load() {
-		BufferedReader reader = new BufferedReader(source.getReader());
-		String line;
-		try {
-			line = reader.readLine();
-			while (line!=null) {
-				textArea.appendText(line+"\n");
-				line = reader.readLine();
+		new WaitDialog<Boolean>(new Task<Boolean>() {
+			@Override
+			protected Boolean call() throws Exception {
+				BufferedReader reader = new BufferedReader(source.getReader());
+				String line;
+				try {
+					line = reader.readLine();
+					while (line!=null) {
+						textArea.appendText(line+"\n");
+						line = reader.readLine();
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+					return false;
+				}
+				return true;
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		}).justWait();
+//		BufferedReader reader = new BufferedReader(source.getReader());
+//		String line;
+//		try {
+//			line = reader.readLine();
+//			while (line!=null) {
+//				textArea.appendText(line+"\n");
+//				line = reader.readLine();
+//			}
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 	}
 
 	@Override

@@ -14,6 +14,7 @@ import cn.keepfight.frame.chain.FilesResource;
 import cn.keepfight.frame.chain.OperatorResource;
 import cn.keepfight.frame.chain.Resource;
 import cn.keepfight.frame.files.FilesTStage;
+import cn.keepfight.frame.menu.ActionResult;
 import cn.keepfight.operator.AbstractOperator;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -40,7 +41,7 @@ public class FilesFilterOperator extends AbstractOperator{
 	@Override public String getDescription() { return "这是对过滤操作不怎么详细的详细说明！"; }
 
 	@Override
-	public List<Resource> onAction() {
+	public ActionResult onAction() {
 		TextInputDialog dialog = new TextInputDialog();
 		dialog.setTitle(getLabel());
 		dialog.setHeaderText("为过滤算子设置过滤的关键字，该算子将仅输出所有包含关键字的文件！");
@@ -84,7 +85,7 @@ public class FilesFilterOperator extends AbstractOperator{
 		inputResource[0] = tStage.getSource().getSourceIDName();
 		outputResource = new String[1];
 		outputResource[0] = resultResource.getName();
-		return resResources;
+		return new ActionResult(resResources);
 	}
 
 

@@ -10,6 +10,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
@@ -86,6 +87,10 @@ public class TableContentLoader
 		for (ObservableList<StringProperty> observableList : dataList) {
 			appendRow(observableList);
 		}
+		int cols = node.getColumns().size();
+		for (int i = 0; i < cols; i++) {
+			node.getColumns().get(i).prefWidthProperty().bind(node.widthProperty().divide(cols));
+		}
 	}
 
 	/**
@@ -129,6 +134,8 @@ public class TableContentLoader
 		column.setGraphic(vBox);
 		column.setText("");
 		column.getGraphic().addEventFilter(MouseEvent.MOUSE_CLICKED, handler);
+
+		column.setPrefWidth(Control.USE_COMPUTED_SIZE);
 		return column;
 	}
 

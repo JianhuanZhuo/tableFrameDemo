@@ -1,9 +1,7 @@
 package cn.keepfight.frame.menu;
 
-import java.util.List;
-
 import cn.keepfight.frame.TStage;
-import cn.keepfight.frame.chain.Resource;
+import cn.keepfight.frame.chain.ChainTStage;
 import cn.keepfight.operator.AbstractOperator;
 import cn.keepfight.utils.ImageLoadUtil;
 import javafx.event.EventHandler;
@@ -69,19 +67,22 @@ public class MenuItemController{
 		btn.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				List<Resource> resList;
+				ActionResult actionResult;
 				try {
-					resList = operator.onAction();
+					actionResult = operator.onAction();
 				} catch (Exception e) {
 					e.printStackTrace();
 					return ;
 				}
-				if (resList==null) {
+				if (actionResult==null) {
 					//本地算子，不生成结果
 					return;
 				}
-				if (resList.size()==1) {
-					tStage.getContextMaster().doOperate(tStage, operator.generateResource(), resList.get(0));
+				if (!actionResult.localAction) {
+					if (actionResult.resList.size()==1) {
+						tStage.getContextMaster()
+						.doOperate(tStage, operator.generateResource(), actionResult.resList.get(0));
+					}
 				}
 				//@TODO 做多输出的
 			}

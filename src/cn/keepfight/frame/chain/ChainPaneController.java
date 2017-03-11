@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import cn.keepfight.frame.FrameFactory;
 import cn.keepfight.frame.PaneController;
@@ -76,6 +77,10 @@ public class ChainPaneController extends PaneController {
 		return elemMap;
 	}
 
+	public ResourceElem getMap(Resource resource){
+		return elemMap.get(resource);
+	}
+
 	@Override
 	public void load() {
 		// 清空画板内容
@@ -103,6 +108,16 @@ public class ChainPaneController extends PaneController {
 		}
 	}
 
+	public ResourceElem addResource(Resource newResource) {
+		ResourceElem elem = new ResourceElem(newResource);
+		elemMap.put(newResource, elem);
+		try {
+			addElement(elem, chainPane.getWidth()/2, chainPane.getHeight()/2);
+		} catch (Exception e) {
+		}
+		return elem;
+	}
+
 	@Override
 	public void setDataSource(DataSource source) throws InvalidSourceException {
 		if (!(source instanceof ChainDataSource)) {
@@ -122,16 +137,6 @@ public class ChainPaneController extends PaneController {
 	@Override
 	public BorderPane getNode() {
 		return pane;
-	}
-
-	public ResourceElem addResource(Resource newResource) {
-		ResourceElem elem = new ResourceElem(newResource);
-		elemMap.put(newResource, elem);
-		try {
-			addElement(elem, chainPane.getWidth()/2, chainPane.getHeight()/2);
-		} catch (Exception e) {
-		}
-		return elem;
 	}
 
 	/**
@@ -201,4 +206,15 @@ public class ChainPaneController extends PaneController {
 			}
 		}
 	};
+
+	/**
+	 * 获得已选择的资源节点集合
+	 * @return 已选择的资源节点
+	 */
+	public List<ResourceElem> getSelectedResources(){
+		return selectionManager.getSelection().stream()
+			.filter(node->(node instanceof ResourceElem))
+			.map(node->((ResourceElem)node))
+			.collect(Collectors.toList());
+	}
 }

@@ -11,31 +11,21 @@ import javafx.scene.Node;
  */
 public class SelectionManager {
 
-	private static SelectionManager instance = new SelectionManager();
-
-	/**
-	 * 单例模式支持
-	 * @return 选择模型单例
-	 */
-	public static SelectionManager getInstance() {return instance;}
-
     Set<Node> selection = new HashSet<>();
 
     public void add(Node node) {
-
         if( !node.getStyleClass().contains("highlight")) {
             node.getStyleClass().add( "highlight");
         }
         selection.add( node);
     }
 
-    public void remove( Node node) {
+    public void remove(Node node) {
         node.getStyleClass().remove( "highlight");
         selection.remove( node);
     }
 
     public void clear() {
-
         while( !selection.isEmpty()) {
             remove( selection.iterator().next());
         }
@@ -48,6 +38,20 @@ public class SelectionManager {
     public int size() {
         return selection.size();
     }
+
+    /**
+     * 获得当前的已选择节点
+     * @return 已选择节点集合
+     */
+    public Set<Node> getSelection() {
+    	Set<Node> result = new HashSet<>();
+    	for (Node node : selection) {
+			if (node.getStyleClass().contains("highlight")) {
+				result.add(node);
+			}
+		}
+		return result;
+	}
 
     public void log() {
 //        System.out.println( "Items in model: " + Arrays.asList( selection.toArray()));

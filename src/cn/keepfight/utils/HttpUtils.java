@@ -80,11 +80,11 @@ public class HttpUtils {
 		}
 	}
 
-	public static String simplePostJSONWithUTG8(String url, String param) throws Exception {
+	public static String simplePostJSONWithUTG8(String url, Pair<String, String> param) throws Exception {
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		try {
 			HttpPost post = new HttpPost(url);
-			StringEntity params =new StringEntity(URLEncoder.encode(param, "utf-8"));
+			StringEntity params =new StringEntity(param.getKey()+"="+URLEncoder.encode(param.getValue(), "utf-8"));
 			post.addHeader("content-type", "application/x-www-form-urlencoded");
 			post.setEntity(params);
 			CloseableHttpResponse resp = httpClient.execute(post);

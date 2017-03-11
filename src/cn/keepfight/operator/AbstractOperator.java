@@ -1,9 +1,7 @@
 package cn.keepfight.operator;
 
-import java.util.List;
-
 import cn.keepfight.frame.chain.OperatorResource;
-import cn.keepfight.frame.chain.Resource;
+import cn.keepfight.frame.menu.ActionResult;
 
 /**
  * 算子模型的描述类。
@@ -51,10 +49,10 @@ public abstract class AbstractOperator{
 	/**
 	 * 规定在点击该算子时所指定的动作
 	 * @TODO 这个接口的规范貌似还需要多加斟酌
-	 * @return 算子运算结束产生的资源数，不产生资源或面板内操作则返回null
+	 * @return 算子运算结束产生的资源结果，不产生资源则返回null
 	 * @exception Exception 算子运行中产生的各种异常
 	 */
-	public abstract List<Resource> onAction() throws Exception ;
+	public abstract ActionResult onAction() throws Exception ;
 
 	/**
 	 * 生成算子资源

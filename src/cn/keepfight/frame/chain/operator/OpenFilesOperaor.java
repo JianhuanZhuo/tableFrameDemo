@@ -7,6 +7,7 @@ import cn.keepfight.frame.chain.ChainTStage;
 import cn.keepfight.frame.chain.FilesResource;
 import cn.keepfight.frame.chain.OperatorResource;
 import cn.keepfight.frame.chain.Resource;
+import cn.keepfight.frame.menu.ActionResult;
 import cn.keepfight.operator.AbstractOperator;
 import javafx.stage.FileChooser;
 
@@ -38,7 +39,7 @@ public class OpenFilesOperaor extends AbstractOperator{
 			+ "使用 Ctrl + F12 直接打开打开对话框。"; }
 
 	@Override
-	public List<Resource> onAction() {
+	public ActionResult onAction() {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("选择文件群");
 		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt"));

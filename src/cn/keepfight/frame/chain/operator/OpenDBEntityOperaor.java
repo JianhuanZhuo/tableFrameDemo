@@ -4,22 +4,17 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import cn.keepfight.frame.chain.ChainTStage;
-import cn.keepfight.frame.chain.FilesResource;
 import cn.keepfight.frame.chain.OperatorResource;
 import cn.keepfight.frame.chain.Resource;
 import cn.keepfight.frame.chain.TableResource;
-import cn.keepfight.frame.chain.TextResouce;
+import cn.keepfight.frame.menu.ActionResult;
 import cn.keepfight.operator.AbstractOperator;
 import cn.keepfight.utils.HttpUtils;
 import cn.keepfight.utils.ImageLoadUtil;
 import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
-import javafx.concurrent.WorkerStateEvent;
-import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.ButtonBar.ButtonData;
@@ -27,13 +22,10 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.ProgressIndicator;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.stage.FileChooser;
 import javafx.util.Pair;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -66,7 +58,7 @@ public class OpenDBEntityOperaor extends AbstractOperator{
 			+ "使用 Ctrl + F12 直接打开打开对话框。"; }
 
 	@Override
-	public List<Resource> onAction() {
+	public ActionResult onAction() {
 		Pair<String, String> selectDB = createSelectDB(this);
 		if (selectDB!=null) {
 			Resource newResource = new TableResource(selectDB.getKey(), selectDB.getValue().split("-")[1]);
@@ -104,6 +96,7 @@ public class OpenDBEntityOperaor extends AbstractOperator{
 
 		ComboBox<String> db = new ComboBox<String>();
 		db.getItems().add("wz");
+		db.getSelectionModel().select(0);
 		ComboBox<String> entity = new ComboBox<String>();
 
 		grid.add(new Label("数据库："), 0, 0);

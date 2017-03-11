@@ -1,12 +1,12 @@
 package cn.keepfight.frame.chain.operator;
 
 import java.io.File;
-import java.util.List;
 
 import cn.keepfight.frame.chain.ChainTStage;
 import cn.keepfight.frame.chain.OperatorResource;
 import cn.keepfight.frame.chain.Resource;
 import cn.keepfight.frame.chain.TextResouce;
+import cn.keepfight.frame.menu.ActionResult;
 import cn.keepfight.operator.AbstractOperator;
 import javafx.stage.FileChooser;
 
@@ -27,7 +27,7 @@ public class OpenTextOperaor extends AbstractOperator{
 	@Override public int getId() { return 333; }
 	@Override public String getName() { return "open"; }
 	@Override public String getLabel() { return "打开"; }
-	@Override public String getIcon() { return "open.png"; }
+	@Override public String getIcon() { return "text.png"; }
 	@Override public String getTips() { return "打开一个本地文本文件作为文件资源"; }
 	@Override public String getDescription() { return "双击计算机以获取对本地文件，包括可移动闪存驱动器。"
 			+ "您还可以选择您的帐户，您可以开始，如有必要，登录，然后打开所需的文件的位置之一。"
@@ -38,7 +38,7 @@ public class OpenTextOperaor extends AbstractOperator{
 			+ "使用 Ctrl + F12 直接打开打开对话框。"; }
 
 	@Override
-	public List<Resource> onAction() {
+	public ActionResult onAction() {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("打开文件");
 		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt"));

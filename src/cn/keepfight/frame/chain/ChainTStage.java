@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import cn.keepfight.frame.ContextMaster;
 import cn.keepfight.frame.ContextSlave;
@@ -13,8 +14,8 @@ import cn.keepfight.frame.TStage;
 import cn.keepfight.frame.content.source.DataSource;
 import cn.keepfight.frame.content.source.InvalidSourceException;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 
 /**
  * 算子链面板
@@ -104,11 +105,34 @@ public class ChainTStage extends TStage<ChainDataSource,
 		return ;
 	}
 
-	@Override
-	public void doOperate(List<ContextSlave> slaves, Resource operator, List<Resource> results) {
-		// TODO Auto-generated method stub
-		return ;
-	}
+//	@Override
+//	public void doOperate(List<ContextSlave> slaves, Resource operator, List<Resource> results){
+//		//奴隶节点集合
+//		List<ResourceElem> sElemList = slaves.stream()
+//				.map(slave->stageMapElem.get(slave))
+//				.filter(p->p!=null)
+//				.collect(Collectors.toList());
+//
+//		//添加算子节点、结果节点
+//		ResourceElem operatorElem = getPaneVC().addResource(operator);
+//
+//		//结果节点集合
+//		List<ResourceElem> eElemList = results.stream()
+//				.map(result->getPaneVC().addResource(result))
+//				.collect(Collectors.toList());
+//		//添加边
+//		try {
+//			for (ResourceElem sElem : sElemList) {
+//					getPaneVC().addEdge(sElem, operatorElem);
+//			}
+//			for (ResourceElem eElem : eElemList) {
+//				getPaneVC().addEdge(operatorElem, eElem);
+//			}
+//		} catch (GraphicException e) {
+//			e.printStackTrace();
+//		}
+//		return ;
+//	}
 
 	public boolean hasContain(ContextSlave slave) {
 		return stageMapElem.containsKey(slave);
@@ -121,5 +145,29 @@ public class ChainTStage extends TStage<ChainDataSource,
 	protected void addMap(ResourceElem elem, ContextSlave slave){
 		elemMapStage.put(elem, slave);
 		stageMapElem.put(slave, elem);
+	}
+
+	public ContextSlave mapSlave(ResourceElem elem) {
+		return elemMapStage.get(elem);
+	}
+
+	@Override
+	public void doOperate(List<ResourceElem> slaves, Resource operator, Resource result) {
+		//奴隶节点集合
+		//添加算子节点、结果节点
+		ResourceElem operatorElem = getPaneVC().addResource(operator);
+
+		//结果节点集合
+		ResourceElem eElem = getPaneVC().addResource(result);
+		//添加边
+		try {
+			for (ResourceElem sElem : slaves) {
+				getPaneVC().addEdge(sElem, operatorElem);
+			}
+			getPaneVC().addEdge(operatorElem, eElem);
+		} catch (GraphicException e) {
+			e.printStackTrace();
+		}
+		return ;
 	}
 }
