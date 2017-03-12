@@ -29,6 +29,7 @@ public class HttpUtils {
 	public static String simpleGet(String url) throws Exception {
 		CloseableHttpClient httpClient = HttpClients.createDefault();
 		try {
+			System.out.println("simple get: "+url);
 			HttpPost post = new HttpPost(url);
 			CloseableHttpResponse resp = httpClient.execute(post);
 			try {

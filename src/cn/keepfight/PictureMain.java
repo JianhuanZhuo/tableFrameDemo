@@ -1,4 +1,4 @@
-package cn.keepfight.frame;
+package cn.keepfight;
 
 import cn.keepfight.utils.ImageLoadUtil;
 import javafx.application.Application;

@@ -33,15 +33,9 @@ public class TextResouce extends Resource{
 			public String getSourceIDName() {
 				return file.getName();
 			}
-
 			@Override
-			public FileReader getReader() {
-				try {
-					return new FileReader(file);
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-				}
-				return null;
+			public File getFile() {
+				return file;
 			}
 		};
 	}

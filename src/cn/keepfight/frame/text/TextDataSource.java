@@ -1,5 +1,6 @@
 package cn.keepfight.frame.text;
 
+import java.io.File;
 import java.io.FileReader;
 
 import cn.keepfight.frame.content.source.DataSource;
@@ -23,5 +24,6 @@ public abstract class TextDataSource implements DataSource {
 	public void checkValid() throws InvalidSourceException {
 	}
 
-	public abstract FileReader getReader();
+
+	public abstract File getFile();
 }

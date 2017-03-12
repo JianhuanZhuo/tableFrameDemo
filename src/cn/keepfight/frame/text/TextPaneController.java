@@ -1,7 +1,9 @@
 package cn.keepfight.frame.text;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import cn.keepfight.frame.PaneController;
 import cn.keepfight.frame.TStage;
@@ -49,11 +51,10 @@ public class TextPaneController extends PaneController{
 		new WaitDialog<Boolean>(new Task<Boolean>() {
 			@Override
 			protected Boolean call() throws Exception {
-				BufferedReader reader = new BufferedReader(source.getReader());
 				String line;
-				try {
+				try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(source.getFile()), "UTF-8"));){
 					line = reader.readLine();
-					while (line!=null) {
+					for (int i = 0; i < 300 && line!=null; i++) {
 						textArea.appendText(line+"\n");
 						line = reader.readLine();
 					}

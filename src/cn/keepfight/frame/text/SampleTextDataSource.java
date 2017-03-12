@@ -27,15 +27,9 @@ public class SampleTextDataSource extends TextDataSource {
 	public String getSourceIDName() {
 		return file.getName();
 	}
-
 	@Override
-	public FileReader getReader() {
-		try {
-			return new FileReader(file);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		return null;
+	public File getFile() {
+		return file;
 	}
 
 

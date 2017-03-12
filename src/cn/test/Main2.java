@@ -9,12 +9,19 @@ import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import cn.keepfight.frame.connect.db.JDBCConnector;
 import cn.keepfight.operator.WaitDialog;
+import cn.keepfight.utils.PropertieUtil;
+import cn.keepfight.utils.SimpleSQLUtils;
 import javafx.application.Application;
 import javafx.concurrent.Task;
 import javafx.stage.FileChooser;
@@ -59,18 +66,66 @@ public class Main2 extends Application {
 		// return new BufferedReader(new FileReader(f)).lines();
 		// })
 
-		System.out.println("result:"+new WaitDialog<String>(new Task<String>() {
-			@Override
-			protected String call() throws Exception {
-				long x = System.currentTimeMillis();
-				long y = System.currentTimeMillis();
-				while (y-x<5000) {
-					y = System.currentTimeMillis();
-				}
-				return "finish!";
-			}
-		}).justWait());
+//		System.out.println("result:"+new WaitDialog<String>(new Task<String>() {
+//			@Override
+//			protected String call() throws Exception {
+//				long x = System.currentTimeMillis();
+//				long y = System.currentTimeMillis();
+//				while (y-x<5000) {
+//					y = System.currentTimeMillis();
+//				}
+//				return "finish!";
+//			}
+//		}).justWait());
 
+//		java.sql.Connection con = new JDBCConnector().getConnection();
+//		for (int i = 0; i < 5; i++) {
+//			long x = System.currentTimeMillis();
+////			System.out.println("x:"+x);
+//			long z = System.currentTimeMillis();
+//			System.out.println("z-x:"+(z-x));
+////			PreparedStatement pst = con.prepareStatement("select * from combine.ttee limit 10");
+////			ResultSet res = pst.executeQuery();
+//			ResultSet res = con.createStatement().executeQuery("select * from combine.ttee limit 10");
+//			while (res.next()) {
+//				//System.out.println(res.getString(1));
+//			}
+//			res.close();
+////			con.close();
+//			long y = System.currentTimeMillis();
+////			System.out.println("y:"+y);
+//			System.out.println("y-x:"+(y-x));
+//			System.out.println("y-z:"+(y-z));
+//			System.out.println("");
+//		}
+		SimpleSQLUtils simpleSQL = SimpleSQLUtils.build(new JDBCConnector().getConnection()).setDB("wz");
+		for (int i = 0; i < 5; i++) {
+			long x = System.currentTimeMillis();
+			simpleSQL.select("出行数据", 0, 100);
+			long y = System.currentTimeMillis();
+////		System.out.println("y:"+y);
+			System.out.println("y-x:"+(y-x));
+		}
+
+		FileChooser fileChooser = new FileChooser();
+		String filepath = "D:/iie_learning/testfile/goods_sale.csv";
+		File file = fileChooser.showOpenDialog(primaryStage);
+		BufferedReader bf = new BufferedReader(new FileReader(file));
+
+		String head = bf.readLine();
+		bf.close();
+		List<String> fs = Arrays.asList(head.split(",")).stream()
+				.map(s->(s+" varchar(255)"))
+				.collect(Collectors.toList());
+		String tableName = "xxx123326";
+		simpleSQL.createTable(tableName, fs, null);
+		filepath = file.getAbsolutePath();
+		System.out.println(filepath);
+
+		long b = System.currentTimeMillis();
+		simpleSQL.loadData(filepath, tableName, " FIELDS TERMINATED by ',' IGNORE 1 LINES");
+		long a = System.currentTimeMillis();
+		System.out.println("b->a:"+(a-b));
 	}
 
 	public static void main(String[] args) {

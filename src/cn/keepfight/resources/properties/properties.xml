@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+  <entry key="dbms">mysql</entry>
+  <entry key="driver">com.mysql.jdbc.Driver</entry>
+  <entry key="database_name">wz</entry>
+  <entry key="user_name">root</entry>
+  <entry key="password">123lyz</entry>
+  <entry key="server_name">10.10.6.11</entry>
+  <entry key="port_number">3306</entry>
+
+
+</properties>

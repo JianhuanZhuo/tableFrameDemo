@@ -1,7 +1,8 @@
-package cn.keepfight.frame;
+package cn.keepfight;
 
 import java.io.IOException;
 
+import cn.keepfight.frame.FrameFactory;
 import cn.keepfight.frame.chain.SampleChainDataSource;
 import cn.keepfight.frame.content.source.InvalidSourceException;
 import javafx.application.Application;

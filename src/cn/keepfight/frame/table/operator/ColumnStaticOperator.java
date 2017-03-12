@@ -13,14 +13,17 @@ import cn.keepfight.frame.chain.OperatorResource;
 import cn.keepfight.frame.chain.PictureResouce;
 import cn.keepfight.frame.chain.Resource;
 import cn.keepfight.frame.chain.TableResource;
+import cn.keepfight.frame.connect.db.JDBCConnector;
 import cn.keepfight.frame.menu.ActionResult;
 import cn.keepfight.frame.table.TableDataSource;
 import cn.keepfight.operator.AbstractOperator;
-import cn.keepfight.utils.HttpUtils;
+import cn.keepfight.operator.WaitDialog;
 import cn.keepfight.utils.ImageLoadUtil;
+import cn.keepfight.utils.SimpleSQLUtils;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.chart.PieChart;
@@ -31,8 +34,6 @@ import javafx.scene.control.Dialog;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.BorderPane;
-import javafx.util.Pair;
-import net.sf.json.JSONObject;
 
 public class ColumnStaticOperator extends AbstractOperator{
 
@@ -73,19 +74,17 @@ public class ColumnStaticOperator extends AbstractOperator{
 
 		//select column5, count(column5) num from 出行数据 group by column5 order by count(column5) DESC;
 		String sqlString = "select "+result.get()+", count("+result.get()+") num from "
-				+tStage.getSource().getEntityName()+" group by "+result.get()
+				+tStage.getSource().getDB()+"."+tStage.getSource().getEntityName()+" group by "+result.get()
 				+" order by count("+result.get()+") DESC;";
 
-		List<Pair<String, String>> paramPairs = new ArrayList<Pair<String,String>>();
-		paramPairs.add(new Pair<String, String>("db", "wz"));
-		paramPairs.add(new Pair<String, String>("sql", sqlString));
-		String url = "http://127.0.0.1:8080/dap/dataLoad/createView.htm";
-		System.out.println(url);
-		String res = "";
-		res = HttpUtils.simpleGetWithEncode(url, paramPairs);
-		JSONObject resx = JSONObject.fromObject(res);
-		System.out.println(resx.getBoolean("flag"));
-		String viewName = resx.getString("view");
+		String viewName = new WaitDialog<String>(new Task<String>() {
+			@Override
+			protected String call() throws Exception {
+				SimpleSQLUtils simpleSQL = SimpleSQLUtils.build(new JDBCConnector().getConnection()).setDB("wz");
+				String tableName = simpleSQL.createView(sqlString);
+				return tableName;
+			}
+		}).justWait();
 
 		TableResource columnStatic = new TableResource("wz", viewName);
 		List<Resource> resResources = new ArrayList<>();

@@ -1,25 +1,27 @@
 package cn.keepfight.frame.text;
 
 import java.io.BufferedReader;
-import java.io.IOException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import cn.keepfight.frame.chain.OperatorResource;
 import cn.keepfight.frame.chain.Resource;
 import cn.keepfight.frame.chain.TableResource;
+import cn.keepfight.frame.connect.db.JDBCConnector;
 import cn.keepfight.frame.menu.ActionResult;
 import cn.keepfight.operator.AbstractOperator;
 import cn.keepfight.operator.WaitDialog;
-import cn.keepfight.utils.HttpUtils;
+import cn.keepfight.utils.SimpleSQLUtils;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.ChoiceDialog;
-import javafx.util.Pair;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 
 public class OperatorTranslate extends AbstractOperator{
 
@@ -38,6 +40,9 @@ public class OperatorTranslate extends AbstractOperator{
 	private String[] params;
 
 	private TextTStage tStage;
+
+
+	String reg;
 
 	public OperatorTranslate(TextTStage tStage) {
 		this.tStage = tStage;
@@ -68,63 +73,40 @@ public class OperatorTranslate extends AbstractOperator{
 		Optional<String> result = dialog.showAndWait();
 		if (result.isPresent()){
 		    System.out.println("Your choice: " + result.get());
-
-		    BufferedReader reader = new BufferedReader(tStage.getSource().getReader());
-		    String line;
-		    JSONArray json = new JSONArray();
-			try {
-				line = reader.readLine();
-			    while (line!=null && line.trim().length()!=0) {
-			    	String reg = "";
-			    	switch (result.get()) {
-					case "¶ººÅ":
-						reg=",";
-						break;
-					case "ÖÆ±í·û":
-						reg="\t";
-						break;
-					case "¿Õ¸ñ·û":
-						reg=" ";
-						break;
-					default:
-						break;
-					}
-			    	JSONArray lineObj = new JSONArray();
-			    	String[] dataStrings = line.split(reg);
-			    	for (int i = 0; i < dataStrings.length; i++) {
-						String s = dataStrings[i];
-						lineObj.add(s);
-					}
-			    	json.add(lineObj);
-			    	line = reader.readLine();
-				}
-			    reader.close();
-			    System.out.println(json);
-			} catch (IOException e) {
-				e.printStackTrace();
+		    File file = tStage.getSource().getFile();
+		    switch (result.get()) {
+				case "¶ººÅ":
+					reg=",";
+					break;
+				case "ÖÆ±í·û":
+					reg="\t";
+					break;
+				case "¿Õ¸ñ·û":
+					reg=" ";
+					break;
+				default:
+					break;
 			}
-			String resObj = new WaitDialog<String>(new Task<String>() {
+
+			String tableName = new WaitDialog<String>(new Task<String>() {
 				@Override
 				protected String call() throws Exception {
-					String url = "http://127.0.0.1:8080/dap/dataLoad/test2.htm";
-					return HttpUtils.simplePostJSONWithUTG8(url, new Pair<String, String>("yy", json.toString()));
+					SimpleSQLUtils simpleSQL = SimpleSQLUtils.build(new JDBCConnector().getConnection()).setDB("wz");
+					BufferedReader bf = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
+					String head = bf.readLine();
+					bf.close();
+					List<String> fs = Arrays.asList(head.split(",")).stream()
+							.map(s->(s+" varchar(255)"))
+							.collect(Collectors.toList());
+					String tableName = "table_"+System.currentTimeMillis();
+					simpleSQL.createTable(tableName, fs, null);
+					simpleSQL.loadData(file.getAbsolutePath(), tableName, " FIELDS TERMINATED by '"+reg+"' LINES TERMINATED BY '\r\n' IGNORE 1 LINES");
+
+					return tableName;
 				}
 			}).justWait();
 
-			if (resObj==null) {
-				return null;
-			}
-
-			JSONObject resJsonObject;
-			try {
-				System.out.println(resObj);
-				resJsonObject = JSONObject.fromObject(resObj);
-			} catch (Exception e) {
-				e.printStackTrace();
-				return null;
-			}
-
-			TableResource resultResource = new TableResource("wz", resJsonObject.getString("tableName"));
+			TableResource resultResource = new TableResource("wz", tableName);
 			res.add(resultResource);
 
 		    params = new String[1];

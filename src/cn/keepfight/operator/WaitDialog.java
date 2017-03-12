@@ -18,6 +18,9 @@ public class WaitDialog<V> extends Dialog<Boolean> implements EventHandler<Worke
 
 	public static final String waitIcon = "wait.png";
 
+	long befStp;
+	long aftStp;
+
 	private Task<V> task;
 
 	public WaitDialog(Task<V> task) {
@@ -48,8 +51,11 @@ public class WaitDialog<V> extends Dialog<Boolean> implements EventHandler<Worke
 
 	public V justWait(){
 		task.setOnSucceeded(this);
+		befStp = System.currentTimeMillis();
 		new Thread(task).start();
 		Optional<Boolean> result = showAndWait();
+		aftStp = System.currentTimeMillis();
+		System.out.println("此次等待时间为："+(aftStp-befStp)+" 毫秒");
 		if (result.isPresent() && result.get()) {
 			return task.getValue();
 		};
