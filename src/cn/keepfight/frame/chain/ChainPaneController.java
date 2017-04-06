@@ -31,24 +31,24 @@ public class ChainPaneController extends PaneController {
 	private ChainTStage tStage;
 
 	/**
-	 * Ñ¡Ôñ¹ÜÀíÆ÷
+	 * é€‰æ‹©ç®¡ç†å™¨
 	 */
 	private SelectionManager selectionManager = new SelectionManager();
 
 	/**
-	 * ÍÏ×§ĞĞÎª
+	 * æ‹–æ‹½è¡Œä¸º
 	 */
 	private DragMouseGestures dragMouseGestures = new DragMouseGestures(selectionManager);
 
 	/**
-	 * ×ÊÔ´µ½µÄ½ÚµãÓ³Éä£¬ÓÃÓÚ¸ù¾İ×ÊÔ´²éÕÒ½Úµã
+	 * èµ„æºåˆ°çš„èŠ‚ç‚¹æ˜ å°„ï¼Œç”¨äºæ ¹æ®èµ„æºæŸ¥æ‰¾èŠ‚ç‚¹
 	 */
 	private Map<Resource, ResourceElem> elemMap = new HashMap<Resource, ResourceElem>();
 
 	ChainDataSource source;
 
 	/**
-	 * »­°åµÄ¸ù²¼¾Ö
+	 * ç”»æ¿çš„æ ¹å¸ƒå±€
 	 */
 	@FXML
 	BorderPane pane;
@@ -58,19 +58,19 @@ public class ChainPaneController extends PaneController {
 
 	@FXML
 	private void initialize() {
-		// ÍÏ×§·½¿éÖ§³Ö
+		// æ‹–æ‹½æ–¹å—æ”¯æŒ
 		new RubberBandSelection(chainPane, selectionManager);
 	}
 
 	@Override
 	public void clearContent() {
-		// @TODO Çå¿ÕÑ¡ÔñÄ£ĞÍ
+		// @TODO æ¸…ç©ºé€‰æ‹©æ¨¡å‹
 
-		// Çå¿ÕÁ¬Ïß
+		// æ¸…ç©ºè¿çº¿
 
-		// Çå¿Õ½Úµã
+		// æ¸…ç©ºèŠ‚ç‚¹
 
-		// Çå¿ÕÆäËû
+		// æ¸…ç©ºå…¶ä»–
 	}
 
 	protected Map<Resource, ResourceElem> getElemMap() {
@@ -83,7 +83,7 @@ public class ChainPaneController extends PaneController {
 
 	@Override
 	public void load() {
-		// Çå¿Õ»­°åÄÚÈİ
+		// æ¸…ç©ºç”»æ¿å†…å®¹
 		clearContent();
 
 		List<ResourceWithPosition> resources = source.getResources();
@@ -93,7 +93,7 @@ public class ChainPaneController extends PaneController {
 			try {
 				addElement(elem, resWithP.x, resWithP.y);
 			} catch (GraphicException e) {
-				// @TODO ÕâÀïĞèÒª×÷Òì³£´¦Àí£¬ÏÖÔÚ½ö×÷¶ªÆú´¦Àí
+				// @TODO è¿™é‡Œéœ€è¦ä½œå¼‚å¸¸å¤„ç†ï¼Œç°åœ¨ä»…ä½œä¸¢å¼ƒå¤„ç†
 				e.printStackTrace();
 			}
 		}
@@ -102,7 +102,7 @@ public class ChainPaneController extends PaneController {
 			try {
 				addEdge(elemMap.get(edge.start), elemMap.get(edge.end));
 			} catch (GraphicException e) {
-				// @TODO ÕâÀïĞèÒª×÷Òì³£´¦Àí£¬ÏÖÔÚ½ö×÷¶ªÆú´¦Àí
+				// @TODO è¿™é‡Œéœ€è¦ä½œå¼‚å¸¸å¤„ç†ï¼Œç°åœ¨ä»…ä½œä¸¢å¼ƒå¤„ç†
 				e.printStackTrace();
 			}
 		}
@@ -140,26 +140,26 @@ public class ChainPaneController extends PaneController {
 	}
 
 	/**
-	 * Ö¸¶¨Î»ÖÃÌí¼Ó½Úµã
+	 * æŒ‡å®šä½ç½®æ·»åŠ èŠ‚ç‚¹
 	 *
 	 * @param element
-	 *            ÓûÌí¼ÓµÄ½Úµã
+	 *            æ¬²æ·»åŠ çš„èŠ‚ç‚¹
 	 * @param x
-	 *            Ö¸¶¨Î»ÖÃ×ø±êx
+	 *            æŒ‡å®šä½ç½®åæ ‡x
 	 * @param y
-	 *            Ö¸¶¨Î»ÖÃ×ø±êy
+	 *            æŒ‡å®šä½ç½®åæ ‡y
 	 * @throws GraphicException
-	 *             Í¼²Ù×÷Òì³£
+	 *             å›¾æ“ä½œå¼‚å¸¸
 	 */
 	protected void addElement(Element element, Double x, Double y) throws GraphicException {
 		dag.addElem(element);
 		chainPane.getChildren().add(element);
 		element.relocate(x, y);
 
-		// Ìí¼ÓÆäÎª¿ÉÍÏ×§
+		// æ·»åŠ å…¶ä¸ºå¯æ‹–æ‹½
 		dragMouseGestures.makeDraggable(element);
 
-		// Ìí¼ÓË«»÷´ò¿ªÃæ°å
+		// æ·»åŠ åŒå‡»æ‰“å¼€é¢æ¿
 		element.addEventHandler(MouseEvent.MOUSE_CLICKED, onDoubleClickHander);
 	}
 
@@ -167,7 +167,7 @@ public class ChainPaneController extends PaneController {
 		DirectedEdge edge = dag.addEdge(source, target);
 		chainPane.getChildren().add(edge.getLine());
 
-		//µ÷ÕûºóÕßÎ»ÖÃ
+		//è°ƒæ•´åè€…ä½ç½®
 		target.relocate(source.getLayoutX()+50, source.getLayoutY()+(source.frontEles.size()-1)*50);
 
 		source.updatePosition();
@@ -187,7 +187,7 @@ public class ChainPaneController extends PaneController {
 				return;
 			}
 
-			// ¼ì²éÊÇ·ñÒÑ¾­´ò¿ªÃæ°å
+			// æ£€æŸ¥æ˜¯å¦å·²ç»æ‰“å¼€é¢æ¿
 			ResourceElem sElem = (ResourceElem) event.getSource();
 			if (tStage.hasContain(sElem)) {
 				tStage.elemMapStage.get(sElem).showup();
@@ -208,8 +208,8 @@ public class ChainPaneController extends PaneController {
 	};
 
 	/**
-	 * »ñµÃÒÑÑ¡ÔñµÄ×ÊÔ´½Úµã¼¯ºÏ
-	 * @return ÒÑÑ¡ÔñµÄ×ÊÔ´½Úµã
+	 * è·å¾—å·²é€‰æ‹©çš„èµ„æºèŠ‚ç‚¹é›†åˆ
+	 * @return å·²é€‰æ‹©çš„èµ„æºèŠ‚ç‚¹
 	 */
 	public List<ResourceElem> getSelectedResources(){
 		return selectionManager.getSelection().stream()

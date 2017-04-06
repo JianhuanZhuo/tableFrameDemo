@@ -8,7 +8,7 @@ import java.util.Properties;
 import cn.keepfight.utils.PropertieUtil;
 
 /**
- * JDBCÁ¬½ÓÆ÷
+ * JDBCè¿æ¥å™¨
  *
  * @author Tom
  * @TODO update to use connection pool / adapt to more DBMS
@@ -58,7 +58,7 @@ public class JDBCConnector {
 	}
 
 	/**
-	 * Ê¹ÓÃÖ¸¶¨ÎÄ¼ş½øĞĞ³õÊ¼»¯ÅäÖÃ
+	 * ä½¿ç”¨æŒ‡å®šæ–‡ä»¶è¿›è¡Œåˆå§‹åŒ–é…ç½®
 	 *
 	 * @param configureFile
 	 * @throws Exception

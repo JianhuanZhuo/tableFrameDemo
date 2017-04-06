@@ -31,7 +31,7 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 /**
- * Á´Ëã×ÓÃæ°åÄÚ²¿Ëã×Ó£¬ÓÃÓÚ´ò¿ª±¾µØÎÄ¼ş²¢Ìí¼ÓÒ»¸ö±¾µØÎÄ¼ş×ÊÔ´
+ * é“¾ç®—å­é¢æ¿å†…éƒ¨ç®—å­ï¼Œç”¨äºæ‰“å¼€æœ¬åœ°æ–‡ä»¶å¹¶æ·»åŠ ä¸€ä¸ªæœ¬åœ°æ–‡ä»¶èµ„æº
  * @author Tom
  *
  */
@@ -46,16 +46,16 @@ public class OpenDBEntityOperaor extends AbstractOperator{
 
 	@Override public int getId() { return 777; }
 	@Override public String getName() { return "open_table"; }
-	@Override public String getLabel() { return "µ¼Èë±í"; }
+	@Override public String getLabel() { return "å¯¼å…¥è¡¨"; }
 	@Override public String getIcon() { return "table.png"; }
-	@Override public String getTips() { return "Ñ¡ÔñÖ¸¶¨Êı¾İ¿â±í²¢¼ÓÈëËã×ÓÁ´Ãæ°åÖĞ"; }
-	@Override public String getDescription() { return "Ë«»÷¼ÆËã»úÒÔ»ñÈ¡¶Ô±¾µØÎÄ¼ş£¬°üÀ¨¿ÉÒÆ¶¯ÉÁ´æÇı¶¯Æ÷¡£"
-			+ "Äú»¹¿ÉÒÔÑ¡ÔñÄúµÄÕÊ»§£¬Äú¿ÉÒÔ¿ªÊ¼£¬ÈçÓĞ±ØÒª£¬µÇÂ¼£¬È»ºó´ò¿ªËùĞèµÄÎÄ¼şµÄÎ»ÖÃÖ®Ò»¡£"
-			+ "ÒªÌí¼ÓĞÂµÄÎ»ÖÃ£¬Çëµ¥»÷Ìí¼ÓÎ»ÖÃ¡£×î½üÁĞ±íÏÔÊ¾´ÓÈÎºÎÉè±¸×î½ü´ò¿ªµÄÎÄ¼ş¡£Èç¹û´ËÁĞ±í»ñÈ¡ÊµÓÃ£¬"
-			+ "Äú¿ÉÒÔ´ÓÆäÉ¾³ıÎÄ¼ş¡£Ö»ĞèÓÒ¼üµ¥»÷ÎÄ¼şÃû£¬È»ºóÑ¡Ôñ´ÓÁĞ±íÖĞÉ¾³ı¡£ "
-			+ "Äú¿ÉÒÔ¶Ô×î½üÁĞ±íÖĞ½øĞĞÆäËû¸ü¸Ä¡£ÈôÒªÁË½âÏêÏ¸ĞÅÏ¢£¬Çë²ÎÔÄ×Ô¶¨Òå×î½üÊ¹ÓÃµÄÎÄ¼şÁĞ±í¡£"
-			+ "Èç¹ûÄú²»Ê¹ÓÃÁĞ±íÖĞµÄ×î½üÊ¹ÓÃµÄÎÄ¼ş£¬²¢ÇÒÄú¶øÊÇ½«Ö±½Ó²åÈëä¯ÀÀÎÄ¼ş¼ĞÌø£¬"
-			+ "Ê¹ÓÃ Ctrl + F12 Ö±½Ó´ò¿ª´ò¿ª¶Ô»°¿ò¡£"; }
+	@Override public String getTips() { return "é€‰æ‹©æŒ‡å®šæ•°æ®åº“è¡¨å¹¶åŠ å…¥ç®—å­é“¾é¢æ¿ä¸­"; }
+	@Override public String getDescription() { return "åŒå‡»è®¡ç®—æœºä»¥è·å–å¯¹æœ¬åœ°æ–‡ä»¶ï¼ŒåŒ…æ‹¬å¯ç§»åŠ¨é—ªå­˜é©±åŠ¨å™¨ã€‚"
+			+ "æ‚¨è¿˜å¯ä»¥é€‰æ‹©æ‚¨çš„å¸æˆ·ï¼Œæ‚¨å¯ä»¥å¼€å§‹ï¼Œå¦‚æœ‰å¿…è¦ï¼Œç™»å½•ï¼Œç„¶åæ‰“å¼€æ‰€éœ€çš„æ–‡ä»¶çš„ä½ç½®ä¹‹ä¸€ã€‚"
+			+ "è¦æ·»åŠ æ–°çš„ä½ç½®ï¼Œè¯·å•å‡»æ·»åŠ ä½ç½®ã€‚æœ€è¿‘åˆ—è¡¨æ˜¾ç¤ºä»ä»»ä½•è®¾å¤‡æœ€è¿‘æ‰“å¼€çš„æ–‡ä»¶ã€‚å¦‚æœæ­¤åˆ—è¡¨è·å–å®ç”¨ï¼Œ"
+			+ "æ‚¨å¯ä»¥ä»å…¶åˆ é™¤æ–‡ä»¶ã€‚åªéœ€å³é”®å•å‡»æ–‡ä»¶åï¼Œç„¶åé€‰æ‹©ä»åˆ—è¡¨ä¸­åˆ é™¤ã€‚ "
+			+ "æ‚¨å¯ä»¥å¯¹æœ€è¿‘åˆ—è¡¨ä¸­è¿›è¡Œå…¶ä»–æ›´æ”¹ã€‚è‹¥è¦äº†è§£è¯¦ç»†ä¿¡æ¯ï¼Œè¯·å‚é˜…è‡ªå®šä¹‰æœ€è¿‘ä½¿ç”¨çš„æ–‡ä»¶åˆ—è¡¨ã€‚"
+			+ "å¦‚æœæ‚¨ä¸ä½¿ç”¨åˆ—è¡¨ä¸­çš„æœ€è¿‘ä½¿ç”¨çš„æ–‡ä»¶ï¼Œå¹¶ä¸”æ‚¨è€Œæ˜¯å°†ç›´æ¥æ’å…¥æµè§ˆæ–‡ä»¶å¤¹è·³ï¼Œ"
+			+ "ä½¿ç”¨ Ctrl + F12 ç›´æ¥æ‰“å¼€æ‰“å¼€å¯¹è¯æ¡†ã€‚"; }
 
 	@Override
 	public ActionResult onAction() {
@@ -84,8 +84,8 @@ public class OpenDBEntityOperaor extends AbstractOperator{
 		dialog.setGraphic(new ImageView(ImageLoadUtil.load("table.png")));
 
 		// Set the button types.
-		ButtonType ok = new ButtonType("µ¼Èë", ButtonData.OK_DONE);
-		ButtonType cancel = new ButtonType("È¡Ïû", ButtonData.CANCEL_CLOSE);
+		ButtonType ok = new ButtonType("å¯¼å…¥", ButtonData.OK_DONE);
+		ButtonType cancel = new ButtonType("å–æ¶ˆ", ButtonData.CANCEL_CLOSE);
 		dialog.getDialogPane().getButtonTypes().addAll(ok, cancel);
 
 		// Create the username and password labels and fields.
@@ -99,13 +99,13 @@ public class OpenDBEntityOperaor extends AbstractOperator{
 		db.getSelectionModel().select(0);
 		ComboBox<String> entity = new ComboBox<String>();
 
-		grid.add(new Label("Êı¾İ¿â£º"), 0, 0);
+		grid.add(new Label("æ•°æ®åº“ï¼š"), 0, 0);
 		grid.add(db, 1, 0);
-		grid.add(new Label("±í»òÊÓÍ¼£º"), 0, 1);
+		grid.add(new Label("è¡¨æˆ–è§†å›¾ï¼š"), 0, 1);
 		grid.add(entity, 1, 1);
 
 		ProgressIndicator indic = new ProgressIndicator();
-		Label runing = new Label("ÕıÔÚ¸üĞÂ¿ÉÓÃÊı¾İ¿â±íĞÅÏ¢...");
+		Label runing = new Label("æ­£åœ¨æ›´æ–°å¯ç”¨æ•°æ®åº“è¡¨ä¿¡æ¯...");
 		BorderPane borderPane = new BorderPane(indic);
 		borderPane.setBottom(runing);
 
@@ -120,7 +120,7 @@ public class OpenDBEntityOperaor extends AbstractOperator{
 		});
 		dialog.getDialogPane().setContent(borderPane);
 
-		//ÕâÀïÓÃÈÎÎñµÄĞÎÊ½£¬Ó¦¸ÃÓÃService²Å¶Ô
+		//è¿™é‡Œç”¨ä»»åŠ¡çš„å½¢å¼ï¼Œåº”è¯¥ç”¨Serviceæ‰å¯¹
 		Task<List<String>> download = new Task<List<String>>() {
 
 			@Override
@@ -141,13 +141,13 @@ public class OpenDBEntityOperaor extends AbstractOperator{
 						String type = "";
 						switch (row.getString(1)) {
 						case "BASE TABLE":
-							type="»ù±¾±í";
+							type="åŸºæœ¬è¡¨";
 							break;
 						case "VIEW":
-							type="ÊÔÍ¼±í";
+							type="è¯•å›¾è¡¨";
 							break;
 						default:
-							type="Î´Öª±í";
+							type="æœªçŸ¥è¡¨";
 							break;
 						}
 						sList.add(""+type+"-"+row.getString(0));

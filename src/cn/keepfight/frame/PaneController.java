@@ -5,27 +5,27 @@ import cn.keepfight.frame.content.source.InvalidSourceException;
 import javafx.scene.layout.BorderPane;
 
 /**
- * Ãæ°å¿ØÖÆÆ÷³éÏóÀà.
+ * é¢æ¿æ§åˆ¶å™¨æŠ½è±¡ç±».
  * @author Tom
  *
  */
 public abstract class PaneController{
 
 	/**
-	 * Çå¿Õ»­°åÄÚÈİ
+	 * æ¸…ç©ºç”»æ¿å†…å®¹
 	 */
 	public abstract void clearContent();
 
 	public abstract BorderPane getNode();
 
 	/**
-	 * Ö¸Ê¾»­°å¿ªÊ¼¼ÓÔØ»­Ãæ»òÊı¾İ
+	 * æŒ‡ç¤ºç”»æ¿å¼€å§‹åŠ è½½ç”»é¢æˆ–æ•°æ®
 	 */
 	public abstract void load();
 
 	/**
-	 * Îª»­°åÉèÖÃÊı¾İÔ´
-	 * @param source Êı¾İÔ´
+	 * ä¸ºç”»æ¿è®¾ç½®æ•°æ®æº
+	 * @param source æ•°æ®æº
 	 */
 	public abstract void setDataSource(DataSource source) throws InvalidSourceException;
 

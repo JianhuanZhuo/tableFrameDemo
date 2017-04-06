@@ -18,7 +18,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 
 /**
- * Ëã×ÓÁ´Ãæ°å
+ * ç®—å­é“¾é¢æ¿
  * @author Tom
  *
  */
@@ -26,15 +26,15 @@ public class ChainTStage extends TStage<ChainDataSource,
 			ChainMenuViewController, ChainPaneController> implements ContextMaster{
 
 	/**
-	 * Ê¹ÓÃË«¹şÏ£±£´æÁ½Õß¼äµÄÏà»¥Ó³Éä
-	 * @TODO ´Ë´¦Ğè¸Ä½ø
+	 * ä½¿ç”¨åŒå“ˆå¸Œä¿å­˜ä¸¤è€…é—´çš„ç›¸äº’æ˜ å°„
+	 * @TODO æ­¤å¤„éœ€æ”¹è¿›
 	 */
 	Map<ContextSlave, ResourceElem> stageMapElem = new HashMap<>();
 	Map<ResourceElem, ContextSlave> elemMapStage = new HashMap<>();
 
 	@Override
 	protected void fixAfter() {
-		//Ìí¼ÓÑ¡Ôñ¶ÔÏó¸ßÁÁ
+		//æ·»åŠ é€‰æ‹©å¯¹è±¡é«˜äº®
 		getScene().getStylesheets().add( getClass().getResource("drag/highlight.css").toExternalForm());
 	}
 
@@ -46,11 +46,11 @@ public class ChainTStage extends TStage<ChainDataSource,
 	@Override
 	public void onDelete() {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("È·ÈÏ¶Ô»°¿ò");
-		alert.setHeaderText("¸ÃËã×ÓÁ´×ÊÔ´ÔÚ¸¸Ãæ°åÒÑ±»É¾³ı£¬ÊÇ·ñ±£´æµ±Ç°Ãæ°åÄÚÈİ£¿");
-		alert.setContentText("¼´½«¹Ø±Õ¸ÃÃæ°åÒÔÏìÓ¦±£´æÓĞ¸ÃËã×ÓÁ´×ÊÔ´µÄ¸¸Ãæ°å£¬"
-				+ "ÊÇ·ñ±£´æ¸ÃÃæ°åµÄÄÚÈİÒÔÃâÕıÔÚ±à¼­µÄÊı¾İ·¢Éú¶ªÊ§£¿"
-				+ "µã»÷ ÊÇ ±£´æ¸ÃÃæ°åÊı¾İ£¬µã»÷ ·ñ ²»±£´æ£¬Ö±½Ó¹Ø±Õ£¡");
+		alert.setTitle("ç¡®è®¤å¯¹è¯æ¡†");
+		alert.setHeaderText("è¯¥ç®—å­é“¾èµ„æºåœ¨çˆ¶é¢æ¿å·²è¢«åˆ é™¤ï¼Œæ˜¯å¦ä¿å­˜å½“å‰é¢æ¿å†…å®¹ï¼Ÿ");
+		alert.setContentText("å³å°†å…³é—­è¯¥é¢æ¿ä»¥å“åº”ä¿å­˜æœ‰è¯¥ç®—å­é“¾èµ„æºçš„çˆ¶é¢æ¿ï¼Œ"
+				+ "æ˜¯å¦ä¿å­˜è¯¥é¢æ¿çš„å†…å®¹ä»¥å…æ­£åœ¨ç¼–è¾‘çš„æ•°æ®å‘ç”Ÿä¸¢å¤±ï¼Ÿ"
+				+ "ç‚¹å‡» æ˜¯ ä¿å­˜è¯¥é¢æ¿æ•°æ®ï¼Œç‚¹å‡» å¦ ä¸ä¿å­˜ï¼Œç›´æ¥å…³é—­ï¼");
 
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.get() == ButtonType.OK){
@@ -63,10 +63,10 @@ public class ChainTStage extends TStage<ChainDataSource,
 
 	@Override
 	public void doOperate(ContextSlave slave, Resource operator, Resource result) {
-		//²éÕÒÅ«Á¥½Úµã
+		//æŸ¥æ‰¾å¥´éš¶èŠ‚ç‚¹
 		ResourceElem sElem = stageMapElem.get(slave);
 
-		//Ìí¼ÓËã×Ó½Úµã¡¢½á¹û½Úµã
+		//æ·»åŠ ç®—å­èŠ‚ç‚¹ã€ç»“æœèŠ‚ç‚¹
 		ResourceElem operatorElem = getPaneVC().addResource(operator);
 		ResourceElem eElem = getPaneVC().addResource(result);
 
@@ -77,7 +77,7 @@ public class ChainTStage extends TStage<ChainDataSource,
 			e.printStackTrace();
 		}
 
-		//·µ»Ø½á¹û×ÊÔ´µÄÊı¾İÔ´
+		//è¿”å›ç»“æœèµ„æºçš„æ•°æ®æº
 		DataSource resDataSource = eElem.getResource().generateDataSource();
 		/****************************************************************
 		try {
@@ -101,12 +101,12 @@ public class ChainTStage extends TStage<ChainDataSource,
 
 	@Override
 	public void doOperate(ContextSlave slave, Resource operator, List<Resource> results) {
-		//²éÕÒÅ«Á¥½Úµã
+		//æŸ¥æ‰¾å¥´éš¶èŠ‚ç‚¹
 		ResourceElem sElem = stageMapElem.get(slave);
 
-		//Ìí¼ÓËã×Ó½Úµã¡¢½á¹û½Úµã
+		//æ·»åŠ ç®—å­èŠ‚ç‚¹ã€ç»“æœèŠ‚ç‚¹
 		ResourceElem operatorElem = getPaneVC().addResource(operator);
-		//½á¹û½Úµã¼¯ºÏ
+		//ç»“æœèŠ‚ç‚¹é›†åˆ
 		List<ResourceElem> eElemList = results.stream()
 				.map(result->getPaneVC().addResource(result))
 				.collect(Collectors.toList());
@@ -123,20 +123,20 @@ public class ChainTStage extends TStage<ChainDataSource,
 
 //	@Override
 //	public void doOperate(List<ContextSlave> slaves, Resource operator, List<Resource> results){
-//		//Å«Á¥½Úµã¼¯ºÏ
+//		//å¥´éš¶èŠ‚ç‚¹é›†åˆ
 //		List<ResourceElem> sElemList = slaves.stream()
 //				.map(slave->stageMapElem.get(slave))
 //				.filter(p->p!=null)
 //				.collect(Collectors.toList());
 //
-//		//Ìí¼ÓËã×Ó½Úµã¡¢½á¹û½Úµã
+//		//æ·»åŠ ç®—å­èŠ‚ç‚¹ã€ç»“æœèŠ‚ç‚¹
 //		ResourceElem operatorElem = getPaneVC().addResource(operator);
 //
-//		//½á¹û½Úµã¼¯ºÏ
+//		//ç»“æœèŠ‚ç‚¹é›†åˆ
 //		List<ResourceElem> eElemList = results.stream()
 //				.map(result->getPaneVC().addResource(result))
 //				.collect(Collectors.toList());
-//		//Ìí¼Ó±ß
+//		//æ·»åŠ è¾¹
 //		try {
 //			for (ResourceElem sElem : sElemList) {
 //					getPaneVC().addEdge(sElem, operatorElem);
@@ -169,13 +169,13 @@ public class ChainTStage extends TStage<ChainDataSource,
 
 	@Override
 	public void doOperate(List<ResourceElem> slaves, Resource operator, Resource result) {
-		//Å«Á¥½Úµã¼¯ºÏ
-		//Ìí¼ÓËã×Ó½Úµã¡¢½á¹û½Úµã
+		//å¥´éš¶èŠ‚ç‚¹é›†åˆ
+		//æ·»åŠ ç®—å­èŠ‚ç‚¹ã€ç»“æœèŠ‚ç‚¹
 		ResourceElem operatorElem = getPaneVC().addResource(operator);
 
-		//½á¹û½Úµã¼¯ºÏ
+		//ç»“æœèŠ‚ç‚¹é›†åˆ
 		ResourceElem eElem = getPaneVC().addResource(result);
-		//Ìí¼Ó±ß
+		//æ·»åŠ è¾¹
 		try {
 			for (ResourceElem sElem : slaves) {
 				getPaneVC().addEdge(sElem, operatorElem);

@@ -1,14 +1,14 @@
 package cn.keepfight.frame.chain;
 
 /**
- * ×ÜÏßÀà£¬ÓÃÓÚÎ¬»¤CSÖ®¼äµÄËã×ÓÁ´
+ * æ€»çº¿ç±»ï¼Œç”¨äºç»´æŠ¤CSä¹‹é—´çš„ç®—å­é“¾
  * @author Tom
  *
  */
 public class ChainBus {
 
 	/**
-	 * ÏÂÔØËã×ÓÁ´
+	 * ä¸‹è½½ç®—å­é“¾
 	 */
 	public void pullChain() {
 

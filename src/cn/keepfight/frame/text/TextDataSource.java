@@ -8,7 +8,7 @@ import cn.keepfight.frame.content.source.DataSourceType;
 import cn.keepfight.frame.content.source.InvalidSourceException;
 
 /**
- * ÎÄ±¾ÎÄ¼şÊı¾İÔ´
+ * æ–‡æœ¬æ–‡ä»¶æ•°æ®æº
  * @author Tom
  *
  */

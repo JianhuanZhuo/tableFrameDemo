@@ -21,7 +21,7 @@ import javafx.util.Pair;
 import net.sf.json.JSONObject;
 
 /**
- * Î´Íê³É
+ * æœªå®Œæˆ
  * @author Tom
  *
  */
@@ -47,7 +47,7 @@ public class DeleteColumnOperator extends AbstractOperator{
 
 	@Override
 	public String getLabel() {
-		return "²åÈëÁĞ";
+		return "æ’å…¥åˆ—";
 	}
 
 	@Override
@@ -57,12 +57,12 @@ public class DeleteColumnOperator extends AbstractOperator{
 
 	@Override
 	public String getTips() {
-		return "Ö¸¶¨ÁĞ½øĞĞ½øĞĞºÏ²¢";
+		return "æŒ‡å®šåˆ—è¿›è¡Œè¿›è¡Œåˆå¹¶";
 	}
 
 	@Override
 	public String getDescription() {
-		return "ÔİÊ±ÎŞËã×Ó½âÊÍ";
+		return "æš‚æ—¶æ— ç®—å­è§£é‡Š";
 	}
 
 	@Override
@@ -70,19 +70,19 @@ public class DeleteColumnOperator extends AbstractOperator{
 
 		List<String> resList = tStage.getPaneVC().columnSelectUtil.selectColumn(
 				this,
-				t -> new HashSet<>(t).size()>0?null:"½øĞĞºÏ²¢µÄÁĞÊı²»µÃÎª0",
-				"ÇëÑ¡ÔñĞèÒª½øĞĞÁĞºÏ²¢µÄÁĞ£¡");
+				t -> new HashSet<>(t).size()>0?null:"è¿›è¡Œåˆå¹¶çš„åˆ—æ•°ä¸å¾—ä¸º0",
+				"è¯·é€‰æ‹©éœ€è¦è¿›è¡Œåˆ—åˆå¹¶çš„åˆ—ï¼");
 		if (resList==null) { return null; }
 
-		//»ñµÃÊäÈëĞÂÁĞÃû
+		//è·å¾—è¾“å…¥æ–°åˆ—å
 		TextInputDialog dialog = new TextInputDialog("walter");
-		dialog.setTitle("ÁĞºÏ²¢");
-		dialog.setHeaderText("ÇëÎªĞÂÁĞÑ¡ÔñÁĞÃû");
-		dialog.setContentText("ÁĞÃûÊäÈë:");
+		dialog.setTitle("åˆ—åˆå¹¶");
+		dialog.setHeaderText("è¯·ä¸ºæ–°åˆ—é€‰æ‹©åˆ—å");
+		dialog.setContentText("åˆ—åè¾“å…¥:");
 
 		Optional<String> result = dialog.showAndWait();
 		if (!result.isPresent() || !Pattern.compile("[A-Za-z][A-Za-z1-9_-]+").matcher(result.get()).matches()){
-			new Alert(AlertType.ERROR, "ÁĞÃûÎŞĞ§", ButtonType.OK).show();
+			new Alert(AlertType.ERROR, "åˆ—åæ— æ•ˆ", ButtonType.OK).show();
 			return null;
 		}
 		String sqlList = "";
@@ -116,7 +116,7 @@ public class DeleteColumnOperator extends AbstractOperator{
 		List<Resource> resResources = new ArrayList<>();
 		resResources.add(resultResource);
 		/**
-		 * @FIXME ÕâÖÖ×ö·¨ÊÇ²»¹æ·¶µÄ£¬ĞèÒª½øĞĞÒ»¸ö¹æ·¶³éÏó
+		 * @FIXME è¿™ç§åšæ³•æ˜¯ä¸è§„èŒƒçš„ï¼Œéœ€è¦è¿›è¡Œä¸€ä¸ªè§„èŒƒæŠ½è±¡
 		 */
 		resList.add(result.get());
 	    params = resList.toArray(new String[resList.size()]);

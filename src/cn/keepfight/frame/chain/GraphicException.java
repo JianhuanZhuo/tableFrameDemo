@@ -2,7 +2,7 @@ package cn.keepfight.frame.chain;
 
 
 /**
- * 有向无环图中异常
+ * 鏈夊悜鏃犵幆鍥句腑寮傚父
  * @author Tom
  *
  */

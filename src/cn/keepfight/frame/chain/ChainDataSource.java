@@ -7,15 +7,15 @@ import cn.keepfight.frame.content.source.DataSourceType;
 import cn.keepfight.frame.content.source.InvalidSourceException;
 
 /**
- * Ëã×ÓÁ´Êı¾İÔ´Àà£¬ÓÃÓÚÃèÊöÁ´Êı¾İÔ´¸ÃÓĞµÄ¹¦ÄÜ
+ * ç®—å­é“¾æ•°æ®æºç±»ï¼Œç”¨äºæè¿°é“¾æ•°æ®æºè¯¥æœ‰çš„åŠŸèƒ½
  * @author Tom
  *
  */
 public abstract class ChainDataSource implements DataSource{
 
 	/**
-	 * ×ÊÔ´ÃèÊöÀà
-	 * @author Tom Ö¸Ã÷ÔÚ¸ÃÁ´ÖĞ×ÊÔ´µÄÎ»ÖÃºÍÀàĞÍ
+	 * èµ„æºæè¿°ç±»
+	 * @author Tom æŒ‡æ˜åœ¨è¯¥é“¾ä¸­èµ„æºçš„ä½ç½®å’Œç±»å‹
 	 *
 	 */
 	class ResourceWithPosition{
@@ -25,7 +25,7 @@ public abstract class ChainDataSource implements DataSource{
 	}
 
 	/**
-	 * Á¬½Ó±ßÃèÊöÀà
+	 * è¿æ¥è¾¹æè¿°ç±»
 	 * @author Tom
 	 *
 	 */
@@ -44,14 +44,14 @@ public abstract class ChainDataSource implements DataSource{
 	}
 
 	/**
-	 * »ñµÃÁ´Êı¾İÔ´Ìá¹©×ÊÔ´ÁĞ±í
-	 * @return ×ÊÔ´ÁĞ±í
+	 * è·å¾—é“¾æ•°æ®æºæä¾›èµ„æºåˆ—è¡¨
+	 * @return èµ„æºåˆ—è¡¨
 	 */
 	public abstract List<ResourceWithPosition> getResources();
 
 	/**
-	 * »ñµÃµÃÁ´Êı¾İÔ´Ìá¹©Á¬½Ó±ßÁĞ±í
-	 * @return Á¬½Ó±ßÁĞ±í
+	 * è·å¾—å¾—é“¾æ•°æ®æºæä¾›è¿æ¥è¾¹åˆ—è¡¨
+	 * @return è¿æ¥è¾¹åˆ—è¡¨
 	 */
 	public abstract List<Edge> getEdges();
 }

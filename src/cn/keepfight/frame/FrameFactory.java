@@ -16,7 +16,7 @@ import cn.keepfight.frame.text.TextDataSource;
 import cn.keepfight.frame.text.TextTStage;
 
 /**
- * ÏÔÊ¾Ãæ°å¹¤³§Àà£¬¶ÔÓ¦ {@link cn.keepfight.frame.content.source.DataSourceType} ½øĞĞÉú³ÉÃæ°åÊµÀı¡£
+ * æ˜¾ç¤ºé¢æ¿å·¥å‚ç±»ï¼Œå¯¹åº” {@link cn.keepfight.frame.content.source.DataSourceType} è¿›è¡Œç”Ÿæˆé¢æ¿å®ä¾‹ã€‚
  *
  * @author Tom
  *
@@ -24,10 +24,10 @@ import cn.keepfight.frame.text.TextTStage;
 public class FrameFactory {
 
 	/**
-	 * Ö¸¶¨Êı¾İÔ´ÀàĞÍ½øĞĞÉú³ÉÕ¹Ê¾Ãæ°å
-	 * @param master ¸¸Ãæ°å
-	 * @param source Êı¾İÔ´
-	 * @return Õ¹Ê¾Ãæ°å
+	 * æŒ‡å®šæ•°æ®æºç±»å‹è¿›è¡Œç”Ÿæˆå±•ç¤ºé¢æ¿
+	 * @param master çˆ¶é¢æ¿
+	 * @param source æ•°æ®æº
+	 * @return å±•ç¤ºé¢æ¿
 	 */
 	@SuppressWarnings({ "rawtypes" })
 	public static TStage generateBySource(ContextMaster master, DataSource source) throws InvalidSourceException, IOException {

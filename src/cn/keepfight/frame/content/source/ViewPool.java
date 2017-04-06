@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * ÊÓÍ¼³ØÀà.
- * @TODO ÏÂ´Î¸Ä³É·º»¯
+ * è§†å›¾æ± ç±».
+ * @TODO ä¸‹æ¬¡æ”¹æˆæ³›åŒ–
  * @author Tom
  *
  */
@@ -14,13 +14,13 @@ public class ViewPool {
 	private static ViewPool menuViewPool = new ViewPool("MenuView.fxml");
 
 	/**
-	 * ÊÓÍ¼³Ø
+	 * è§†å›¾æ± 
 	 */
 	private List<String> viewUrlList = new ArrayList<>();
 
 	/**
-	 * ¹¹ÔìÊÓÍ¼³Ø¶ÔÏó
-	 * @param viewList ¶ÔÏó³õÊ¼»¯ËùÓµÓĞµÄÊÔÍ¼
+	 * æ„é€ è§†å›¾æ± å¯¹è±¡
+	 * @param viewList å¯¹è±¡åˆå§‹åŒ–æ‰€æ‹¥æœ‰çš„è¯•å›¾
 	 */
 	public ViewPool(String ... viewList) {
 		for (String view : viewList) {
@@ -31,8 +31,8 @@ public class ViewPool {
 	}
 
 	/**
-	 * »ñµÃÊ×Ñ¡ÊÓÍ¼
-	 * @return ÊÓÍ¼URL
+	 * è·å¾—é¦–é€‰è§†å›¾
+	 * @return è§†å›¾URL
 	 */
 	public String getPriprorViewURL() {
 		if (viewUrlList.size()!=0) {

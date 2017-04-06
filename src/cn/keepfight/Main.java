@@ -16,7 +16,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 //			FrameFactory.generateBySource(new SampleTableDataSource()).show();
-			FrameFactory.generateBySource(null, new SampleChainDataSource("ĞĞÎªĞÅÏ¢·ÖÎöÁ´")).show();
+			FrameFactory.generateBySource(null, new SampleChainDataSource("è¡Œä¸ºä¿¡æ¯åˆ†æé“¾")).show();
 //			FrameFactory.generateBySource(new SampleOperatorDataSource()).show();
 //			FrameFactory.generateBySource(new SampleTextDataSource(primaryStage)).show();
 		} catch (InvalidSourceException e) {
@@ -40,7 +40,7 @@ public class Main extends Application {
 ////			AnchorPane.setLeftAnchor(tableMenuAnchorPane, 0.0);
 //			Scene scene = new Scene(rootLayout);
 //			primaryStage.setScene(scene);
-//			primaryStage.setTitle("±í¸ñÓëËã×ÓÁª¶¯·ÖÎöDemo");
+//			primaryStage.setTitle("è¡¨æ ¼ä¸ç®—å­è”åŠ¨åˆ†æDemo");
 //			primaryStage.show();
 //		} catch (IOException e) {
 //			e.printStackTrace();

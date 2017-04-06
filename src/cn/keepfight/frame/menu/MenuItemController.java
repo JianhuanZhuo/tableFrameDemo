@@ -12,7 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 /**
- * ²Ëµ¥Ïî¿ØÖÆÆ÷Àà. ¸ß¶È<br/>
+ * èœå•é¡¹æ§åˆ¶å™¨ç±». é«˜åº¦<br/>
  * <ol>
  * <li>p32=40</li>
  * <li>tp16=30</li>
@@ -37,12 +37,12 @@ public class MenuItemController{
 	private TStage tStage;
 
 	/**
-	 * ²Ëµ¥°´Å¥ÀàĞÍ
+	 * èœå•æŒ‰é’®ç±»å‹
 	 */
 	private MenuItemType itemType = MenuItemType.UNKNOW;
 
 	/**
-	 * ²Ëµ¥ÏîËù±íÊ¾µÄËã×Ó
+	 * èœå•é¡¹æ‰€è¡¨ç¤ºçš„ç®—å­
 	 */
 	private AbstractOperator operator;
 
@@ -74,7 +74,7 @@ public class MenuItemController{
 					return ;
 				}
 				if (actionResult==null) {
-					//±¾µØËã×Ó£¬²»Éú³É½á¹û
+					//æœ¬åœ°ç®—å­ï¼Œä¸ç”Ÿæˆç»“æœ
 					return;
 				}
 				if (!actionResult.localAction) {
@@ -82,7 +82,7 @@ public class MenuItemController{
 						tStage.getContextMaster()
 						.doOperate(tStage, operator.generateResource(), actionResult.resList.get(0));
 					}else {
-						//@TODO ×ö¶àÊä³öµÄ
+						//@TODO åšå¤šè¾“å‡ºçš„
 						tStage.getContextMaster()
 						.doOperate(tStage, operator.generateResource(), actionResult.resList);
 					}
@@ -96,18 +96,18 @@ public class MenuItemController{
 	}
 
 	/**
-	 * »ñµÃ¿ØÖÆÆ÷Ëù±íÊ¾µÄËã×ÓÄ£ĞÍ¶ÔÏó
-	 * @return Ëã×ÓÄ£ĞÍ¶ÔÏó
+	 * è·å¾—æ§åˆ¶å™¨æ‰€è¡¨ç¤ºçš„ç®—å­æ¨¡å‹å¯¹è±¡
+	 * @return ç®—å­æ¨¡å‹å¯¹è±¡
 	 */
 	public AbstractOperator getOperator() {
 		return operator;
 	}
 
 	/**
-	 * Îª¸Ã²Ëµ¥°´Å¥ÉèÖÃÎÄ×Ö
+	 * ä¸ºè¯¥èœå•æŒ‰é’®è®¾ç½®æ–‡å­—
 	 *
 	 * @param btnText
-	 *            ÓûÉèÖÃµÄÎÄ×Ö
+	 *            æ¬²è®¾ç½®çš„æ–‡å­—
 	 */
 	public void setBtnText(String btnText) {
 		if (btnText != null) {
@@ -118,21 +118,21 @@ public class MenuItemController{
 	}
 
 	/**
-	 * »ñµÃ°´Å¥µÄÎÄ×Ö
+	 * è·å¾—æŒ‰é’®çš„æ–‡å­—
 	 *
-	 * @return Èô¸Ã²Ëµ¥ÎŞ°´Å¥£¬Ôò·µ»Ønull£¬·ñÔò·µ»ØÒ»¸ö×Ö·û´®£¬×¢Òâ¿ÉÄÜÊÇ¸ö¿Õ×Ö·û´®¡£
+	 * @return è‹¥è¯¥èœå•æ— æŒ‰é’®ï¼Œåˆ™è¿”å›nullï¼Œå¦åˆ™è¿”å›ä¸€ä¸ªå­—ç¬¦ä¸²ï¼Œæ³¨æ„å¯èƒ½æ˜¯ä¸ªç©ºå­—ç¬¦ä¸²ã€‚
 	 */
 	public String getBtnText() {
 		return itemType.hasText() ? btn.getText() : null;
 	}
 
 	/**
-	 * Ê¹ÓÃÍ¼±êÃû½øĞĞÉèÖÃ¡£<br/>
-	 * ¸Ã·½·¨½«Ê¹ÓÃ{@link cn.keepfight.utils.ImageLoaderUtil.load(String, int)}
-	 * ½øĞĞ¼ÓÔØ<br/>
+	 * ä½¿ç”¨å›¾æ ‡åè¿›è¡Œè®¾ç½®ã€‚<br/>
+	 * è¯¥æ–¹æ³•å°†ä½¿ç”¨{@link cn.keepfight.utils.ImageLoaderUtil.load(String, int)}
+	 * è¿›è¡ŒåŠ è½½<br/>
 	 *
 	 * @param icon
-	 *            Í¼±êÃû
+	 *            å›¾æ ‡å
 	 * @see cn.keepfight.utils.ImageLoadUtil
 	 */
 	public void setPic(String icon) {
@@ -141,10 +141,10 @@ public class MenuItemController{
 	}
 
 	/**
-	 * Ö¸¶¨Í¼Æ¬×÷Îª¸Ã²Ëµ¥°´Å¥Í¼±ê¡£
+	 * æŒ‡å®šå›¾ç‰‡ä½œä¸ºè¯¥èœå•æŒ‰é’®å›¾æ ‡ã€‚
 	 *
 	 * @param image
-	 *            Ö¸¶¨Í¼Æ¬
+	 *            æŒ‡å®šå›¾ç‰‡
 	 */
 	public void setPic(Image image) {
 		if (hasPic()) {
@@ -157,10 +157,10 @@ public class MenuItemController{
 	}
 
 	/**
-	 * ÉèÖÃÌáÊ¾ĞÅÏ¢
+	 * è®¾ç½®æç¤ºä¿¡æ¯
 	 *
 	 * @param tip
-	 *            ÓûÉèÖÃµÄÌáÊ¾ĞÅÏ¢
+	 *            æ¬²è®¾ç½®çš„æç¤ºä¿¡æ¯
 	 */
 	public void setTipText(String tip) {
 		if (tip != null) {

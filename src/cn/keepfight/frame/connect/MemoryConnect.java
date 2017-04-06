@@ -5,7 +5,7 @@ import java.io.IOException;
 import net.sf.json.JSONObject;
 
 /**
- * ±¾µØÁ¬½Ó·şÎñ£¬ÓÃÓÚ²âÊÔ
+ * æœ¬åœ°è¿æ¥æœåŠ¡ï¼Œç”¨äºæµ‹è¯•
  * @author Tom
  *
  */

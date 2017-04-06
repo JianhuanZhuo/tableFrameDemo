@@ -4,36 +4,36 @@ import java.io.IOException;
 import net.sf.json.JSONObject;
 
 /**
- * ¿ÉÁ¬½Ó½Ó¿Ú
+ * å¯è¿æ¥æ¥å£
  * @author Tom
  *
  */
 public interface Connectable {
 
 	/**
-	 * ´ò¿ªÁ¬½Ó£¬Ò»°ãµÄĞèÒªÔÚÊ¹ÓÃÆäËû²Ù×÷Ö®Ç°´ò¿ª
-	 * @throws IOException IOÒì³£
+	 * æ‰“å¼€è¿æ¥ï¼Œä¸€èˆ¬çš„éœ€è¦åœ¨ä½¿ç”¨å…¶ä»–æ“ä½œä¹‹å‰æ‰“å¼€
+	 * @throws IOException IOå¼‚å¸¸
 	 */
 	public void open() throws IOException;
 
 	/**
-	 * ¼òµ¥½»»»·½·¨£¬·¢ËÍÖ¸¶¨×Ö·û´®²¢»ñµÃ»ØÓ¦¡£
-	 * @param whisper Óû·¢ËÍµÄ×Ö·û´®
-	 * @return ËùµÃ»ØÓ¦¡£
+	 * ç®€å•äº¤æ¢æ–¹æ³•ï¼Œå‘é€æŒ‡å®šå­—ç¬¦ä¸²å¹¶è·å¾—å›åº”ã€‚
+	 * @param whisper æ¬²å‘é€çš„å­—ç¬¦ä¸²
+	 * @return æ‰€å¾—å›åº”ã€‚
 	 */
 	public String simpleSwitch(String whisper);
 
 	/**
-	 * Ö¸¶¨URLºÍparamList×÷¼òµ¥µÄget²Ù×÷£¬²¢·µ»Ø JSON ¶ÔÏó¡£
-	 * @param url get²Ù×÷µØÖ·
-	 * @param paramList ²ÎÊıÁĞ±í×Ö·û´®
-	 * @return json¶ÔÏó£¬Ä¬ÈÏµÄ£¬¶ÔÏó¸ù´æÔÚÊôĞÔ flag ±íÊ¾¸Ã´Î²Ù×÷ÊÇ·ñ³É¹¦¡£
+	 * æŒ‡å®šURLå’ŒparamListä½œç®€å•çš„getæ“ä½œï¼Œå¹¶è¿”å› JSON å¯¹è±¡ã€‚
+	 * @param url getæ“ä½œåœ°å€
+	 * @param paramList å‚æ•°åˆ—è¡¨å­—ç¬¦ä¸²
+	 * @return jsonå¯¹è±¡ï¼Œé»˜è®¤çš„ï¼Œå¯¹è±¡æ ¹å­˜åœ¨å±æ€§ flag è¡¨ç¤ºè¯¥æ¬¡æ“ä½œæ˜¯å¦æˆåŠŸã€‚
 	 */
 	public JSONObject simpleGet(String url, String paramList);
 
 	/**
-	 * ¹Ø±ÕÁ¬½Ó£¬Ò»°ãµÄĞèÒªÔÚÊ¹ÓÃÍêÆäËû²Ù×÷Ö®ºóµ÷ÓÃ£¬ÒÔ±ãÍ¨Öª¸Ã·şÎñ¿ÉÒÔ½áÊø·şÎñ£¬ÊÍ·ÅÏà¹Ø×ÊÔ´
-	 * @throws IOException IOÒì³£
+	 * å…³é—­è¿æ¥ï¼Œä¸€èˆ¬çš„éœ€è¦åœ¨ä½¿ç”¨å®Œå…¶ä»–æ“ä½œä¹‹åè°ƒç”¨ï¼Œä»¥ä¾¿é€šçŸ¥è¯¥æœåŠ¡å¯ä»¥ç»“æŸæœåŠ¡ï¼Œé‡Šæ”¾ç›¸å…³èµ„æº
+	 * @throws IOException IOå¼‚å¸¸
 	 */
 	public void close() throws IOException;
 }

@@ -5,19 +5,19 @@ import cn.keepfight.frame.content.source.DataSourceType;
 import cn.keepfight.frame.operator.OperatorDataSource;
 
 /**
- * Ëã×Ó×ÊÔ´µÄÃèÊöÀà¡£
+ * ç®—å­èµ„æºçš„æè¿°ç±»ã€‚
  * @author Tom
  *
  */
 public class OperatorResource extends Resource{
 
-	private int id;//Ëã×ÓID
-	private String name;//Ëã×ÓÃû
-	private String label;//Ëã×ÓÍ¼±ê°´Å¥ÉÏµÄÃû×Ö
-	private String icon;//Ëã×ÓÍ¼±ê
-	private String description;//Ëã×ÓÃèÊöĞÅÏ¢
-	private String[] inputResource = new String[0];//ÔËËãÊäÈë¶ÔÏó×ÊÔ´
-	private String[] outputResource = new String[0];//ÔËËãÊä³ö¶ÔÏó×ÊÔ´
+	private int id;//ç®—å­ID
+	private String name;//ç®—å­å
+	private String label;//ç®—å­å›¾æ ‡æŒ‰é’®ä¸Šçš„åå­—
+	private String icon;//ç®—å­å›¾æ ‡
+	private String description;//ç®—å­æè¿°ä¿¡æ¯
+	private String[] inputResource = new String[0];//è¿ç®—è¾“å…¥å¯¹è±¡èµ„æº
+	private String[] outputResource = new String[0];//è¿ç®—è¾“å‡ºå¯¹è±¡èµ„æº
 	private String[] params = new String[0];
 
 	@Override

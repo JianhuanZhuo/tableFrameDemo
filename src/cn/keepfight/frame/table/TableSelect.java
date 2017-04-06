@@ -14,7 +14,7 @@ public class TableSelect {
 	private List<Pair<Integer, String>> columnIndexSelect = new ArrayList<>();
 	private List<TableColumn> columnSelects = new ArrayList<>();
 	/**
-	 * ±í¸ñÑ¡Ôñ×´Ì¬
+	 * è¡¨æ ¼é€‰æ‹©çŠ¶æ€
 	 * @author Tom
 	 *
 	 */
@@ -43,7 +43,7 @@ public class TableSelect {
 	}
 
 	/**
-	 * Ìí¼ÓÑ¡Ôñ
+	 * æ·»åŠ é€‰æ‹©
 	 * @param index
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })

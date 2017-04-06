@@ -10,7 +10,7 @@ public interface ContextSlave {
 	public void onDelete();
 
 	/**
-	 * 使得该子面板获得焦点
+	 * 浣垮緱璇ュ瓙闈㈡澘鑾峰緱鐒︾偣
 	 */
 	public void showup();
 

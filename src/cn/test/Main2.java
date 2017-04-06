@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import cn.keepfight.frame.connect.db.JDBCConnector;
 import cn.keepfight.operator.WaitDialog;
@@ -26,9 +27,14 @@ import javafx.application.Application;
 import javafx.concurrent.Task;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import net.sf.json.JSONArray;
 
 public class Main2 extends Application {
 
+
+	public static void main(String[] args) {
+		launch(args);
+	}
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
@@ -98,38 +104,49 @@ public class Main2 extends Application {
 //			System.out.println("y-z:"+(y-z));
 //			System.out.println("");
 //		}
-		SimpleSQLUtils simpleSQL = SimpleSQLUtils.build(new JDBCConnector().getConnection()).setDB("wz");
-		for (int i = 0; i < 5; i++) {
-			long x = System.currentTimeMillis();
-			simpleSQL.select("出行数据", 0, 100);
-			long y = System.currentTimeMillis();
-////		System.out.println("y:"+y);
-			System.out.println("y-x:"+(y-x));
-		}
+//		SimpleSQLUtils simpleSQL = SimpleSQLUtils.build(new JDBCConnector().getConnection()).setDB("wz");
+//		for (int i = 0; i < 5; i++) {
+//			long x = System.currentTimeMillis();
+//			simpleSQL.select("出行数据", 0, 100);
+//			long y = System.currentTimeMillis();
+//////		System.out.println("y:"+y);
+//			System.out.println("y-x:"+(y-x));
+//		}
+//
+//		FileChooser fileChooser = new FileChooser();
+//		String filepath = "D:/iie_learning/testfile/goods_sale.csv";
+//		File file = fileChooser.showOpenDialog(primaryStage);
+//		BufferedReader bf = new BufferedReader(new FileReader(file));
+//
+//		String head = bf.readLine();
+//		bf.close();
+//		List<String> fs = Arrays.asList(head.split(",")).stream()
+//				.map(s->(s+" varchar(255)"))
+//				.collect(Collectors.toList());
+//		String tableName = "xxx123326";
+//		simpleSQL.createTable(tableName, fs, null);
+//		filepath = file.getAbsolutePath();
+//		System.out.println(filepath);
+//
+//		long b = System.currentTimeMillis();
+//		simpleSQL.loadData(filepath, tableName, " FIELDS TERMINATED by ',' IGNORE 1 LINES");
+//		long a = System.currentTimeMillis();
+//		System.out.println("b->a:"+(a-b));
 
-		FileChooser fileChooser = new FileChooser();
-		String filepath = "D:/iie_learning/testfile/goods_sale.csv";
-		File file = fileChooser.showOpenDialog(primaryStage);
-		BufferedReader bf = new BufferedReader(new FileReader(file));
+//		JSONArray arr = new JSONArray();
+//		arr.add("ss");
+//		arr.add("ss");
+//		arr.add("ss");
+//		arr.add("ss");
+//
+//		JSONArray.toCollection(arr);
 
-		String head = bf.readLine();
-		bf.close();
-		List<String> fs = Arrays.asList(head.split(",")).stream()
-				.map(s->(s+" varchar(255)"))
-				.collect(Collectors.toList());
-		String tableName = "xxx123326";
-		simpleSQL.createTable(tableName, fs, null);
-		filepath = file.getAbsolutePath();
-		System.out.println(filepath);
 
-		long b = System.currentTimeMillis();
-		simpleSQL.loadData(filepath, tableName, " FIELDS TERMINATED by ',' IGNORE 1 LINES");
-		long a = System.currentTimeMillis();
-		System.out.println("b->a:"+(a-b));
-	}
-
-	public static void main(String[] args) {
-		launch(args);
+		List<String> list1 = Arrays.asList("x", "y");
+		List<String> list2 = Arrays.asList("x", "z");
+		Stream<String> s1 = list1.stream().peek(x->System.out.println("::"+x));
+		System.out.println("哦");
+		s1.filter(list2::contains).forEach(System.out::println);
 	}
 
 }

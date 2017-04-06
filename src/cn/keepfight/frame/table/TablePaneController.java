@@ -24,7 +24,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.util.Pair;
 
 /**
- * ±í¸ñÃæ°å¿ØÖÆÆ÷.
+ * è¡¨æ ¼é¢æ¿æ§åˆ¶å™¨.
  *
  * @author Tom
  *
@@ -40,7 +40,7 @@ public class TablePaneController extends PaneController{
 	TableSelect tableSelect = new TableSelect();
 
 	/**
-	 * »­°åµÄ¸ù²¼¾Ö
+	 * ç”»æ¿çš„æ ¹å¸ƒå±€
 	 */
 	@FXML
 	BorderPane pane;
@@ -49,19 +49,19 @@ public class TablePaneController extends PaneController{
 	TableView<ObservableList<StringProperty>> table;
 
 	/**
-	 * Ìø×ªÖ¸¶¨Ò³ÊäÈë¿ò
+	 * è·³è½¬æŒ‡å®šé¡µè¾“å…¥æ¡†
 	 */
 	@FXML
 	TextField toPageField;
 
 	/**
-	 * ¼ÇÂ¼ÊıÃ¿Ò³ÊäÈë¿ò
+	 * è®°å½•æ•°æ¯é¡µè¾“å…¥æ¡†
 	 */
 	@FXML
 	TextField numPerPageField;
 
 	/**
-	 * Ò³×ÜÊı±êÇ©£¬ÄÚÈİÓ¦¸ÃÀàËÆÎª"/30Ò³"µÄÎÄ±¾
+	 * é¡µæ€»æ•°æ ‡ç­¾ï¼Œå†…å®¹åº”è¯¥ç±»ä¼¼ä¸º"/30é¡µ"çš„æ–‡æœ¬
 	 */
 	@FXML
 	Label totalPages;
@@ -103,7 +103,7 @@ public class TablePaneController extends PaneController{
 	@FXML
 	public void initialize() {
 
-		// µ¥ÔªÑ¡Ôñ
+		// å•å…ƒé€‰æ‹©
 		table.getSelectionModel().setCellSelectionEnabled(true);
 		table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
@@ -193,7 +193,7 @@ public class TablePaneController extends PaneController{
 	private void updatePaneField() {
 		toPageField.setText(""+loader.getPageNow());
 		numPerPageField.setText(""+loader.getPageLimit());
-		totalPages.setText("/"+loader.getPageTotalNum()+"Ò³");
+		totalPages.setText("/"+loader.getPageTotalNum()+"é¡µ");
 	}
 
 	public TableSelect getTableSelect() {

@@ -11,7 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
- * ±í¸ñÊı¾İµÄÊı¾İÔ´Àà. ÕâÊÇÒ»¸ö³éÏó·½·¨£¬ÔÚÊ¹ÓÃ¸ÃÀà¹¹Ôì³éÏóÀàÖ®Ç°£¬Çë×¢ÒâÊµÏÖÈçÏÂ·½·¨£º
+ * è¡¨æ ¼æ•°æ®çš„æ•°æ®æºç±». è¿™æ˜¯ä¸€ä¸ªæŠ½è±¡æ–¹æ³•ï¼Œåœ¨ä½¿ç”¨è¯¥ç±»æ„é€ æŠ½è±¡ç±»ä¹‹å‰ï¼Œè¯·æ³¨æ„å®ç°å¦‚ä¸‹æ–¹æ³•ï¼š
  *
  * @author Tom
  *
@@ -27,34 +27,34 @@ public abstract class TableDataSource implements DataSource{
 	}
 
 	/**
-	 * Óû¹¹ÔìµÄÊı¾İÔ´ÁĞÊı
+	 * æ¬²æ„é€ çš„æ•°æ®æºåˆ—æ•°
 	 *
-	 * @return Óû¹¹ÔìµÄÊı¾İÔ´ÁĞÊı
+	 * @return æ¬²æ„é€ çš„æ•°æ®æºåˆ—æ•°
 	 */
 	public abstract int getColumnNum();
 
 	/**
-	 * »ñµÃÈ«²¿ĞĞÊı£¬×¢Òâ£¬¸ÃĞĞÊı²»°üÀ¨ÁĞÍ·¡£
-	 * @return È«²¿ĞĞÊı
+	 * è·å¾—å…¨éƒ¨è¡Œæ•°ï¼Œæ³¨æ„ï¼Œè¯¥è¡Œæ•°ä¸åŒ…æ‹¬åˆ—å¤´ã€‚
+	 * @return å…¨éƒ¨è¡Œæ•°
 	 */
 	public abstract int getRowNum() ;
 
 	/**
-	 * ¸ÃÊı¾İÔ´ÊÇ·ñ´æÔÚ±íÍ·Êı¾İ£¬¸Ã·½·¨ÓÃÓÚÖ¸Ã÷ÊÇ·ñÊ¹ÓÃÄ¬ÈÏ±íÍ·¡£
-	 * @return ´æÔÚ·µ»Ø true£¬·ñÔò·µ»Øfalse¡£
+	 * è¯¥æ•°æ®æºæ˜¯å¦å­˜åœ¨è¡¨å¤´æ•°æ®ï¼Œè¯¥æ–¹æ³•ç”¨äºæŒ‡æ˜æ˜¯å¦ä½¿ç”¨é»˜è®¤è¡¨å¤´ã€‚
+	 * @return å­˜åœ¨è¿”å› trueï¼Œå¦åˆ™è¿”å›falseã€‚
 	 */
 	public abstract boolean hasHead();
 
 	/**
-	 * »ñµÃ±í¸ñÊı¾İµÄÁĞ±íÍ·¡£
-	 * @return ÁĞ±íÍ·¡£
+	 * è·å¾—è¡¨æ ¼æ•°æ®çš„åˆ—è¡¨å¤´ã€‚
+	 * @return åˆ—è¡¨å¤´ã€‚
 	 */
 	public abstract ObservableList<StringProperty> getHeadList();
 
 	/**
-	 * ÔÊĞíÔÚÊı¾İÔ´²»Ìá¹©±êÌâÍ·µÄÇé¿öÏÂ»ñµÃ±êÌâÍ·Êı¾İ£¬Èç¹ûÊ¹ÓÃÄ¬ÈÏµÄ±êÌâÍ·£ºcolumn_0...¡£
-	 * @return ±êÌâÍ·Êı¾İ
-	 * @throws InvalidSourceException Êı¾İÔ´ÎŞĞ§Òì³£¡£
+	 * å…è®¸åœ¨æ•°æ®æºä¸æä¾›æ ‡é¢˜å¤´çš„æƒ…å†µä¸‹è·å¾—æ ‡é¢˜å¤´æ•°æ®ï¼Œå¦‚æœä½¿ç”¨é»˜è®¤çš„æ ‡é¢˜å¤´ï¼šcolumn_0...ã€‚
+	 * @return æ ‡é¢˜å¤´æ•°æ®
+	 * @throws InvalidSourceException æ•°æ®æºæ— æ•ˆå¼‚å¸¸ã€‚
 	 */
 	public ObservableList<StringProperty> getHeadListWithDefault() throws InvalidSourceException{
 		if (hasHead()) {
@@ -76,16 +76,16 @@ public abstract class TableDataSource implements DataSource{
 	}
 
 	/**
-	 * »ñµÃÖ¸¶¨ÆğÊ¼ºÍÖ¸¶¨·¶Î§µÄĞĞÄÚÈİ¡£<br/>
+	 * è·å¾—æŒ‡å®šèµ·å§‹å’ŒæŒ‡å®šèŒƒå›´çš„è¡Œå†…å®¹ã€‚<br/>
 	 * <pre>
-	 * getRowList(0, 10); //»ñµÃ1~10ĞĞÄÚÈİ
-	 * getRowList(10, 10);//»ñµÃ11~20ĞĞÄÚÈİ
+	 * getRowList(0, 10); //è·å¾—1~10è¡Œå†…å®¹
+	 * getRowList(10, 10);//è·å¾—11~20è¡Œå†…å®¹
 	 * </pre>
-	 * ÎÒÃÇÔ¼¶¨´Ó 0 ¼ÆÆğ£¬¼´startRow ²ÎÊıÓ¦´óÓÚµÈÓÚ 0£¬ÇÒ²ÎÊı limit Ó¦´óÓÚ0¡£
+	 * æˆ‘ä»¬çº¦å®šä» 0 è®¡èµ·ï¼Œå³startRow å‚æ•°åº”å¤§äºç­‰äº 0ï¼Œä¸”å‚æ•° limit åº”å¤§äº0ã€‚
 	 *
-	 * @param startRow »ñµÃ±íÖ¸¶¨µÄ·¶Î§ÄÚÈİµÄÆğÊ¼ĞĞºÅ£¬×îĞ¡Îª 0¡£
-	 * @param limit »ñµÃ±íÖ¸¶¨ÄÚÈİµÄ·¶Î§¡£
-	 * @return ·µ»ØÖ¸¶¨µÄÄÚÈİÁĞ±í£¬²ÎÊıÎŞĞ§Ôò·µ»Ø null¡£ÈôÊı¾İÔ´ÎŞÊı¾İ£¬Ôò·µ»Ø´óĞ¡Îª0µÄ List ¶ÔÏó¡£
+	 * @param startRow è·å¾—è¡¨æŒ‡å®šçš„èŒƒå›´å†…å®¹çš„èµ·å§‹è¡Œå·ï¼Œæœ€å°ä¸º 0ã€‚
+	 * @param limit è·å¾—è¡¨æŒ‡å®šå†…å®¹çš„èŒƒå›´ã€‚
+	 * @return è¿”å›æŒ‡å®šçš„å†…å®¹åˆ—è¡¨ï¼Œå‚æ•°æ— æ•ˆåˆ™è¿”å› nullã€‚è‹¥æ•°æ®æºæ— æ•°æ®ï¼Œåˆ™è¿”å›å¤§å°ä¸º0çš„ List å¯¹è±¡ã€‚
 	 */
 	public abstract List<ObservableList<StringProperty>> getRowList(int startRow, int limit);
 }

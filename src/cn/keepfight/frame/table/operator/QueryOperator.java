@@ -1,19 +1,16 @@
 package cn.keepfight.frame.table.operator;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import cn.keepfight.frame.TableTStage;
 import cn.keepfight.frame.chain.OperatorResource;
 import cn.keepfight.frame.chain.Resource;
 import cn.keepfight.frame.chain.TableResource;
 import cn.keepfight.frame.menu.ActionResult;
-import cn.keepfight.frame.table.operator.OrderTableOperator.SelectPackage;
 import cn.keepfight.operator.AbstractOperator;
 import cn.keepfight.utils.HttpUtils;
 import cn.keepfight.utils.ImageLoadUtil;
@@ -21,20 +18,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Orientation;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Dialog;
-import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputDialog;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -56,10 +47,10 @@ public class QueryOperator extends AbstractOperator{
 
 	@Override public int getId() { return 333; }
 	@Override public String getName() {return "query";}
-	@Override public String getLabel() { return "ĞĞÉ¸Ñ¡";}
+	@Override public String getLabel() { return "è¡Œç­›é€‰";}
 	@Override public String getIcon() { return "query.png"; }
-	@Override public String getTips() { return "Ö¸¶¨ĞĞÌõ¼ş½øĞĞÉ¸Ñ¡"; }
-	@Override public String getDescription() { return "Ö¸¶¨ĞĞÌõ¼ş½øĞĞÉ¸Ñ¡£¬Õâ¸öËã×ÓÃ»ÓĞÌ«¶àÏêÏ¸µÄËµÃ÷"; }
+	@Override public String getTips() { return "æŒ‡å®šè¡Œæ¡ä»¶è¿›è¡Œç­›é€‰"; }
+	@Override public String getDescription() { return "æŒ‡å®šè¡Œæ¡ä»¶è¿›è¡Œç­›é€‰ï¼Œè¿™ä¸ªç®—å­æ²¡æœ‰å¤ªå¤šè¯¦ç»†çš„è¯´æ˜"; }
 
 	class QueryPackage{
 		List<Pair<String, String>> eqList = new ArrayList<>();
@@ -75,14 +66,22 @@ public class QueryOperator extends AbstractOperator{
 		}
 
 		public String[] getParams() {
-			List<String> paramsList = eqList.stream()
-					.map(p->(p.getKey()+" = "+p.getValue()))
-					.collect(Collectors.toList());
-			paramsList.addAll(
+//			List<String> paramsList = eqList.stream()
+//					.map(p->(p.getKey()+" = "+p.getValue()))
+//					.collect(Collectors.toList());
+//			paramsList.addAll(
+//					uneqList.stream()
+//					.map(p->(p.getKey()+" != "+p.getValue()))
+//					.collect(Collectors.toList())
+//					);
+//			return paramsList.toArray(new String[paramsList.size()]);
+			List<String> paramsList = Stream.concat(
+					eqList.stream()
+						.map(p->(p.getKey()+" = "+p.getValue()))
+					,
 					uneqList.stream()
-					.map(p->(p.getKey()+" != "+p.getValue()))
-					.collect(Collectors.toList())
-					);
+						.map(p->(p.getKey()+" != "+p.getValue()))
+					).collect(Collectors.toList());
 			return paramsList.toArray(new String[paramsList.size()]);
 		}
 
@@ -114,14 +113,14 @@ public class QueryOperator extends AbstractOperator{
 
 		Dialog<QueryPackage> dialog = new Dialog<>();
 		dialog.setTitle(getLabel());
-		dialog.setHeaderText("ÇëÑ¡ÔñÉ¸Ñ¡Ìõ¼ş£¬¿ÉÒÔÉ¾³ı»òÌí¼ÓÉ¸Ñ¡Ìõ¼ş£¬ÏµÍ³½«É¸Ñ¡³ö·ûºÏÈ«²¿Ìõ¼şµÄĞĞ");
+		dialog.setHeaderText("è¯·é€‰æ‹©ç­›é€‰æ¡ä»¶ï¼Œå¯ä»¥åˆ é™¤æˆ–æ·»åŠ ç­›é€‰æ¡ä»¶ï¼Œç³»ç»Ÿå°†ç­›é€‰å‡ºç¬¦åˆå…¨éƒ¨æ¡ä»¶çš„è¡Œ");
 
 		// Set the icon (must be included in the project).
 		dialog.setGraphic(new ImageView(ImageLoadUtil.load(getIcon(), ImageLoadUtil.IMG_SIZE_64)));
 
 		// Set the button types.
-		ButtonType loginButtonOK = new ButtonType("È·¶¨", ButtonData.OK_DONE);
-		ButtonType buttonTypeCancel = new ButtonType("È¡Ïû", ButtonData.CANCEL_CLOSE);
+		ButtonType loginButtonOK = new ButtonType("ç¡®å®š", ButtonData.OK_DONE);
+		ButtonType buttonTypeCancel = new ButtonType("å–æ¶ˆ", ButtonData.CANCEL_CLOSE);
 		dialog.getDialogPane().getButtonTypes().addAll(loginButtonOK, buttonTypeCancel);
 
 		EventHandler<ActionEvent> handleOnDel = new EventHandler<ActionEvent>() {
@@ -138,11 +137,11 @@ public class QueryOperator extends AbstractOperator{
 		ObservableList<String> options =
 			    FXCollections.observableArrayList(allColumns);
 		ObservableList<String> queryOptions =
-			    FXCollections.observableArrayList("µÈÓÚ", "²»µÈÓÚ");
+			    FXCollections.observableArrayList("ç­‰äº", "ä¸ç­‰äº");
 
 		HBox cont = new HBox(10);
 
-		Button addNew = new Button("Ìí¼ÓÅÅĞò×Ö¶Î");
+		Button addNew = new Button("æ·»åŠ æ’åºå­—æ®µ");
 		VBox hBox = new VBox(6);
 
 		ComboBox<String> fieldSelectComboBox = new ComboBox<>(options);
@@ -150,7 +149,7 @@ public class QueryOperator extends AbstractOperator{
 		queryComboBox.getSelectionModel().select(0);
 		Button del = new Button("-");
 		TextField inputField = new TextField();
-		inputField.setPromptText("ÊäÈëÌõ¼ş");
+		inputField.setPromptText("è¾“å…¥æ¡ä»¶");
 		del.setOnAction(handleOnDel);
 		hBox.getChildren().add(new HBox(8, fieldSelectComboBox, queryComboBox, inputField, del));
 
@@ -161,7 +160,7 @@ public class QueryOperator extends AbstractOperator{
 			Button delNew = new Button("-");
 			del.setOnAction(handleOnDel);
 			TextField inputFieldNew = new TextField();
-			inputField.setPromptText("ÊäÈëÌõ¼ş");
+			inputField.setPromptText("è¾“å…¥æ¡ä»¶");
 			hBox.getChildren().add(new HBox(8, boxNew, queryComboBoxNew, inputFieldNew, delNew));
 			dialog.getDialogPane().getScene().getWindow().sizeToScene();
 		});
@@ -176,7 +175,7 @@ public class QueryOperator extends AbstractOperator{
 				for (Node node : hBox.getChildren()) {
 					String key =((ComboBox<String>)((HBox)node).getChildren().get(0)).getSelectionModel().getSelectedItem();
 					String value =((TextField)((HBox)node).getChildren().get(2)).getText();
-					if (((ComboBox<String>)((HBox)node).getChildren().get(1)).getSelectionModel().getSelectedItem().equals("µÈÓÚ")) {
+					if (((ComboBox<String>)((HBox)node).getChildren().get(1)).getSelectionModel().getSelectedItem().equals("ç­‰äº")) {
 						pack.addeq(key, value);
 					}else {
 						pack.adduneq(key, value);
@@ -210,7 +209,7 @@ public class QueryOperator extends AbstractOperator{
 		List<Resource> resResources = new ArrayList<>();
 		resResources.add(resultResource);
 		/**
-		 * @FIXME ÕâÖÖ×ö·¨ÊÇ²»¹æ·¶µÄ£¬ĞèÒª½øĞĞÒ»¸ö¹æ·¶³éÏó
+		 * @FIXME è¿™ç§åšæ³•æ˜¯ä¸è§„èŒƒçš„ï¼Œéœ€è¦è¿›è¡Œä¸€ä¸ªè§„èŒƒæŠ½è±¡
 		 */
 	    params = pack.getParams();
 		inputResource = new String[1];
@@ -219,8 +218,6 @@ public class QueryOperator extends AbstractOperator{
 		outputResource[0] = resultResource.getName();
 		return new ActionResult(resResources);
 	}
-
-
 
 	@Override
 	public OperatorResource generateResource() {

@@ -1,14 +1,14 @@
 package cn.keepfight.frame.chain.drag;
 
 /**
- * ¿ÉÍÏ×§½Ó¿Ú
+ * å¯æ‹–æ‹½æ¥å£
  * @author Tom
  *
  */
 public interface Dragable {
 
 	/**
-	 * Î»ÖÃ¸üĞÂ½Ó¿Ú
+	 * ä½ç½®æ›´æ–°æ¥å£
 	 */
 	public void updatePosition();
 }

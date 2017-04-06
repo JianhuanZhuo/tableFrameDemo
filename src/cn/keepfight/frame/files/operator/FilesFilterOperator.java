@@ -35,27 +35,27 @@ public class FilesFilterOperator extends AbstractOperator{
 
 	@Override public int getId() { return 444; }
 	@Override public String getName() { return "filter"; }
-	@Override public String getLabel() { return "¹ıÂË"; }
+	@Override public String getLabel() { return "è¿‡æ»¤"; }
 	@Override public String getIcon() { return "filter.png"; }
-	@Override public String getTips() { return "¶Ôµ±Ç°ÎÄ¼şÈº½øĞĞ¹ıÂË²Ù×÷"; }
-	@Override public String getDescription() { return "ÕâÊÇ¶Ô¹ıÂË²Ù×÷²»ÔõÃ´ÏêÏ¸µÄÏêÏ¸ËµÃ÷£¡"; }
+	@Override public String getTips() { return "å¯¹å½“å‰æ–‡ä»¶ç¾¤è¿›è¡Œè¿‡æ»¤æ“ä½œ"; }
+	@Override public String getDescription() { return "è¿™æ˜¯å¯¹è¿‡æ»¤æ“ä½œä¸æ€ä¹ˆè¯¦ç»†çš„è¯¦ç»†è¯´æ˜ï¼"; }
 
 	@Override
 	public ActionResult onAction() {
 		TextInputDialog dialog = new TextInputDialog();
 		dialog.setTitle(getLabel());
-		dialog.setHeaderText("Îª¹ıÂËËã×ÓÉèÖÃ¹ıÂËµÄ¹Ø¼ü×Ö£¬¸ÃËã×Ó½«½öÊä³öËùÓĞ°üº¬¹Ø¼ü×ÖµÄÎÄ¼ş£¡");
-		dialog.setContentText("ÔÊĞíÊäÈë¶à¸ö¹Ø¼ü×Ö£¬ÒÑ¶ººÅ·Ö¸ô£º");
+		dialog.setHeaderText("ä¸ºè¿‡æ»¤ç®—å­è®¾ç½®è¿‡æ»¤çš„å…³é”®å­—ï¼Œè¯¥ç®—å­å°†ä»…è¾“å‡ºæ‰€æœ‰åŒ…å«å…³é”®å­—çš„æ–‡ä»¶ï¼");
+		dialog.setContentText("å…è®¸è¾“å…¥å¤šä¸ªå…³é”®å­—ï¼Œå·²é€—å·åˆ†éš”ï¼š");
 
 		Optional<String> result = dialog.showAndWait();
 		if (!result.isPresent() || result.get().trim().length()==0){
-			new Alert(AlertType.WARNING, "¸ñÊ½´íÎó", ButtonType.OK).show();
+			new Alert(AlertType.WARNING, "æ ¼å¼é”™è¯¯", ButtonType.OK).show();
 			return null;
 		}
 
 		String[] sp = result.get().split(",");
 
-		//¹ıÂËÎÄ¼ş
+		//è¿‡æ»¤æ–‡ä»¶
 		List<File> resFileList = tStage.getSource().getFiles().parallelStream()
 			.filter(f->{
 				try (BufferedReader br = new BufferedReader(new FileReader(f))) {
@@ -71,14 +71,14 @@ public class FilesFilterOperator extends AbstractOperator{
 			})
 			.collect(Collectors.toList());
 
-		//°ü×°½á¹û
+		//åŒ…è£…ç»“æœ
 
 		Resource resultResource = new FilesResource(resFileList);
 		List<Resource> resResources = new ArrayList<>();
 		resResources.add(resultResource);
 
 		/**
-		 * @FIXME ÕâÖÖ×ö·¨ÊÇ²»¹æ·¶µÄ£¬ĞèÒª½øĞĞÒ»¸ö¹æ·¶³éÏó
+		 * @FIXME è¿™ç§åšæ³•æ˜¯ä¸è§„èŒƒçš„ï¼Œéœ€è¦è¿›è¡Œä¸€ä¸ªè§„èŒƒæŠ½è±¡
 		 */
 	    params = sp;
 		inputResource = new String[1];

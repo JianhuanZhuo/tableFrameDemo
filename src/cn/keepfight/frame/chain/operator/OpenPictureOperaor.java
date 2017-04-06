@@ -15,7 +15,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.FileChooser;
 
 /**
- * Á´Ëã×ÓÃæ°åÄÚ²¿Ëã×Ó£¬ÓÃÓÚ´ò¿ª±¾µØÎÄ¼ş²¢Ìí¼ÓÒ»¸ö±¾µØÎÄ¼ş×ÊÔ´
+ * é“¾ç®—å­é¢æ¿å†…éƒ¨ç®—å­ï¼Œç”¨äºæ‰“å¼€æœ¬åœ°æ–‡ä»¶å¹¶æ·»åŠ ä¸€ä¸ªæœ¬åœ°æ–‡ä»¶èµ„æº
  * @author Tom
  *
  */
@@ -29,27 +29,27 @@ public class OpenPictureOperaor extends AbstractOperator{
 
 	@Override public int getId() { return 333; }
 	@Override public String getName() { return "picture_import"; }
-	@Override public String getLabel() { return "µ¼ÈëÍ¼Æ¬"; }
+	@Override public String getLabel() { return "å¯¼å…¥å›¾ç‰‡"; }
 	@Override public String getIcon() { return "picture.png"; }
-	@Override public String getTips() { return "´ò¿ªÒ»¸ö±¾µØÍ¼Æ¬ÎÄ¼ş×÷ÎªÎÄ¼ş×ÊÔ´"; }
-	@Override public String getDescription() { return "Ë«»÷¼ÆËã»úÒÔ»ñÈ¡¶Ô±¾µØÎÄ¼ş£¬°üÀ¨¿ÉÒÆ¶¯ÉÁ´æÇı¶¯Æ÷¡£"
-			+ "Äú»¹¿ÉÒÔÑ¡ÔñÄúµÄÕÊ»§£¬Äú¿ÉÒÔ¿ªÊ¼£¬ÈçÓĞ±ØÒª£¬µÇÂ¼£¬È»ºó´ò¿ªËùĞèµÄÎÄ¼şµÄÎ»ÖÃÖ®Ò»¡£"
-			+ "ÒªÌí¼ÓĞÂµÄÎ»ÖÃ£¬Çëµ¥»÷Ìí¼ÓÎ»ÖÃ¡£×î½üÁĞ±íÏÔÊ¾´ÓÈÎºÎÉè±¸×î½ü´ò¿ªµÄÎÄ¼ş¡£Èç¹û´ËÁĞ±í»ñÈ¡ÊµÓÃ£¬"
-			+ "Äú¿ÉÒÔ´ÓÆäÉ¾³ıÎÄ¼ş¡£Ö»ĞèÓÒ¼üµ¥»÷ÎÄ¼şÃû£¬È»ºóÑ¡Ôñ´ÓÁĞ±íÖĞÉ¾³ı¡£ "
-			+ "Äú¿ÉÒÔ¶Ô×î½üÁĞ±íÖĞ½øĞĞÆäËû¸ü¸Ä¡£ÈôÒªÁË½âÏêÏ¸ĞÅÏ¢£¬Çë²ÎÔÄ×Ô¶¨Òå×î½üÊ¹ÓÃµÄÎÄ¼şÁĞ±í¡£"
-			+ "Èç¹ûÄú²»Ê¹ÓÃÁĞ±íÖĞµÄ×î½üÊ¹ÓÃµÄÎÄ¼ş£¬²¢ÇÒÄú¶øÊÇ½«Ö±½Ó²åÈëä¯ÀÀÎÄ¼ş¼ĞÌø£¬"
-			+ "Ê¹ÓÃ Ctrl + F12 Ö±½Ó´ò¿ª´ò¿ª¶Ô»°¿ò¡£"; }
+	@Override public String getTips() { return "æ‰“å¼€ä¸€ä¸ªæœ¬åœ°å›¾ç‰‡æ–‡ä»¶ä½œä¸ºæ–‡ä»¶èµ„æº"; }
+	@Override public String getDescription() { return "åŒå‡»è®¡ç®—æœºä»¥è·å–å¯¹æœ¬åœ°æ–‡ä»¶ï¼ŒåŒ…æ‹¬å¯ç§»åŠ¨é—ªå­˜é©±åŠ¨å™¨ã€‚"
+			+ "æ‚¨è¿˜å¯ä»¥é€‰æ‹©æ‚¨çš„å¸æˆ·ï¼Œæ‚¨å¯ä»¥å¼€å§‹ï¼Œå¦‚æœ‰å¿…è¦ï¼Œç™»å½•ï¼Œç„¶åæ‰“å¼€æ‰€éœ€çš„æ–‡ä»¶çš„ä½ç½®ä¹‹ä¸€ã€‚"
+			+ "è¦æ·»åŠ æ–°çš„ä½ç½®ï¼Œè¯·å•å‡»æ·»åŠ ä½ç½®ã€‚æœ€è¿‘åˆ—è¡¨æ˜¾ç¤ºä»ä»»ä½•è®¾å¤‡æœ€è¿‘æ‰“å¼€çš„æ–‡ä»¶ã€‚å¦‚æœæ­¤åˆ—è¡¨è·å–å®ç”¨ï¼Œ"
+			+ "æ‚¨å¯ä»¥ä»å…¶åˆ é™¤æ–‡ä»¶ã€‚åªéœ€å³é”®å•å‡»æ–‡ä»¶åï¼Œç„¶åé€‰æ‹©ä»åˆ—è¡¨ä¸­åˆ é™¤ã€‚ "
+			+ "æ‚¨å¯ä»¥å¯¹æœ€è¿‘åˆ—è¡¨ä¸­è¿›è¡Œå…¶ä»–æ›´æ”¹ã€‚è‹¥è¦äº†è§£è¯¦ç»†ä¿¡æ¯ï¼Œè¯·å‚é˜…è‡ªå®šä¹‰æœ€è¿‘ä½¿ç”¨çš„æ–‡ä»¶åˆ—è¡¨ã€‚"
+			+ "å¦‚æœæ‚¨ä¸ä½¿ç”¨åˆ—è¡¨ä¸­çš„æœ€è¿‘ä½¿ç”¨çš„æ–‡ä»¶ï¼Œå¹¶ä¸”æ‚¨è€Œæ˜¯å°†ç›´æ¥æ’å…¥æµè§ˆæ–‡ä»¶å¤¹è·³ï¼Œ"
+			+ "ä½¿ç”¨ Ctrl + F12 ç›´æ¥æ‰“å¼€æ‰“å¼€å¯¹è¯æ¡†ã€‚"; }
 
 	@Override
 	public ActionResult onAction() {
-		//@TODO ×ö³É¿ÉÒÔÑ¡Ôñ±¾µØ»òÊÇÍøÂçµÄ
+		//@TODO åšæˆå¯ä»¥é€‰æ‹©æœ¬åœ°æˆ–æ˜¯ç½‘ç»œçš„
 		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("´ò¿ªÍ¼Æ¬ÎÄ¼ş");
-		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Ö§³ÖµÄÍ¼Æ¬ÎÄ¼ş¸ñÊ½", "*.PNG", "*.GIF", "*.JPEG", "*.JPG", "*.BMP"));
-		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG ÎÄ¼ş (*.PNG)", "*.PNG"));
-		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("GIF ÎÄ¼ş (*.GIF)", "*.GIF"));
-		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JPEG ÎÄ¼ş (*.JPEG)", "*.JPEG", "*.JPG"));
-		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("BMP ÎÄ¼ş (*.BMP)", "*.BMP"));
+		fileChooser.setTitle("æ‰“å¼€å›¾ç‰‡æ–‡ä»¶");
+		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("æ”¯æŒçš„å›¾ç‰‡æ–‡ä»¶æ ¼å¼", "*.PNG", "*.GIF", "*.JPEG", "*.JPG", "*.BMP"));
+		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG æ–‡ä»¶ (*.PNG)", "*.PNG"));
+		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("GIF æ–‡ä»¶ (*.GIF)", "*.GIF"));
+		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JPEG æ–‡ä»¶ (*.JPEG)", "*.JPEG", "*.JPG"));
+		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("BMP æ–‡ä»¶ (*.BMP)", "*.BMP"));
 		File targetFile = fileChooser.showOpenDialog(tStage);
 		if (targetFile != null) {
 			Resource newResource;
@@ -57,7 +57,7 @@ public class OpenPictureOperaor extends AbstractOperator{
 				newResource = new PictureResouce(targetFile.toURI().toURL().toString());
 				tStage.getPaneVC().addResource(newResource);
 			} catch (MalformedURLException e) {
-				new Alert(AlertType.ERROR, "Ö¸¶¨Â·¾¶´íÎó£¡", ButtonType.CLOSE).showAndWait();
+				new Alert(AlertType.ERROR, "æŒ‡å®šè·¯å¾„é”™è¯¯ï¼", ButtonType.CLOSE).showAndWait();
 				e.printStackTrace();
 			}
 	    }

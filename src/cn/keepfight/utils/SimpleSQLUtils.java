@@ -10,14 +10,14 @@ import java.util.stream.Collectors;
 import cn.keepfight.frame.connect.db.JDBCConnector;
 
 /**
- * ¼òµ¥SQLÓï¾ä¹¤¾ßÀà<br/>
- * ÓÃÓÚÒ»°ã¼òµ¥µÄÊı¾İ¿â²éÑ¯£¬Èç£º
+ * ç®€å•SQLè¯­å¥å·¥å…·ç±»<br/>
+ * ç”¨äºä¸€èˆ¬ç®€å•çš„æ•°æ®åº“æŸ¥è¯¢ï¼Œå¦‚ï¼š
  * <ol>
- * <li>±í´æÔÚÓë·ñ²éÑ¯</li>
- * <li>Ö¸¶¨Ä£Ê½Êı¾İ¼ÇÂ¼Êı²éÑ¯</li>
- * <li>Ö´ĞĞ²åÈë¼ÇÂ¼</li>
+ * <li>è¡¨å­˜åœ¨ä¸å¦æŸ¥è¯¢</li>
+ * <li>æŒ‡å®šæ¨¡å¼æ•°æ®è®°å½•æ•°æŸ¥è¯¢</li>
+ * <li>æ‰§è¡Œæ’å…¥è®°å½•</li>
  * </ol>
- * ¸Ã¹¤¾ßÀàÏÂµÄ·½·¨È«²¿Ê¹ÓÃ¾²Ì¬·½·¨Ìá¹©¡£
+ * è¯¥å·¥å…·ç±»ä¸‹çš„æ–¹æ³•å…¨éƒ¨ä½¿ç”¨é™æ€æ–¹æ³•æä¾›ã€‚
  * <br/>Created by TOM on 2017/1/21.
  *
  * @TODO update to support cache prepare statement of 100 selection
@@ -62,23 +62,23 @@ public class SimpleSQLUtils {
         	.filter(f->(f!=null&&f.trim().length()!=0))
         	.collect(Collectors.joining(","));
 
-        //¹¹½¨´´½¨±íSQLÓï¾ä
+        //æ„å»ºåˆ›å»ºè¡¨SQLè¯­å¥
         String createSql = "create table " + DB+"."+tableName + " " +
                 (construct.equals("") ? "" : (" (" + construct.substring(1) + ") ")) +
                 (tableSchema == null ? "" : tableSchema);
 
-        System.out.println("´´½¨Êı¾İ±íµÄsql="+createSql);
+        System.out.println("åˆ›å»ºæ•°æ®è¡¨çš„sql="+createSql);
 			return cnt.prepareStatement(createSql).execute();
     }
 
 
     /**
-     * ¼ì²éÖĞµÄÊı¾İ¿âÖĞÊÇ·ñ´æÔÚÖ¸¶¨±íÃûµÄ±í
+     * æ£€æŸ¥ä¸­çš„æ•°æ®åº“ä¸­æ˜¯å¦å­˜åœ¨æŒ‡å®šè¡¨åçš„è¡¨
      *
-     * @param dbName    Êı¾İ¿âÃû
-     * @param tableName Ö¸¶¨±íµÄ±íÃû
-     * @return ´æÔÚ·µ»Øtrue£¬·ñÔò·µ»Øfalse¡£
-     * @throws SQLException ¼ì²éÊı¾İ¿â²éÑ¯Òì³£¡£
+     * @param dbName    æ•°æ®åº“å
+     * @param tableName æŒ‡å®šè¡¨çš„è¡¨å
+     * @return å­˜åœ¨è¿”å›trueï¼Œå¦åˆ™è¿”å›falseã€‚
+     * @throws SQLException æ£€æŸ¥æ•°æ®åº“æŸ¥è¯¢å¼‚å¸¸ã€‚
      */
     public boolean isExistTable(String tableName) throws SQLException {
     	String dbStr = DB;
@@ -89,22 +89,22 @@ public class SimpleSQLUtils {
     }
 
     /**
-     * Ìá¹©Ö¸¶¨±íÖĞÆ¥Åä¼ÇÂ¼¼ÇÂ¼µÄ²éÑ¯¡£<br/>
-     * ÖØÔØ·½·¨£¬ÍÆ¼öÊ¹ÓÃ¡£´«Èë BasicDao ¶ø²»ÊÇÊı¾İ¿âÃûÒÑÌá¸ßÊı¾İ¿â²éÑ¯Ğ§ÂÊ¡£<br/>
-     * ×¢Òâ¸Ã·½·¨²»»á¹Ø±Õ´«ÈëµÄÊı¾İ¿â£¬ĞèÒªÓÃ»§×ÔĞĞ¹Ø±Õ¡£<br/>
-     * Ò»¸ö¼òµ¥µÄÀı×Ó£¬ÓÃÓÚ²éÑ¯students_table±íÊÇ·ñ´æÔÚ£º<pre>
+     * æä¾›æŒ‡å®šè¡¨ä¸­åŒ¹é…è®°å½•è®°å½•çš„æŸ¥è¯¢ã€‚<br/>
+     * é‡è½½æ–¹æ³•ï¼Œæ¨èä½¿ç”¨ã€‚ä¼ å…¥ BasicDao è€Œä¸æ˜¯æ•°æ®åº“åå·²æé«˜æ•°æ®åº“æŸ¥è¯¢æ•ˆç‡ã€‚<br/>
+     * æ³¨æ„è¯¥æ–¹æ³•ä¸ä¼šå…³é—­ä¼ å…¥çš„æ•°æ®åº“ï¼Œéœ€è¦ç”¨æˆ·è‡ªè¡Œå…³é—­ã€‚<br/>
+     * ä¸€ä¸ªç®€å•çš„ä¾‹å­ï¼Œç”¨äºæŸ¥è¯¢students_tableè¡¨æ˜¯å¦å­˜åœ¨ï¼š<pre>
      *      isExistRecord(basicDao, "INFORMATION_SCHEMA.TABLES", "TABLE_NAME = 'students_table'")
      * </pre>
-     * ¸Ã·½·¨½«Éú³ÉÈçÏÂÓï¾ä½øĞĞ²éÑ¯£¬²¢½«<code>count</code>×Ö¶ÎµÄ½á¹û½øĞĞ·µ»Ø¡£
+     * è¯¥æ–¹æ³•å°†ç”Ÿæˆå¦‚ä¸‹è¯­å¥è¿›è¡ŒæŸ¥è¯¢ï¼Œå¹¶å°†<code>count</code>å­—æ®µçš„ç»“æœè¿›è¡Œè¿”å›ã€‚
      * <pre>
      *      select count(*) count from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'students_table';"
      * </pre>
      *
-     * @param basicDao   Ö¸¶¨Êı¾İ¿â¾ä±ú
-     * @param tableName  Ö¸¶¨±í
-     * @param SQLpattern ÓûÆ¥ÅäµÄ²éÑ¯Ä£Ê½£¬Èô¸Ã²ÎÊı¿Õ×Ö·û´®£¨·ÇNULL£©£¬Ôò²éÑ¯È«²¿¼ÇÂ¼¡£
-     * @return ²éÑ¯Ö¸¶¨Ä£Ê½µÄ¼ÇÂ¼Öµ£¬ËùÒÔ0±íÊ¾ÎŞÆ¥Åä¼ÇÂ¼£¬´óÓÚ0µÄ·µ»ØÖµ±íÊ¾´æÔÚÆ¥Åä¼ÇÂ¼¡£
-     * @throws SQLException ¼òµ¥²éÑ¯Êı¾İ¿â´íÎó
+     * @param basicDao   æŒ‡å®šæ•°æ®åº“å¥æŸ„
+     * @param tableName  æŒ‡å®šè¡¨
+     * @param SQLpattern æ¬²åŒ¹é…çš„æŸ¥è¯¢æ¨¡å¼ï¼Œè‹¥è¯¥å‚æ•°ç©ºå­—ç¬¦ä¸²ï¼ˆéNULLï¼‰ï¼Œåˆ™æŸ¥è¯¢å…¨éƒ¨è®°å½•ã€‚
+     * @return æŸ¥è¯¢æŒ‡å®šæ¨¡å¼çš„è®°å½•å€¼ï¼Œæ‰€ä»¥0è¡¨ç¤ºæ— åŒ¹é…è®°å½•ï¼Œå¤§äº0çš„è¿”å›å€¼è¡¨ç¤ºå­˜åœ¨åŒ¹é…è®°å½•ã€‚
+     * @throws SQLException ç®€å•æŸ¥è¯¢æ•°æ®åº“é”™è¯¯
      */
     public int isExistRecord(String tableName, String SQLpattern) throws SQLException {
         if (tableName == null || tableName.equals("") || SQLpattern == null) {
@@ -128,16 +128,16 @@ public class SimpleSQLUtils {
     }
 
     /**
-     * ÏòÖ¸¶¨Êı¾İ¿âÖĞµÄÖ¸¶¨±í²åÈëÊı¾İ¡£<br/>
-     * ÖØÔØ·½·¨£¬Ê¹ÓÃ head ÁĞ±íÖ¸¶¨Î»ÖÃË³Ğò½øĞĞ²åÈë²Ù×÷<br/>
-     * ¸Ã·½·¨Ê¹ÓÃ»ù´¡daoÒÔÌá¸ßÊı¾İ¿â·ÃÎÊĞ§ÂÊ£¬×¢Òâ¸Ã·½·¨²»»á¹Ø±Õdao£¬ĞèÒªÓÃ»§×ÔĞĞ¹Ø±Õ<br/>
-     * <code>record</code>ÖĞµÄÔªËØ¶¼±ØĞëÊÇ×Ö·û´®Àà£¬ÆäËûÀàĞÍĞè×ª»¯Îª×Ö·û´®ÀàĞÍÔÙ½øĞĞ²åÈë¡£
+     * å‘æŒ‡å®šæ•°æ®åº“ä¸­çš„æŒ‡å®šè¡¨æ’å…¥æ•°æ®ã€‚<br/>
+     * é‡è½½æ–¹æ³•ï¼Œä½¿ç”¨ head åˆ—è¡¨æŒ‡å®šä½ç½®é¡ºåºè¿›è¡Œæ’å…¥æ“ä½œ<br/>
+     * è¯¥æ–¹æ³•ä½¿ç”¨åŸºç¡€daoä»¥æé«˜æ•°æ®åº“è®¿é—®æ•ˆç‡ï¼Œæ³¨æ„è¯¥æ–¹æ³•ä¸ä¼šå…³é—­daoï¼Œéœ€è¦ç”¨æˆ·è‡ªè¡Œå…³é—­<br/>
+     * <code>record</code>ä¸­çš„å…ƒç´ éƒ½å¿…é¡»æ˜¯å­—ç¬¦ä¸²ç±»ï¼Œå…¶ä»–ç±»å‹éœ€è½¬åŒ–ä¸ºå­—ç¬¦ä¸²ç±»å‹å†è¿›è¡Œæ’å…¥ã€‚
      *
-     * @param basicDao  »ù´¡dao
-     * @param tableName Óû²åÈëÊı¾İµÄ±íÃû
-     * @param record    ÔªËØÎª²åÈëÊı¾İµÄÁĞ±í
-     * @param head      Ö¸¶¨Î»ÖÃË³ĞòµÄÁĞ±í£¬headÎªnull±íÊ¾Ê¹ÓÃÄ¬ÈÏË³Ğò£¬Óë{@link #insert(BasicDao, String, List)}µÈÍ¬¡£
-     * @throws SQLException ¼ì²éÊı¾İ¿â²éÑ¯´íÎó
+     * @param basicDao  åŸºç¡€dao
+     * @param tableName æ¬²æ’å…¥æ•°æ®çš„è¡¨å
+     * @param record    å…ƒç´ ä¸ºæ’å…¥æ•°æ®çš„åˆ—è¡¨
+     * @param head      æŒ‡å®šä½ç½®é¡ºåºçš„åˆ—è¡¨ï¼Œheadä¸ºnullè¡¨ç¤ºä½¿ç”¨é»˜è®¤é¡ºåºï¼Œä¸{@link #insert(BasicDao, String, List)}ç­‰åŒã€‚
+     * @throws SQLException æ£€æŸ¥æ•°æ®åº“æŸ¥è¯¢é”™è¯¯
      */
     public void insert(String tableName, List<String> record, List<String> head) throws SQLException {
         if (tableName == null || tableName.equals("") || record == null) {
@@ -149,17 +149,17 @@ public class SimpleSQLUtils {
 
         String insertSql = "insert into " + DB+"."+tableName + " " + headStr + " values " + valueStr;
 
-        //Ö´ĞĞ²åÈë
+        //æ‰§è¡Œæ’å…¥
         cnt.prepareStatement(insertSql).executeUpdate();
     }
 
 
     /**
-     * ²éÑ¯Ö¸¶¨Êı¾İ¿â¡¢Ö¸¶¨±íµÄ×Ö¶ÎÃûĞÅÏ¢
-     * @param db Ö¸¶¨Êı¾İ¿â
-     * @param table Ö¸¶¨±í
-     * @return Ò»¸ö×Ö¶ÎĞÅÏ¢ÁĞ±í
-     * @throws SQLException ¼òµ¥Êı¾İ¿â²éÑ¯´íÎó
+     * æŸ¥è¯¢æŒ‡å®šæ•°æ®åº“ã€æŒ‡å®šè¡¨çš„å­—æ®µåä¿¡æ¯
+     * @param db æŒ‡å®šæ•°æ®åº“
+     * @param table æŒ‡å®šè¡¨
+     * @return ä¸€ä¸ªå­—æ®µä¿¡æ¯åˆ—è¡¨
+     * @throws SQLException ç®€å•æ•°æ®åº“æŸ¥è¯¢é”™è¯¯
      */
     public List<String> getFieldNames(String table) throws SQLException {
         if (table == null ||  table.equals("")) {

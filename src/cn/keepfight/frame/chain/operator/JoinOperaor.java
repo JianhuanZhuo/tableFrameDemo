@@ -41,7 +41,7 @@ import javafx.util.Pair;
 import net.sf.json.JSONObject;
 
 /**
- * Á´Ëã×ÓÃæ°åÄÚ²¿Ëã×Ó£¬½øĞĞ¶à±íÁ¬½Ó²Ù×÷
+ * é“¾ç®—å­é¢æ¿å†…éƒ¨ç®—å­ï¼Œè¿›è¡Œå¤šè¡¨è¿æ¥æ“ä½œ
  * @author Tom
  *
  */
@@ -61,16 +61,16 @@ public class JoinOperaor extends AbstractOperator{
 
 	@Override public int getId() { return 333; }
 	@Override public String getName() { return "join"; }
-	@Override public String getLabel() { return "±íÁ¬½Ó"; }
+	@Override public String getLabel() { return "è¡¨è¿æ¥"; }
 	@Override public String getIcon() { return "left-join.png"; }
-	@Override public String getTips() { return "Ñ¡Ôñ¶à¸ö±í¶ÔÏó½øĞĞÁ¬½Ó²Ù×÷"; }
-	@Override public String getDescription() { return "Ë«»÷¼ÆËã»úÒÔ»ñÈ¡¶Ô±¾µØÎÄ¼ş£¬°üÀ¨¿ÉÒÆ¶¯ÉÁ´æÇı¶¯Æ÷¡£"
-			+ "Äú»¹¿ÉÒÔÑ¡ÔñÄúµÄÕÊ»§£¬Äú¿ÉÒÔ¿ªÊ¼£¬ÈçÓĞ±ØÒª£¬µÇÂ¼£¬È»ºó´ò¿ªËùĞèµÄÎÄ¼şµÄÎ»ÖÃÖ®Ò»¡£"
-			+ "ÒªÌí¼ÓĞÂµÄÎ»ÖÃ£¬Çëµ¥»÷Ìí¼ÓÎ»ÖÃ¡£×î½üÁĞ±íÏÔÊ¾´ÓÈÎºÎÉè±¸×î½ü´ò¿ªµÄÎÄ¼ş¡£Èç¹û´ËÁĞ±í»ñÈ¡ÊµÓÃ£¬"
-			+ "Äú¿ÉÒÔ´ÓÆäÉ¾³ıÎÄ¼ş¡£Ö»ĞèÓÒ¼üµ¥»÷ÎÄ¼şÃû£¬È»ºóÑ¡Ôñ´ÓÁĞ±íÖĞÉ¾³ı¡£ "
-			+ "Äú¿ÉÒÔ¶Ô×î½üÁĞ±íÖĞ½øĞĞÆäËû¸ü¸Ä¡£ÈôÒªÁË½âÏêÏ¸ĞÅÏ¢£¬Çë²ÎÔÄ×Ô¶¨Òå×î½üÊ¹ÓÃµÄÎÄ¼şÁĞ±í¡£"
-			+ "Èç¹ûÄú²»Ê¹ÓÃÁĞ±íÖĞµÄ×î½üÊ¹ÓÃµÄÎÄ¼ş£¬²¢ÇÒÄú¶øÊÇ½«Ö±½Ó²åÈëä¯ÀÀÎÄ¼ş¼ĞÌø£¬"
-			+ "Ê¹ÓÃ Ctrl + F12 Ö±½Ó´ò¿ª´ò¿ª¶Ô»°¿ò¡£"; }
+	@Override public String getTips() { return "é€‰æ‹©å¤šä¸ªè¡¨å¯¹è±¡è¿›è¡Œè¿æ¥æ“ä½œ"; }
+	@Override public String getDescription() { return "åŒå‡»è®¡ç®—æœºä»¥è·å–å¯¹æœ¬åœ°æ–‡ä»¶ï¼ŒåŒ…æ‹¬å¯ç§»åŠ¨é—ªå­˜é©±åŠ¨å™¨ã€‚"
+			+ "æ‚¨è¿˜å¯ä»¥é€‰æ‹©æ‚¨çš„å¸æˆ·ï¼Œæ‚¨å¯ä»¥å¼€å§‹ï¼Œå¦‚æœ‰å¿…è¦ï¼Œç™»å½•ï¼Œç„¶åæ‰“å¼€æ‰€éœ€çš„æ–‡ä»¶çš„ä½ç½®ä¹‹ä¸€ã€‚"
+			+ "è¦æ·»åŠ æ–°çš„ä½ç½®ï¼Œè¯·å•å‡»æ·»åŠ ä½ç½®ã€‚æœ€è¿‘åˆ—è¡¨æ˜¾ç¤ºä»ä»»ä½•è®¾å¤‡æœ€è¿‘æ‰“å¼€çš„æ–‡ä»¶ã€‚å¦‚æœæ­¤åˆ—è¡¨è·å–å®ç”¨ï¼Œ"
+			+ "æ‚¨å¯ä»¥ä»å…¶åˆ é™¤æ–‡ä»¶ã€‚åªéœ€å³é”®å•å‡»æ–‡ä»¶åï¼Œç„¶åé€‰æ‹©ä»åˆ—è¡¨ä¸­åˆ é™¤ã€‚ "
+			+ "æ‚¨å¯ä»¥å¯¹æœ€è¿‘åˆ—è¡¨ä¸­è¿›è¡Œå…¶ä»–æ›´æ”¹ã€‚è‹¥è¦äº†è§£è¯¦ç»†ä¿¡æ¯ï¼Œè¯·å‚é˜…è‡ªå®šä¹‰æœ€è¿‘ä½¿ç”¨çš„æ–‡ä»¶åˆ—è¡¨ã€‚"
+			+ "å¦‚æœæ‚¨ä¸ä½¿ç”¨åˆ—è¡¨ä¸­çš„æœ€è¿‘ä½¿ç”¨çš„æ–‡ä»¶ï¼Œå¹¶ä¸”æ‚¨è€Œæ˜¯å°†ç›´æ¥æ’å…¥æµè§ˆæ–‡ä»¶å¤¹è·³ï¼Œ"
+			+ "ä½¿ç”¨ Ctrl + F12 ç›´æ¥æ‰“å¼€æ‰“å¼€å¯¹è¯æ¡†ã€‚"; }
 
 	@Override
 	public ActionResult onAction() throws Exception {
@@ -78,7 +78,7 @@ public class JoinOperaor extends AbstractOperator{
 			.filter(r->r.getResource().getDataSourceType()==DataSourceType.TABLE)
 			.collect(Collectors.toList());
 		if (selectResList.size()<2) {
-			new Alert(AlertType.ERROR, "Ñ¡Ôñ×ÊÔ´Êı²»ÔÊĞíĞ¡ÓÚ2!", ButtonType.CLOSE).showAndWait();
+			new Alert(AlertType.ERROR, "é€‰æ‹©èµ„æºæ•°ä¸å…è®¸å°äº2!", ButtonType.CLOSE).showAndWait();
 			return null;
 		}
 
@@ -140,7 +140,7 @@ public class JoinOperaor extends AbstractOperator{
 			this.tbl2 = tbl2;
 			this.field1 = field1;
 			this.field2 = field2;
-			if (joinWay.equals("ÄÚÁ¬½Ó")) {
+			if (joinWay.equals("å†…è¿æ¥")) {
 				this.joinWay = "left join";
 			}
 		}
@@ -167,23 +167,23 @@ public class JoinOperaor extends AbstractOperator{
 	private JoinPackage createDialog(){
 
 		Dialog<JoinPackage> dialog = new Dialog<>();
-		dialog.setTitle("±íÁ¬½Ó");
-		dialog.setHeaderText("ÇëÑ¡Ôñ±íÁ¬½ÓÌõ¼ş£¬ÏµÍ³½«»á¸ù¾İÄúÑ¡ÔñÁ¬½ÓÌõ¼ş½øĞĞÁ¬½Ó");
+		dialog.setTitle("è¡¨è¿æ¥");
+		dialog.setHeaderText("è¯·é€‰æ‹©è¡¨è¿æ¥æ¡ä»¶ï¼Œç³»ç»Ÿå°†ä¼šæ ¹æ®æ‚¨é€‰æ‹©è¿æ¥æ¡ä»¶è¿›è¡Œè¿æ¥");
 
 		// Set the icon (must be included in the project).
 		dialog.setGraphic(new ImageView(ImageLoadUtil.load(getIcon(), ImageLoadUtil.IMG_SIZE_64)));
 
 		// Set the button types.
-		ButtonType loginButtonOK = new ButtonType("È·¶¨", ButtonData.OK_DONE);
-		ButtonType buttonTypeCancel = new ButtonType("È¡Ïû", ButtonData.CANCEL_CLOSE);
+		ButtonType loginButtonOK = new ButtonType("ç¡®å®š", ButtonData.OK_DONE);
+		ButtonType buttonTypeCancel = new ButtonType("å–æ¶ˆ", ButtonData.CANCEL_CLOSE);
 		dialog.getDialogPane().getButtonTypes().addAll(loginButtonOK, buttonTypeCancel);
 
 		ObservableList<String> options =
 			    FXCollections.observableArrayList(entityMapFields.keySet());
 		ObservableList<String> joinTypes =
-			    FXCollections.observableArrayList(Arrays.asList("ÄÚÁ¬½Ó"));
+			    FXCollections.observableArrayList(Arrays.asList("å†…è¿æ¥"));
 
-		Button addBtn = new Button("Ìí¼ÓÁ¬½ÓÌõ¼ş");
+		Button addBtn = new Button("æ·»åŠ è¿æ¥æ¡ä»¶");
 		VBox allConditionVBox = new VBox(10);
 
 		class ConditionPackage extends HBox implements EventHandler<ActionEvent>{
@@ -232,7 +232,7 @@ public class JoinOperaor extends AbstractOperator{
 		ConditionPackage cond = new ConditionPackage();
 		allConditionVBox.getChildren().add(cond);
 		/*********************************************************************
-		 * @TODO ×öÌí¼Ó
+		 * @TODO åšæ·»åŠ 
 //		addBtn.setOnAction(e->{
 //			allConditionVBox.getChildren().add(new ConditionPackage());
 //			dialog.getDialogPane().getScene().getWindow().sizeToScene();
@@ -251,7 +251,7 @@ public class JoinOperaor extends AbstractOperator{
 				JoinPackage result = new JoinPackage(tbl1, field1, tbl2, field2, type);
 				/***************************************************
 				 *
-				 * @TODO ×ö¶à¸ö
+				 * @TODO åšå¤šä¸ª
 				 **************************************************/
 				return result;
 			}

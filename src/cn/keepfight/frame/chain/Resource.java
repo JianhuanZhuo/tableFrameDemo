@@ -4,7 +4,7 @@ import cn.keepfight.frame.content.source.DataSource;
 import cn.keepfight.frame.content.source.DataSourceType;
 
 /**
- * ³éÏó×ÊÔ´Àà
+ * æŠ½è±¡èµ„æºç±»
  * @author Tom
  *
  */
@@ -15,30 +15,30 @@ public abstract class Resource {
 	int id = id_count++;
 
 	/**
-	 * »ñµÃ×ÊÔ´ÀàĞÍ
-	 * @return ×ÊÔ´ÀàĞÍ
+	 * è·å¾—èµ„æºç±»å‹
+	 * @return èµ„æºç±»å‹
 	 */
 	public abstract DataSourceType getDataSourceType();
 
 	/**
-	 * Éú³ÉÊı¾İÔ´
-	 * @return Êı¾İÔ´
+	 * ç”Ÿæˆæ•°æ®æº
+	 * @return æ•°æ®æº
 	 */
 	public abstract DataSource generateDataSource();
 
 	/**
-	 * Ä¬ÈÏµÄÍ¼±êURL£¬¾ßÌå×ÊÔ´ĞèÒªÖØÔØ
-	 * @return Í¼±êURL
+	 * é»˜è®¤çš„å›¾æ ‡URLï¼Œå…·ä½“èµ„æºéœ€è¦é‡è½½
+	 * @return å›¾æ ‡URL
 	 */
 	public String getIconURL() {
 		return getDataSourceType().getIconURL();
 	}
 
 	/**
-	 * »ñµÃÄ¬ÈÏ×ÊÔ´ÊµÀıÃû
-	 * @return ×ÊÔ´ÊµÀıÃû×Ö·û´®
+	 * è·å¾—é»˜è®¤èµ„æºå®ä¾‹å
+	 * @return èµ„æºå®ä¾‹åå­—ç¬¦ä¸²
 	 */
 	public String getName() {
-		return getDataSourceType().getTypeName_cn()+"¡ª¡ª"+id;
+		return getDataSourceType().getTypeName_cn()+"â€”â€”"+id;
 	}
 }

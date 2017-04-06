@@ -24,11 +24,11 @@ public class WaitDialog<V> extends Dialog<Boolean> implements EventHandler<Worke
 	private Task<V> task;
 
 	public WaitDialog(Task<V> task) {
-		setTitle("ÕıÔÚÖ´ĞĞ");
-		setHeaderText("Õâ¸ö²Ù×÷¿ÉÄÜĞèÒª»¨·ÑĞ©Ê±¼ä£¬ÇëÉÔµÈ´ı...");
+		setTitle("æ­£åœ¨æ‰§è¡Œ");
+		setHeaderText("è¿™ä¸ªæ“ä½œå¯èƒ½éœ€è¦èŠ±è´¹äº›æ—¶é—´ï¼Œè¯·ç¨ç­‰å¾…...");
 		setGraphic(new ImageView(ImageLoadUtil.load(waitIcon, ImageLoadUtil.IMG_SIZE_64)));
 
-		ButtonType buttonTypeCancel = new ButtonType("È¡Ïû", ButtonData.CANCEL_CLOSE);
+		ButtonType buttonTypeCancel = new ButtonType("å–æ¶ˆ", ButtonData.CANCEL_CLOSE);
 
 		getDialogPane().getButtonTypes().addAll(buttonTypeCancel);
 
@@ -55,7 +55,7 @@ public class WaitDialog<V> extends Dialog<Boolean> implements EventHandler<Worke
 		new Thread(task).start();
 		Optional<Boolean> result = showAndWait();
 		aftStp = System.currentTimeMillis();
-		System.out.println("´Ë´ÎµÈ´ıÊ±¼äÎª£º"+(aftStp-befStp)+" ºÁÃë");
+		System.out.println("æ­¤æ¬¡ç­‰å¾…æ—¶é—´ä¸ºï¼š"+(aftStp-befStp)+" æ¯«ç§’");
 		if (result.isPresent() && result.get()) {
 			return task.getValue();
 		};

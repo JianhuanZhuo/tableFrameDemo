@@ -10,17 +10,17 @@ public class ViewPathUtil {
 	private static ViewPathUtil instance = new ViewPathUtil();
 
 	/**
-	 * ¼ÓÔØÆ÷»º´æ£¬Î´ÊµÏÖ
+	 * åŠ è½½å™¨ç¼“å­˜ï¼Œæœªå®ç°
 	 */
 	//private static Map<URL, FXMLLoader> loaders = new HashMap<URL, FXMLLoader>();
 
 	/**
-	 * Ö¸¶¨frameÊÓÍ¼Ãû£¬»ñµÃ¶ÔÓ¦µÄURLÂ·¾¶
-	 * @param viewURL ÊÓÍ¼Ãû
-	 * @return URLÂ·¾¶
+	 * æŒ‡å®šframeè§†å›¾åï¼Œè·å¾—å¯¹åº”çš„URLè·¯å¾„
+	 * @param viewURL è§†å›¾å
+	 * @return URLè·¯å¾„
 	 */
 	public static URL getFrameView(String viewURL) {
-		//@TODO ×ö³öÅäÖÃµÄ·½Ê½
+		//@TODO åšå‡ºé…ç½®çš„æ–¹å¼
 		if (!viewURL.contains(".fxml")) {
 			System.out.println(viewURL+" do not contain .fxml! It's may wrong!");
 		}
@@ -28,19 +28,19 @@ public class ViewPathUtil {
 	}
 
 	/**
-	 * Ö¸¶¨frameÊÓÍ¼Ãû£¬¼ÓÔØÊÓÍ¼ÊµÀı
-	 * @param viewURL  ÊÓÍ¼Ãû
-	 * @return ÊÓÍ¼ÊµÀı
-	 * @throws IOException IOÒì³£
+	 * æŒ‡å®šframeè§†å›¾åï¼ŒåŠ è½½è§†å›¾å®ä¾‹
+	 * @param viewURL  è§†å›¾å
+	 * @return è§†å›¾å®ä¾‹
+	 * @throws IOException IOå¼‚å¸¸
 	 */
 	public static Object loadView(String viewURL) throws IOException {
 		return getLoader(viewURL).load();
 	}
 
 	/**
-	 * Ö¸¶¨frameÊÓÍ¼Ãû£¬»ñµÃ¸ÃÊÓÍ¼¼ÓÔØÆ÷
-	 * @param viewURL ÊÓÍ¼Ãû
-	 * @return ¼ÓÔØÆ÷
+	 * æŒ‡å®šframeè§†å›¾åï¼Œè·å¾—è¯¥è§†å›¾åŠ è½½å™¨
+	 * @param viewURL è§†å›¾å
+	 * @return åŠ è½½å™¨
 	 */
 	public static FXMLLoader getLoader(String viewURL) {
 		return new FXMLLoader(ViewPathUtil.getFrameView(viewURL));

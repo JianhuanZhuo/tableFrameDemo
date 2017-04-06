@@ -5,18 +5,18 @@ import java.util.List;
 import cn.keepfight.frame.chain.Resource;
 
 /**
- * Ëã×ÓÖ´ĞĞ¶¯×÷½á¹û°ü×°Àà
+ * ç®—å­æ‰§è¡ŒåŠ¨ä½œç»“æœåŒ…è£…ç±»
  * @author Tom
  *
  */
 public class ActionResult {
 	/**
-	 * ½á¹û×ÊÔ´
+	 * ç»“æœèµ„æº
 	 */
 	List<Resource> resList;
 
 	/**
-	 * ÊÇ·ñÎª±¾µØ¶¯×÷
+	 * æ˜¯å¦ä¸ºæœ¬åœ°åŠ¨ä½œ
 	 */
 	boolean localAction = false;
 

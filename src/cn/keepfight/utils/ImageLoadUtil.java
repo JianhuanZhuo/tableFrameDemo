@@ -6,7 +6,7 @@ import java.util.Map;
 import javafx.scene.image.Image;
 
 /**
- * Í¼Æ¬¼ÓÔØ¹¤¾ßÀà.
+ * å›¾ç‰‡åŠ è½½å·¥å…·ç±».
  * @author Tom
  *
  */
@@ -19,7 +19,7 @@ public class ImageLoadUtil {
 	public static final String VIEW_IMAGE_URL = "cn/keepfight/frame/view/image/";
 
 	/**
-	 * Í¼Ïñ»º´æ
+	 * å›¾åƒç¼“å­˜
 	 */
 	public static Map<String, Image> reusableImageMap = new HashMap<>();
 
@@ -28,22 +28,22 @@ public class ImageLoadUtil {
 	}
 
 	/**
-	 * ¼ÓÔØÖ¸¶¨³ß´çµÄÍ¼Æ¬£¬ÕâÖÖ¼ÓÔØ»úÖÆ»á»º´æÒÑ¼ÓÔØÍê³ÉµÄÍ¼Æ¬£¬<br/>
-	 * ¶ÔÓÚµÚ¶ş´ÎÇëÇóÏàÍ¬µÄÍ¼Æ¬£¬»áÖ±½ÓÊ¹ÓÃÖ®Ç°¼ÓÔØµÄÍ¼Æ¬ÎÄ¼ş¶ø²»ÊÇ´Ó´ÅÅÌÖĞÔÙ¼ÓÔØÒ»´Î
+	 * åŠ è½½æŒ‡å®šå°ºå¯¸çš„å›¾ç‰‡ï¼Œè¿™ç§åŠ è½½æœºåˆ¶ä¼šç¼“å­˜å·²åŠ è½½å®Œæˆçš„å›¾ç‰‡ï¼Œ<br/>
+	 * å¯¹äºç¬¬äºŒæ¬¡è¯·æ±‚ç›¸åŒçš„å›¾ç‰‡ï¼Œä¼šç›´æ¥ä½¿ç”¨ä¹‹å‰åŠ è½½çš„å›¾ç‰‡æ–‡ä»¶è€Œä¸æ˜¯ä»ç£ç›˜ä¸­å†åŠ è½½ä¸€æ¬¡
 	 *
 	 * @param imageName
-	 *            Ö¸¶¨Ãû×Ö
+	 *            æŒ‡å®šåå­—
 	 * @param size
-	 *            Ö¸¶¨³ß´ç£¬½öÖ§³Ö {@link #reusableImage16Map} ºÍ
-	 *            {@link #reusableImage32Map}ºÍ{@link #reusableImage64Map}
-	 * @return Í¼Æ¬¶ÔÏó£¬Èô¶ÔÏó²»´æÔÚ·µ»Ønull¡£
+	 *            æŒ‡å®šå°ºå¯¸ï¼Œä»…æ”¯æŒ {@link #reusableImage16Map} å’Œ
+	 *            {@link #reusableImage32Map}å’Œ{@link #reusableImage64Map}
+	 * @return å›¾ç‰‡å¯¹è±¡ï¼Œè‹¥å¯¹è±¡ä¸å­˜åœ¨è¿”å›nullã€‚
 	 */
 	public static Image load(String imageName, int size) {
 		if (size == IMG_SIZE_16 || size == IMG_SIZE_32 || size == IMG_SIZE_64) {
 			if (reusableImageMap.containsKey("g" + size + "/" + imageName)) {
 				return reusableImageMap.get("g" + size + "/" + imageName);
 			} else {
-				// @TODO ×ö³ÉÅäÖÃ
+				// @TODO åšæˆé…ç½®
 				String imageUrl = "cn/keepfight/resources/g" + size + "/" + imageName;
 				Image resImage = null;
 				try {

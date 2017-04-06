@@ -20,10 +20,10 @@ public class FileItemController {
 	private GridPane paneRoot;
 
 	/**
-	 * Îª¸ÃÎÄ¼şItem°´Å¥ÉèÖÃÎÄ×Ö
+	 * ä¸ºè¯¥æ–‡ä»¶ItemæŒ‰é’®è®¾ç½®æ–‡å­—
 	 *
 	 * @param text
-	 *            ÓûÉèÖÃµÄÎÄ×Ö
+	 *            æ¬²è®¾ç½®çš„æ–‡å­—
 	 */
 	public void setText(String text) {
 		if (text != null) {
@@ -32,12 +32,12 @@ public class FileItemController {
 	}
 
 	/**
-	 * Ê¹ÓÃÍ¼±êÃû½øĞĞÉèÖÃ¡£<br/>
-	 * ¸Ã·½·¨½«Ê¹ÓÃ{@link cn.keepfight.utils.ImageLoaderUtil.load(String, int)}
-	 * ½øĞĞ¼ÓÔØ<br/>
+	 * ä½¿ç”¨å›¾æ ‡åè¿›è¡Œè®¾ç½®ã€‚<br/>
+	 * è¯¥æ–¹æ³•å°†ä½¿ç”¨{@link cn.keepfight.utils.ImageLoaderUtil.load(String, int)}
+	 * è¿›è¡ŒåŠ è½½<br/>
 	 *
 	 * @param icon
-	 *            Í¼±êÃû
+	 *            å›¾æ ‡å
 	 * @see cn.keepfight.utils.ImageLoadUtil
 	 */
 	public void setPic(String icon) {
@@ -45,10 +45,10 @@ public class FileItemController {
 	}
 
 	/**
-	 * Ö¸¶¨Í¼Æ¬×÷Îª¸ÃFileItemÍ¼±ê¡£
+	 * æŒ‡å®šå›¾ç‰‡ä½œä¸ºè¯¥FileItemå›¾æ ‡ã€‚
 	 *
 	 * @param image
-	 *            Ö¸¶¨Í¼Æ¬
+	 *            æŒ‡å®šå›¾ç‰‡
 	 */
 	public void setPic(Image image) {
 		pic.setImage(image);
@@ -57,10 +57,10 @@ public class FileItemController {
 
 
 	/**
-	 * ÉèÖÃÌáÊ¾ĞÅÏ¢
+	 * è®¾ç½®æç¤ºä¿¡æ¯
 	 *
 	 * @param tip
-	 *            ÓûÉèÖÃµÄÌáÊ¾ĞÅÏ¢
+	 *            æ¬²è®¾ç½®çš„æç¤ºä¿¡æ¯
 	 */
 	public void setTipText(String tip) {
 		if (tip != null) {

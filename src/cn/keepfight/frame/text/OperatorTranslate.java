@@ -25,15 +25,15 @@ import javafx.scene.control.ChoiceDialog;
 
 public class OperatorTranslate extends AbstractOperator{
 
-	private int id = 321;//Ëã×ÓID
-	private String name = "translate";//Ëã×ÓÃû
-	private String label = "±í×ª»»";//Ëã×ÓÍ¼±ê°´Å¥ÉÏµÄÃû×Ö
-	private String tips = "Ê¹ÓÃ×ª»»±íËã×Ó½«¸ÃÎÄ±¾×ª»»Îª±í×ÊÔ´´æ´¢";//Ëã×ÓÌáÊ¾ĞÅÏ¢
-	private String icon = "translate.png";//Ëã×ÓÍ¼±ê
-	private String description = "ÓĞÁ½ÖÖ·½·¨¿É´ÓÎÄ±¾ÎÄ¼şµ¼ÈëÊı¾İ£¬"
-			+ "Ê¹ÓÃ Microsoft Excel©U Äú¿ÉÒÔÔÚ Excel ÖĞ´ò¿ªµÄÎÄ±¾ÎÄ¼ş£¬"
-			+ "»òÄú¿ÉÒÔµ¼ÈëµÄÎÄ±¾ÎÄ¼ş×÷ÎªÍâ²¿Êı¾İÇøÓò¡£ÈôÒª½«Êı¾İ´Ó Excel µ¼³öµ½ÎÄ±¾ÎÄ¼ş£¬"
-			+ "Ê¹ÓÃÁí´æÎªÃüÁî¡£";//Ëã×ÓÃèÊöĞÅÏ¢
+	private int id = 321;//ç®—å­ID
+	private String name = "translate";//ç®—å­å
+	private String label = "è¡¨è½¬æ¢";//ç®—å­å›¾æ ‡æŒ‰é’®ä¸Šçš„åå­—
+	private String tips = "ä½¿ç”¨è½¬æ¢è¡¨ç®—å­å°†è¯¥æ–‡æœ¬è½¬æ¢ä¸ºè¡¨èµ„æºå­˜å‚¨";//ç®—å­æç¤ºä¿¡æ¯
+	private String icon = "translate.png";//ç®—å­å›¾æ ‡
+	private String description = "æœ‰ä¸¤ç§æ–¹æ³•å¯ä»æ–‡æœ¬æ–‡ä»¶å¯¼å…¥æ•°æ®ï¼Œ"
+			+ "ä½¿ç”¨ Microsoft Excelï¸° æ‚¨å¯ä»¥åœ¨ Excel ä¸­æ‰“å¼€çš„æ–‡æœ¬æ–‡ä»¶ï¼Œ"
+			+ "æˆ–æ‚¨å¯ä»¥å¯¼å…¥çš„æ–‡æœ¬æ–‡ä»¶ä½œä¸ºå¤–éƒ¨æ•°æ®åŒºåŸŸã€‚è‹¥è¦å°†æ•°æ®ä» Excel å¯¼å‡ºåˆ°æ–‡æœ¬æ–‡ä»¶ï¼Œ"
+			+ "ä½¿ç”¨å¦å­˜ä¸ºå‘½ä»¤ã€‚";//ç®—å­æè¿°ä¿¡æ¯
 
 	private String[] inputResource;
 	private String[] outputResource;
@@ -61,27 +61,27 @@ public class OperatorTranslate extends AbstractOperator{
 		List<Resource> res = new ArrayList<Resource>();
 
 		List<String> choices = new ArrayList<>();
-		choices.add("¶ººÅ");
-		choices.add("ÖÆ±í·û");
-		choices.add("¿Õ¸ñ·û");
+		choices.add("é€—å·");
+		choices.add("åˆ¶è¡¨ç¬¦");
+		choices.add("ç©ºæ ¼ç¬¦");
 
-		ChoiceDialog<String> dialog = new ChoiceDialog<>("Ñ¡Ôñ·Ö¸ô·û", choices);
-		dialog.setTitle("ÎÄ±¾ÎÄ¼ş×ª´æÎª±í");
-		dialog.setHeaderText("ÇëÎª¸ÃËã×ÓÑ¡ÔñÒ»¸ö·Ö¸î·ûºÅ£º");
-		dialog.setContentText("µ±Ç°¿ª·¢½ø¶È¿ÉÓÃµÄ·ûºÅÎª£º");
+		ChoiceDialog<String> dialog = new ChoiceDialog<>("é€‰æ‹©åˆ†éš”ç¬¦", choices);
+		dialog.setTitle("æ–‡æœ¬æ–‡ä»¶è½¬å­˜ä¸ºè¡¨");
+		dialog.setHeaderText("è¯·ä¸ºè¯¥ç®—å­é€‰æ‹©ä¸€ä¸ªåˆ†å‰²ç¬¦å·ï¼š");
+		dialog.setContentText("å½“å‰å¼€å‘è¿›åº¦å¯ç”¨çš„ç¬¦å·ä¸ºï¼š");
 
 		Optional<String> result = dialog.showAndWait();
 		if (result.isPresent()){
 		    System.out.println("Your choice: " + result.get());
 		    File file = tStage.getSource().getFile();
 		    switch (result.get()) {
-				case "¶ººÅ":
+				case "é€—å·":
 					reg=",";
 					break;
-				case "ÖÆ±í·û":
+				case "åˆ¶è¡¨ç¬¦":
 					reg="\t";
 					break;
-				case "¿Õ¸ñ·û":
+				case "ç©ºæ ¼ç¬¦":
 					reg=" ";
 					break;
 				default:

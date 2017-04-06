@@ -3,14 +3,14 @@ package cn.keepfight.frame.chain;
 import java.util.List;
 
 /**
- * 资源运送BUS
+ * 璧勬簮杩愰�丅US
  * @author Tom
  *
  */
 public class ResourceBus {
 
 	/**
-	 * 单例模式支持
+	 * 鍗曚緥妯″紡鏀寔
 	 */
 	private static ResourceBus instance = new ResourceBus();
 	public static ResourceBus getInstance() {
@@ -18,7 +18,7 @@ public class ResourceBus {
 	}
 
 	/**
-	 * 拉取资源
+	 * 鎷夊彇璧勬簮
 	 * @return
 	 */
 	public List<Resource> pullResources() {

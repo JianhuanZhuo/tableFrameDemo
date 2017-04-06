@@ -11,7 +11,7 @@ public class TextTStage extends TStage<TextDataSource, TextMenuViewController, T
 
 	@Override
 	protected void fixAfter() {
-		String target = "ÌìÐ«×ù";
+		String target = "å¤©èŽåº§";
 		int index = getPaneVC().textArea.getText().indexOf(target);
 		getPaneVC().textArea.selectRange(index, index+target.length());
 	}
@@ -19,11 +19,11 @@ public class TextTStage extends TStage<TextDataSource, TextMenuViewController, T
 	@Override
 	public void onDelete() {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("È·ÈÏ¶Ô»°¿ò");
-		alert.setHeaderText("¸ÃÎÄ±¾×ÊÔ´ÔÚ¸¸Ãæ°åÒÑ±»É¾³ý£¬ÊÇ·ñ±£´æµ±Ç°Ãæ°åÄÚÈÝ£¿");
-		alert.setContentText("¼´½«¹Ø±Õ¸ÃÃæ°åÒÔÏìÓ¦±£´æÓÐ¸ÃÎÄ±¾×ÊÔ´µÄ¸¸Ãæ°å£¬"
-				+ "ÊÇ·ñ±£´æ¸ÃÃæ°åµÄÄÚÈÝÒÔÃâÕýÔÚ±à¼­µÄÊý¾Ý·¢Éú¶ªÊ§£¿"
-				+ "µã»÷ ÊÇ ±£´æ¸ÃÃæ°åÊý¾Ý£¬µã»÷ ·ñ ²»±£´æ£¬Ö±½Ó¹Ø±Õ£¡");
+		alert.setTitle("ç¡®è®¤å¯¹è¯æ¡†");
+		alert.setHeaderText("è¯¥æ–‡æœ¬èµ„æºåœ¨çˆ¶é¢æ¿å·²è¢«åˆ é™¤ï¼Œæ˜¯å¦ä¿å­˜å½“å‰é¢æ¿å†…å®¹ï¼Ÿ");
+		alert.setContentText("å³å°†å…³é—­è¯¥é¢æ¿ä»¥å“åº”ä¿å­˜æœ‰è¯¥æ–‡æœ¬èµ„æºçš„çˆ¶é¢æ¿ï¼Œ"
+				+ "æ˜¯å¦ä¿å­˜è¯¥é¢æ¿çš„å†…å®¹ä»¥å…æ­£åœ¨ç¼–è¾‘çš„æ•°æ®å‘ç”Ÿä¸¢å¤±ï¼Ÿ"
+				+ "ç‚¹å‡» æ˜¯ ä¿å­˜è¯¥é¢æ¿æ•°æ®ï¼Œç‚¹å‡» å¦ ä¸ä¿å­˜ï¼Œç›´æŽ¥å…³é—­ï¼");
 
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.get() == ButtonType.OK){

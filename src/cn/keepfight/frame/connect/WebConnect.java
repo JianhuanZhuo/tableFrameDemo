@@ -5,7 +5,7 @@ import java.io.IOException;
 import net.sf.json.JSONObject;
 
 /**
- * 网络连接服务
+ * 缃戠粶杩炴帴鏈嶅姟
  * @author Tom
  *
  */

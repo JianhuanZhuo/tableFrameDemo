@@ -15,8 +15,8 @@ import javafx.fxml.FXMLLoader;
 public class ContentFactory {
 
 	/**
-	 * ¹¤³§·½·¨£¬¸ù¾İ²ÎÊıÀàĞÍ½øĞĞ¹¹Ôì¡£
-	 * @return ²Ëµ¥ÊÓÍ¼¿ØÖÆÆ÷¶ÔÏó
+	 * å·¥å‚æ–¹æ³•ï¼Œæ ¹æ®å‚æ•°ç±»å‹è¿›è¡Œæ„é€ ã€‚
+	 * @return èœå•è§†å›¾æ§åˆ¶å™¨å¯¹è±¡
 	 */
 	public static PaneController generateContentC(DataSourceType type) {
 		switch (type) {
@@ -39,9 +39,9 @@ public class ContentFactory {
 	}
 
 	/**
-	 * Ê¹ÓÃÊı¾İÔ´ÀàĞÍÉú³ÉÊÓÍ¼ºÍ¿ØÖÆÆ÷£¬²¢·µ»Ø¿ØÖÆÆ÷¡£ÊÓÍ¼¿É´Ó¿ØÖÆÆ÷ÖĞ·ÃÎÊ
-	 * @param type Êı¾İÔ´ÀàĞÍ
-	 * @return ¿ØÖÆÆ÷
+	 * ä½¿ç”¨æ•°æ®æºç±»å‹ç”Ÿæˆè§†å›¾å’Œæ§åˆ¶å™¨ï¼Œå¹¶è¿”å›æ§åˆ¶å™¨ã€‚è§†å›¾å¯ä»æ§åˆ¶å™¨ä¸­è®¿é—®
+	 * @param type æ•°æ®æºç±»å‹
+	 * @return æ§åˆ¶å™¨
 	 */
 	public static PaneController generateContentVC(DataSourceType type) {
 		FXMLLoader loader = new FXMLLoader(ViewPathUtil.getFrameView(type.getContentViewPool().getPriprorViewURL()));

@@ -12,7 +12,7 @@ import cn.keepfight.operator.AbstractOperator;
 import javafx.stage.FileChooser;
 
 /**
- * Á´Ëã×ÓÃæ°åÄÚ²¿Ëã×Ó£¬ÓÃÓÚ´ò¿ª±¾µØÎÄ¼ş²¢Ìí¼ÓÒ»¸ö±¾µØÎÄ¼ş×ÊÔ´
+ * é“¾ç®—å­é¢æ¿å†…éƒ¨ç®—å­ï¼Œç”¨äºæ‰“å¼€æœ¬åœ°æ–‡ä»¶å¹¶æ·»åŠ ä¸€ä¸ªæœ¬åœ°æ–‡ä»¶èµ„æº
  * @author Tom
  *
  */
@@ -27,21 +27,21 @@ public class OpenFilesOperaor extends AbstractOperator{
 
 	@Override public int getId() { return 666; }
 	@Override public String getName() { return "files.png"; }
-	@Override public String getLabel() { return "µ¼ÈëÎÄ¼şÈº"; }
+	@Override public String getLabel() { return "å¯¼å…¥æ–‡ä»¶ç¾¤"; }
 	@Override public String getIcon() { return "open.png"; }
-	@Override public String getTips() { return "Ñ¡Ôñ¶à¸ö±¾µØÎÄ±¾ÎÄ¼ş×÷ÎªÎÄ¼şÈº×ÊÔ´"; }
-	@Override public String getDescription() { return "Ë«»÷¼ÆËã»úÒÔ»ñÈ¡¶Ô±¾µØÎÄ¼ş£¬°üÀ¨¿ÉÒÆ¶¯ÉÁ´æÇı¶¯Æ÷¡£"
-			+ "Äú»¹¿ÉÒÔÑ¡ÔñÄúµÄÕÊ»§£¬Äú¿ÉÒÔ¿ªÊ¼£¬ÈçÓĞ±ØÒª£¬µÇÂ¼£¬È»ºó´ò¿ªËùĞèµÄÎÄ¼şµÄÎ»ÖÃÖ®Ò»¡£"
-			+ "ÒªÌí¼ÓĞÂµÄÎ»ÖÃ£¬Çëµ¥»÷Ìí¼ÓÎ»ÖÃ¡£×î½üÁĞ±íÏÔÊ¾´ÓÈÎºÎÉè±¸×î½ü´ò¿ªµÄÎÄ¼ş¡£Èç¹û´ËÁĞ±í»ñÈ¡ÊµÓÃ£¬"
-			+ "Äú¿ÉÒÔ´ÓÆäÉ¾³ıÎÄ¼ş¡£Ö»ĞèÓÒ¼üµ¥»÷ÎÄ¼şÃû£¬È»ºóÑ¡Ôñ´ÓÁĞ±íÖĞÉ¾³ı¡£ "
-			+ "Äú¿ÉÒÔ¶Ô×î½üÁĞ±íÖĞ½øĞĞÆäËû¸ü¸Ä¡£ÈôÒªÁË½âÏêÏ¸ĞÅÏ¢£¬Çë²ÎÔÄ×Ô¶¨Òå×î½üÊ¹ÓÃµÄÎÄ¼şÁĞ±í¡£"
-			+ "Èç¹ûÄú²»Ê¹ÓÃÁĞ±íÖĞµÄ×î½üÊ¹ÓÃµÄÎÄ¼ş£¬²¢ÇÒÄú¶øÊÇ½«Ö±½Ó²åÈëä¯ÀÀÎÄ¼ş¼ĞÌø£¬"
-			+ "Ê¹ÓÃ Ctrl + F12 Ö±½Ó´ò¿ª´ò¿ª¶Ô»°¿ò¡£"; }
+	@Override public String getTips() { return "é€‰æ‹©å¤šä¸ªæœ¬åœ°æ–‡æœ¬æ–‡ä»¶ä½œä¸ºæ–‡ä»¶ç¾¤èµ„æº"; }
+	@Override public String getDescription() { return "åŒå‡»è®¡ç®—æœºä»¥è·å–å¯¹æœ¬åœ°æ–‡ä»¶ï¼ŒåŒ…æ‹¬å¯ç§»åŠ¨é—ªå­˜é©±åŠ¨å™¨ã€‚"
+			+ "æ‚¨è¿˜å¯ä»¥é€‰æ‹©æ‚¨çš„å¸æˆ·ï¼Œæ‚¨å¯ä»¥å¼€å§‹ï¼Œå¦‚æœ‰å¿…è¦ï¼Œç™»å½•ï¼Œç„¶åæ‰“å¼€æ‰€éœ€çš„æ–‡ä»¶çš„ä½ç½®ä¹‹ä¸€ã€‚"
+			+ "è¦æ·»åŠ æ–°çš„ä½ç½®ï¼Œè¯·å•å‡»æ·»åŠ ä½ç½®ã€‚æœ€è¿‘åˆ—è¡¨æ˜¾ç¤ºä»ä»»ä½•è®¾å¤‡æœ€è¿‘æ‰“å¼€çš„æ–‡ä»¶ã€‚å¦‚æœæ­¤åˆ—è¡¨è·å–å®ç”¨ï¼Œ"
+			+ "æ‚¨å¯ä»¥ä»å…¶åˆ é™¤æ–‡ä»¶ã€‚åªéœ€å³é”®å•å‡»æ–‡ä»¶åï¼Œç„¶åé€‰æ‹©ä»åˆ—è¡¨ä¸­åˆ é™¤ã€‚ "
+			+ "æ‚¨å¯ä»¥å¯¹æœ€è¿‘åˆ—è¡¨ä¸­è¿›è¡Œå…¶ä»–æ›´æ”¹ã€‚è‹¥è¦äº†è§£è¯¦ç»†ä¿¡æ¯ï¼Œè¯·å‚é˜…è‡ªå®šä¹‰æœ€è¿‘ä½¿ç”¨çš„æ–‡ä»¶åˆ—è¡¨ã€‚"
+			+ "å¦‚æœæ‚¨ä¸ä½¿ç”¨åˆ—è¡¨ä¸­çš„æœ€è¿‘ä½¿ç”¨çš„æ–‡ä»¶ï¼Œå¹¶ä¸”æ‚¨è€Œæ˜¯å°†ç›´æ¥æ’å…¥æµè§ˆæ–‡ä»¶å¤¹è·³ï¼Œ"
+			+ "ä½¿ç”¨ Ctrl + F12 ç›´æ¥æ‰“å¼€æ‰“å¼€å¯¹è¯æ¡†ã€‚"; }
 
 	@Override
 	public ActionResult onAction() {
 		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("Ñ¡ÔñÎÄ¼şÈº");
+		fileChooser.setTitle("é€‰æ‹©æ–‡ä»¶ç¾¤");
 		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt"));
 		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv"));
 		targetList = fileChooser.showOpenMultipleDialog(tStage);

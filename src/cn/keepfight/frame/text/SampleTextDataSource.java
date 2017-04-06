@@ -13,12 +13,12 @@ public class SampleTextDataSource extends TextDataSource {
 
 	public SampleTextDataSource(Stage stage) {
 		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("打开文件");
+		fileChooser.setTitle("鎵撳紑鏂囦欢");
 		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt"));
 		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv"));
 		file = fileChooser.showOpenDialog(stage);
 		if (file == null) {
-			 //@TODO 错误
+			 //@TODO 閿欒
 			 System.err.println("file choosen is null!");
         }
 	}

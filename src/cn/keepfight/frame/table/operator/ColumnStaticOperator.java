@@ -51,20 +51,20 @@ public class ColumnStaticOperator extends AbstractOperator{
 
 	@Override public int getId() { return 333; }
 	@Override public String getName() {return "static";}
-	@Override public String getLabel() { return "ÁĞÍ³¼Æ"; }
+	@Override public String getLabel() { return "åˆ—ç»Ÿè®¡"; }
 	@Override public String getIcon() { return "bar.png"; }
-	@Override public String getTips() { return "Ö¸¶¨ÁĞ½øĞĞÆµ´ÎÍ³¼Æ"; }
-	@Override public String getDescription() { return "ÔİÊ±ÎŞËã×Ó½âÊÍ"; }
+	@Override public String getTips() { return "æŒ‡å®šåˆ—è¿›è¡Œé¢‘æ¬¡ç»Ÿè®¡"; }
+	@Override public String getDescription() { return "æš‚æ—¶æ— ç®—å­è§£é‡Š"; }
 
 	@Override
 	public ActionResult onAction() throws Exception {
 
 		List<String> allColumns = tStage.getPaneVC().getLoader().allColumns();
 
-		ChoiceDialog<String> dialog = new ChoiceDialog<>("ÇëÑ¡Ôñ½øĞĞÍ³¼ÆµÄÁĞ", allColumns);
+		ChoiceDialog<String> dialog = new ChoiceDialog<>("è¯·é€‰æ‹©è¿›è¡Œç»Ÿè®¡çš„åˆ—", allColumns);
 		dialog.setTitle(getLabel());
-		dialog.setHeaderText("Ñ¡ÔñÖ¸¶¨µÄÁĞ½øĞĞÆµ´ÎÍ³¼Æ");
-		dialog.setContentText("Ñ¡ÔñÁĞ£º");
+		dialog.setHeaderText("é€‰æ‹©æŒ‡å®šçš„åˆ—è¿›è¡Œé¢‘æ¬¡ç»Ÿè®¡");
+		dialog.setContentText("é€‰æ‹©åˆ—ï¼š");
 		dialog.setGraphic(new ImageView(ImageLoadUtil.load(getIcon(), ImageLoadUtil.IMG_SIZE_64)));
 
 		Optional<String> result = dialog.showAndWait();
@@ -72,7 +72,7 @@ public class ColumnStaticOperator extends AbstractOperator{
 		    return null;
 		}
 
-		//select column5, count(column5) num from ³öĞĞÊı¾İ group by column5 order by count(column5) DESC;
+		//select column5, count(column5) num from å‡ºè¡Œæ•°æ® group by column5 order by count(column5) DESC;
 		String sqlString = "select "+result.get()+", count("+result.get()+") num from "
 				+tStage.getSource().getDB()+"."+tStage.getSource().getEntityName()+" group by "+result.get()
 				+" order by count("+result.get()+") DESC;";
@@ -91,7 +91,13 @@ public class ColumnStaticOperator extends AbstractOperator{
 		resResources.add(columnStatic);
 
 		TableDataSource tableDataSource = (TableDataSource) columnStatic.generateDataSource();
-		List<ObservableList<StringProperty>> dataList = tableDataSource.getRowList(0, 10);
+
+		List<ObservableList<StringProperty>> dataList = new WaitDialog<List<ObservableList<StringProperty>>>(new Task<List<ObservableList<StringProperty>>>() {
+			@Override
+			protected List<ObservableList<StringProperty>> call() throws Exception {
+				return tableDataSource.getRowList(0, 10);
+			}
+		}).justWait();
 		ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
 		for (int i = 0; i < dataList.size(); i++) {
 			pieChartData.add(new PieChart.Data(dataList.get(i).get(0).getValue(),
@@ -102,10 +108,10 @@ public class ColumnStaticOperator extends AbstractOperator{
 //        chart.setTitle("Imported Fruits");
 
 		Dialog<Boolean> display = new Dialog<>();
-		display.setTitle("Æµ´ÎÍ³¼ÆÍ¼");
-		display.setHeaderText("Æµ´ÎÍ³¼ÆÈçÏÂÍ¼£¡");
+		display.setTitle("é¢‘æ¬¡ç»Ÿè®¡å›¾");
+		display.setHeaderText("é¢‘æ¬¡ç»Ÿè®¡å¦‚ä¸‹å›¾ï¼");
 
-		ButtonType loginButtonType = new ButtonType("È·¶¨", ButtonData.OK_DONE);
+		ButtonType loginButtonType = new ButtonType("ç¡®å®š", ButtonData.OK_DONE);
 		display.getDialogPane().getButtonTypes().addAll(loginButtonType);
 
 		// Set the icon (must be included in the project).

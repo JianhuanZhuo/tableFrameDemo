@@ -18,13 +18,13 @@ import javafx.util.Pair;
 public class HttpUtils {
 
 	/**
-	 * ¼òµ¥ Get ²Ù×÷£¬½ö´«Èë URL ºÍ Session Cookie£¬µ±È»Äã¿ÉÒÔÔÚ URL ÖĞÌí¼Ó Get ²ÎÊı
+	 * ç®€å• Get æ“ä½œï¼Œä»…ä¼ å…¥ URL å’Œ Session Cookieï¼Œå½“ç„¶ä½ å¯ä»¥åœ¨ URL ä¸­æ·»åŠ  Get å‚æ•°
 	 *
 	 * @param url
-	 *            Get ·½·¨µÄÄ¿±ê URL
-	 * @return ¼òµ¥ Get µÄ½á¹û×Ö·û´®
+	 *            Get æ–¹æ³•çš„ç›®æ ‡ URL
+	 * @return ç®€å• Get çš„ç»“æœå­—ç¬¦ä¸²
 	 * @throws Exception
-	 *             ¼òµ¥ Get Òì³£
+	 *             ç®€å• Get å¼‚å¸¸
 	 */
 	public static String simpleGet(String url) throws Exception {
 		CloseableHttpClient httpClient = HttpClients.createDefault();

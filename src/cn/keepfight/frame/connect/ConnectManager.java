@@ -1,7 +1,7 @@
 package cn.keepfight.frame.connect;
 
 /**
- * Á¬½Ó·şÎñ¹ÜÀíÆ÷
+ * è¿æ¥æœåŠ¡ç®¡ç†å™¨
  * @author Tom
  *
  */
@@ -9,7 +9,7 @@ public class ConnectManager {
 
 	private static ConnectManager instance = new ConnectManager();
 	/**
-	 * µ¥ÀıÄ£Ê½Ö§³Ö
+	 * å•ä¾‹æ¨¡å¼æ”¯æŒ
 	 * @return
 	 */
 	public static ConnectManager getInstance() {
@@ -17,11 +17,11 @@ public class ConnectManager {
 	}
 
 	/**
-	 * »ñµÃÄ¬ÈÏÁ¬½Ó·½Ê½µÄ¿ÉÁ¬½Ó¶ÔÏó
-	 * @return ¿ÉÁ¬½Ó¶ÔÏó
+	 * è·å¾—é»˜è®¤è¿æ¥æ–¹å¼çš„å¯è¿æ¥å¯¹è±¡
+	 * @return å¯è¿æ¥å¯¹è±¡
 	 */
 	public Connectable getDefault() {
-		//@TODO ×ö³ÉÁ¬½Ó³Ø·½Ê½
+		//@TODO åšæˆè¿æ¥æ± æ–¹å¼
 		return new MemoryConnect();
 	}
 }

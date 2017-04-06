@@ -2,11 +2,11 @@ package cn.keepfight.frame.menu;
 
 public enum MenuItemType {
 
-	P_32(true, false, 32, "MenuItemViewp32.fxml"),//½ö´ø32Î»Í¼Æ¬
-	TP_16(true, true, 16, "MenuItemViewtp16.fxml"),//´øÍ¼Æ¬ÎÄ×ÖµÄ
-	TP_32(true, true, 32, "MenuItemViewtp32.fxml"),//´øÍ¼Æ¬ÎÄ×ÖµÄ
-	TP_32_TOP(true, true, 32, "MenuItemViewtp32-top.fxml"),//´øÍ¼Æ¬ÎÄ×ÖµÄ
-	UNKNOW(false, false, -1, "MenuItemViewp32.fxml");//Î´ÖªÀàĞÍ
+	P_32(true, false, 32, "MenuItemViewp32.fxml"),//ä»…å¸¦32ä½å›¾ç‰‡
+	TP_16(true, true, 16, "MenuItemViewtp16.fxml"),//å¸¦å›¾ç‰‡æ–‡å­—çš„
+	TP_32(true, true, 32, "MenuItemViewtp32.fxml"),//å¸¦å›¾ç‰‡æ–‡å­—çš„
+	TP_32_TOP(true, true, 32, "MenuItemViewtp32-top.fxml"),//å¸¦å›¾ç‰‡æ–‡å­—çš„
+	UNKNOW(false, false, -1, "MenuItemViewp32.fxml");//æœªçŸ¥ç±»å‹
 
 	private boolean hasPicture;
 	private boolean hasText;
@@ -22,24 +22,24 @@ public enum MenuItemType {
 
 
 	/**
-	 * ¸ÃÀàĞÍÊÇ·ñ´øÍ¼Æ¬
-	 * @return ´øÍ¼Æ¬·µ»Øtrue£¬·ñÔò·µ»Øfalse¡£
+	 * è¯¥ç±»å‹æ˜¯å¦å¸¦å›¾ç‰‡
+	 * @return å¸¦å›¾ç‰‡è¿”å›trueï¼Œå¦åˆ™è¿”å›falseã€‚
 	 */
 	public boolean hasPicture() {
 		return hasPicture;
 	}
 
 	/**
-	 * ¸ÃÀàĞÍÊÇ·ñ´øÎÄ×Ö
-	 * @return ´øÎÄ×Ö·µ»Øtrue£¬·ñÔò·µ»Øfalse¡£
+	 * è¯¥ç±»å‹æ˜¯å¦å¸¦æ–‡å­—
+	 * @return å¸¦æ–‡å­—è¿”å›trueï¼Œå¦åˆ™è¿”å›falseã€‚
 	 */
 	public boolean hasText() {
 		return hasText;
 	}
 
 	/**
-	 * ¸ÃÀàĞÍÍ¼Æ¬µÄ³ß´ç´óĞ¡
-	 * @return Èô¸ÃÀàĞÍ´æÔÚÍ¼Æ¬Ôò·µ»Ø¸ÃÀàĞÍÍ¼Æ¬µÄ³ß´ç´óĞ¡£¬·ñÔò·µ»Ø-1¡£
+	 * è¯¥ç±»å‹å›¾ç‰‡çš„å°ºå¯¸å¤§å°
+	 * @return è‹¥è¯¥ç±»å‹å­˜åœ¨å›¾ç‰‡åˆ™è¿”å›è¯¥ç±»å‹å›¾ç‰‡çš„å°ºå¯¸å¤§å°ï¼Œå¦åˆ™è¿”å›-1ã€‚
 	 */
 	public int picSize() {
 		return (hasPicture()?this.picSize:-1);
@@ -47,8 +47,8 @@ public enum MenuItemType {
 
 
 	/**
-	 * »ñµÃÊÓÍ¼URL
-	 * @return ¸ÃÀàĞÍµÄÊÓÍ¼URL
+	 * è·å¾—è§†å›¾URL
+	 * @return è¯¥ç±»å‹çš„è§†å›¾URL
 	 */
 	public String getViewURL() {
 		return viewURL;

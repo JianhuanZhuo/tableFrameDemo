@@ -17,13 +17,13 @@ import cn.keepfight.frame.table.operator.QueryOperator;
 public class TableMenuViewController extends MenuViewController{
 
 	/**
-	 * ÓÉ×´Ì¬µ½Ä³×é¼ş£¨²Ëµ¥Ïî£©ÊÇ·ñ¿ÉÓÃµÄÓ³Éä£¬ÕâÀï½ö½ö×÷Ä³×é¼ş£¨²Ëµ¥Ïî£©ÊÇ·ñ¿ÉÓÃ£¬¶ø²»×öÊÂ¼şµÄ´¦ÀíÓëÏû·Ñ
+	 * ç”±çŠ¶æ€åˆ°æŸç»„ä»¶ï¼ˆèœå•é¡¹ï¼‰æ˜¯å¦å¯ç”¨çš„æ˜ å°„ï¼Œè¿™é‡Œä»…ä»…ä½œæŸç»„ä»¶ï¼ˆèœå•é¡¹ï¼‰æ˜¯å¦å¯ç”¨ï¼Œè€Œä¸åšäº‹ä»¶çš„å¤„ç†ä¸æ¶ˆè´¹
 	 */
 	protected Map<TableSelect.TableSelectState, List<MenuItemController>> stateMap = new HashMap<TableSelect.TableSelectState, List<MenuItemController>>();
 
 	/**
-	 * ½«×´Ì¬Ó³ÉäÖÁ²Ëµ¥Ïî£¬±íÊ¾Ä³×´Ì¬ÏÂ²Ëµ¥Ïî¿ÉÓÃ¡£Ò²¾ÍÊÇµ¥¸ö²Ëµ¥Ïî¿ÉÒÔ±»¶à¸ö×´Ì¬Ó³Éä¡£
-	 * @param controller ¿ØÖÆÆ÷
+	 * å°†çŠ¶æ€æ˜ å°„è‡³èœå•é¡¹ï¼Œè¡¨ç¤ºæŸçŠ¶æ€ä¸‹èœå•é¡¹å¯ç”¨ã€‚ä¹Ÿå°±æ˜¯å•ä¸ªèœå•é¡¹å¯ä»¥è¢«å¤šä¸ªçŠ¶æ€æ˜ å°„ã€‚
+	 * @param controller æ§åˆ¶å™¨
 	 */
 	protected void mapState(MenuItemController controller) {
 	}

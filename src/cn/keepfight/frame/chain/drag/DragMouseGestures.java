@@ -6,13 +6,13 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
 /**
- * Êó±ê¿É×§¿ÍÌåÍÏ¶¯ÊµÏÖÀà.
- * ¸ÃÀàĞ´µÄ±È½Ï¹ı³Ì»¯£¬ÓûĞŞ¸Ä½¨ÒéÖÊÑ¯Ç°ÈÎ
+ * é¼ æ ‡å¯æ‹½å®¢ä½“æ‹–åŠ¨å®ç°ç±».
+ * è¯¥ç±»å†™çš„æ¯”è¾ƒè¿‡ç¨‹åŒ–ï¼Œæ¬²ä¿®æ”¹å»ºè®®è´¨è¯¢å‰ä»»
  */
 public class DragMouseGestures {
 
 	/**
-	 * Ñ¡ÔñÈº
+	 * é€‰æ‹©ç¾¤
 	 */
     SelectionManager selectionModel;
 
@@ -21,7 +21,7 @@ public class DragMouseGestures {
 	}
 
     /**
-     * ÍÏ×§×ø±ê¸¨ÖúÀà£¬Ìá¹©¿É±ä»¯µÄÒì²½·ÃÎÊ
+     * æ‹–æ‹½åæ ‡è¾…åŠ©ç±»ï¼Œæä¾›å¯å˜åŒ–çš„å¼‚æ­¥è®¿é—®
      */
     final DragContext dragContext = new DragContext();
     private class DragContext {
@@ -30,13 +30,13 @@ public class DragMouseGestures {
     }
 
     /**
-     * ·ÀÖ¹¶àµã»÷³åÍ»±êÖ¾Î»
+     * é˜²æ­¢å¤šç‚¹å‡»å†²çªæ ‡å¿—ä½
      */
     private boolean enabled = false;
 
     /**
-     * ×¢²áÖ¸¶¨¿ÍÌå
-     * @param node ÓûÊµÏÖÍÏ×§µÄ¿ÍÌåNode
+     * æ³¨å†ŒæŒ‡å®šå®¢ä½“
+     * @param node æ¬²å®ç°æ‹–æ‹½çš„å®¢ä½“Node
      */
     public void makeDraggable(final Node node) {
         node.setOnMousePressed(onMousePressedEventHandler);
@@ -46,7 +46,7 @@ public class DragMouseGestures {
     }
 
     /**
-     * Õâ¸öÊÇµã»÷ÊÂ¼ş£¬Ò²¾ÍÊÇµãÒ»ÏÂ
+     * è¿™ä¸ªæ˜¯ç‚¹å‡»äº‹ä»¶ï¼Œä¹Ÿå°±æ˜¯ç‚¹ä¸€ä¸‹
      */
     EventHandler<MouseEvent> onMousePressedEventHandler = new EventHandler<MouseEvent>() {
 
@@ -63,17 +63,17 @@ public class DragMouseGestures {
 
 
             // don't do anything if the user is in the process of adding to the selection model
-            // ±¾Éí¾ÍÊÂÑ¡ÔñµÄÒâË¼
+            // æœ¬èº«å°±äº‹é€‰æ‹©çš„æ„æ€
         	if( event.isControlDown() || event.isShiftDown())
                 return;
 
-            // È¡³öÔ´¶ÔÏó
+            // å–å‡ºæºå¯¹è±¡
             Node node = (Node) event.getSource();
 
             dragContext.x = node.getTranslateX() - event.getSceneX();
             dragContext.y = node.getTranslateY() - event.getSceneY();
 
-            // ÔÚÒÑ¾­ÓĞÑ¡ÔñÍÏ¶¯¶ÔÏóµÄÊ±ºòµ¥»÷£¬±íÊ¾·ÅÆúÖ®Ç°µÄÖØĞÂÑ¡Ôñ
+            // åœ¨å·²ç»æœ‰é€‰æ‹©æ‹–åŠ¨å¯¹è±¡çš„æ—¶å€™å•å‡»ï¼Œè¡¨ç¤ºæ”¾å¼ƒä¹‹å‰çš„é‡æ–°é€‰æ‹©
             if( !selectionModel.contains(node)) {
                 selectionModel.clear();
                 selectionModel.add( node);
@@ -81,10 +81,10 @@ public class DragMouseGestures {
 
             // flag that the mouse released handler should consume the event,
             // so it won't bubble up to the pane which has a rubberband selection mouse released handler
-            // ±êÖ¾Êó±êÊÍ·ÅµÄÊ±ºòÓ¦Ïû·ÑÊÂ¼ş£¬ÒÔÖÁÓÚ²»»áÕÇµ½paneµÄ·½¿òÊó±êÊÍ·ÅÊÂ¼ş£¬
+            // æ ‡å¿—é¼ æ ‡é‡Šæ”¾çš„æ—¶å€™åº”æ¶ˆè´¹äº‹ä»¶ï¼Œä»¥è‡³äºä¸ä¼šæ¶¨åˆ°paneçš„æ–¹æ¡†é¼ æ ‡é‡Šæ”¾äº‹ä»¶ï¼Œ
             enabled = true;
 
-            // ±£»¤·½¿òÑ¡ÔñÊÂ¼ş
+            // ä¿æŠ¤æ–¹æ¡†é€‰æ‹©äº‹ä»¶
             event.consume();
         }
     };
@@ -101,7 +101,7 @@ public class DragMouseGestures {
                 return;
             }
 
-            // ÒÆ¶¯ÒÑÑ¡ÔñµÄ¶ÔÏó
+            // ç§»åŠ¨å·²é€‰æ‹©çš„å¯¹è±¡
             for( Node node: selectionModel.selection) {
                 node.setTranslateX( dragContext.x + event.getSceneX());
                 node.setTranslateY( dragContext.y + event.getSceneY());
@@ -133,10 +133,10 @@ public class DragMouseGestures {
         		return;
 			}
 
-//        	System.out.println("ÊÍ·ÅÏìÓ¦");
+//        	System.out.println("é‡Šæ”¾å“åº”");
             // prevent rubberband selection handler
             if(enabled) {
-//            	System.out.println("ÊÍ·ÅÏìÓ¦2");
+//            	System.out.println("é‡Šæ”¾å“åº”2");
                 // set node's layout position to current position,remove translate coordinates
                 for( Node node: selectionModel.selection) {
                     fixPosition(node);
@@ -150,8 +150,8 @@ public class DragMouseGestures {
     };
 
     /**
-     * ÖØ¶¨Î»Ö¸¶¨¿ÍÌåNode
-     * @param node Ö¸¶¨¿ÍÌåNode
+     * é‡å®šä½æŒ‡å®šå®¢ä½“Node
+     * @param node æŒ‡å®šå®¢ä½“Node
      */
     private void fixPosition(Node node) {
 

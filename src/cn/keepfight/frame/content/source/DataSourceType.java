@@ -1,35 +1,35 @@
 package cn.keepfight.frame.content.source;
 
 /**
- * Êı¾İÔ´ÀàĞÍÃ¶¾Ù£¬Õâ¸öÀàĞÍÔÚÏÖÔÚ¿´À´Ò²ÊÇÃæ°åÀàĞÍ
+ * æ•°æ®æºç±»å‹æšä¸¾ï¼Œè¿™ä¸ªç±»å‹åœ¨ç°åœ¨çœ‹æ¥ä¹Ÿæ˜¯é¢æ¿ç±»å‹
  * @author Tom
  *
  */
 public enum DataSourceType {
 
 	/**
-	 *±í¸ñ»¯Êı¾İÀàĞÍ
+	 *è¡¨æ ¼åŒ–æ•°æ®ç±»å‹
 	 */
-	TABLE("±í¸ñ", 	new ViewPool("TablePane.fxml"), 	"table.png"),
+	TABLE("è¡¨æ ¼", 	new ViewPool("TablePane.fxml"), 	"table.png"),
 
 	/**
-	 * Í¼Æ¬Êı¾İÀàĞÍ
+	 * å›¾ç‰‡æ•°æ®ç±»å‹
 	 */
-	PICTURE("Í¼Æ¬", 	new ViewPool("PicturePane.fxml"), 	"picture.png"),
-	VIDEO("ÊÓÆµ", 	new ViewPool(), 					"video.png"),     // ÊÓÆµÊı¾İÀàĞÍ
-	TEXT("ÎÄ±¾",  	new ViewPool("TextPane.fxml"),	 	"text.png"),      // TEXTÎÄ±¾ÎÄ¼şÊı¾İÀàĞÍ
-	FILE("ÎÄ¼ş", 	new ViewPool(), 					"file.png"),      // ÎÄ¼şÊı¾İÀàĞÍ
-	FILES("ÎÄ¼şÈº", 	new ViewPool("FilesPane.fxml"), 	"files.png"),     // ÎÄ¼şÈºÊı¾İÀàĞÍ
-	URL("Á´½Ó", 		new ViewPool(), 					"URL.png"),       // URLÊı¾İÀàĞÍ
-	DEVICE("Éè±¸", 	new ViewPool(), 					"device.png"),    // Éè±¸Êı¾İÀàĞÍ
-	CODE("´úÂë", 	new ViewPool(), 					"code.png"),      // ´úÂëÊı¾İÀàĞÍ
-	OPERATOR("Ëã×Ó", new ViewPool("OperatorPane.fxml"), 	"operator.png"),  // Ëã×ÓÊı¾İÀàĞÍ£¬Ò²¾ÍÊÇ´æÔÚ°ÑËã×Óµ±×÷ÁËÒ»ÖÖÊı¾İÀàĞÍµÄ¿ÉÄÜ£¬ÕâÖÖ¿ÉÄÜÊÇÎª²é¿´Ä³Ëã×Ó¶ø×¼±¸µÄ¡£
-	CHAIN("Ëã×ÓÁ´",	new ViewPool("ChainPane.fxml"), 	"operatorchain.png"),// Ëã×ÓÁ´Êı¾İÀàĞÍ£¬ÕâÊÇÎªËã×ÓÁ´Ãæ°å¶ø×¼±¸µÄ¡£
-	OTHER("ÆäËû", 	new ViewPool(), 					"other.png");      // ÆäËûÊı¾İÀàĞÍ
+	PICTURE("å›¾ç‰‡", 	new ViewPool("PicturePane.fxml"), 	"picture.png"),
+	VIDEO("è§†é¢‘", 	new ViewPool(), 					"video.png"),     // è§†é¢‘æ•°æ®ç±»å‹
+	TEXT("æ–‡æœ¬",  	new ViewPool("TextPane.fxml"),	 	"text.png"),      // TEXTæ–‡æœ¬æ–‡ä»¶æ•°æ®ç±»å‹
+	FILE("æ–‡ä»¶", 	new ViewPool(), 					"file.png"),      // æ–‡ä»¶æ•°æ®ç±»å‹
+	FILES("æ–‡ä»¶ç¾¤", 	new ViewPool("FilesPane.fxml"), 	"files.png"),     // æ–‡ä»¶ç¾¤æ•°æ®ç±»å‹
+	URL("é“¾æ¥", 		new ViewPool(), 					"URL.png"),       // URLæ•°æ®ç±»å‹
+	DEVICE("è®¾å¤‡", 	new ViewPool(), 					"device.png"),    // è®¾å¤‡æ•°æ®ç±»å‹
+	CODE("ä»£ç ", 	new ViewPool(), 					"code.png"),      // ä»£ç æ•°æ®ç±»å‹
+	OPERATOR("ç®—å­", new ViewPool("OperatorPane.fxml"), 	"operator.png"),  // ç®—å­æ•°æ®ç±»å‹ï¼Œä¹Ÿå°±æ˜¯å­˜åœ¨æŠŠç®—å­å½“ä½œäº†ä¸€ç§æ•°æ®ç±»å‹çš„å¯èƒ½ï¼Œè¿™ç§å¯èƒ½æ˜¯ä¸ºæŸ¥çœ‹æŸç®—å­è€Œå‡†å¤‡çš„ã€‚
+	CHAIN("ç®—å­é“¾",	new ViewPool("ChainPane.fxml"), 	"operatorchain.png"),// ç®—å­é“¾æ•°æ®ç±»å‹ï¼Œè¿™æ˜¯ä¸ºç®—å­é“¾é¢æ¿è€Œå‡†å¤‡çš„ã€‚
+	OTHER("å…¶ä»–", 	new ViewPool(), 					"other.png");      // å…¶ä»–æ•°æ®ç±»å‹
 
 	private String typeName_cn;
-	private ViewPool contentPool;//ÄÚÈİµÄÊÓÍ¼³Ø
-	private String iconURL;//Í¼±êURL
+	private ViewPool contentPool;//å†…å®¹çš„è§†å›¾æ± 
+	private String iconURL;//å›¾æ ‡URL
 
 
 	private DataSourceType(String typeName_cn, ViewPool contentPool, String iconURL) {

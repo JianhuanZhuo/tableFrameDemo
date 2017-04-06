@@ -4,7 +4,7 @@ import cn.keepfight.utils.ImageLoadUtil;
 import javafx.scene.image.ImageView;
 
 /**
- * ×ÊÔ´½Úµã
+ * èµ„æºèŠ‚ç‚¹
  * @author Tom
  *
  */
@@ -15,7 +15,7 @@ public class ResourceElem extends Element{
 
 
 	public ResourceElem(Resource resource) {
-		//@TODO ÉèÖÃÔÚÄÇ¸öFXMLµÄ
+		//@TODO è®¾ç½®åœ¨é‚£ä¸ªFXMLçš„
 	    view = new ImageView(ImageLoadUtil.load(resource.getIconURL()));
 	    view.setFitWidth(32);
 	    view.setFitHeight(32);

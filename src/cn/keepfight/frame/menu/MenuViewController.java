@@ -11,11 +11,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
 /**
- * ²Ëµ¥ÊÓÍ¼¿ØÖÆÆ÷£¬<br/>
- * ÓÉÓÚËüÊÇ³éÏóÀà£¬ËùÒÔÎŞ·¨Ö±½Ó×÷Îª
+ * èœå•è§†å›¾æ§åˆ¶å™¨ï¼Œ<br/>
+ * ç”±äºå®ƒæ˜¯æŠ½è±¡ç±»ï¼Œæ‰€ä»¥æ— æ³•ç›´æ¥ä½œä¸º
  * @author Tom
  *
- * @param <T> T²ÎÊı±íÊ¾²Ëµ¥ÊÓÍ¼×´Ì¬£¬ĞèÒªÔÚÆäËû×Ó²Ëµ¥ÊÓÍ¼¿ØÖÆÆ÷ÖĞµÃµ½¾ßÌåÊµÏÖ
+ * @param <T> Tå‚æ•°è¡¨ç¤ºèœå•è§†å›¾çŠ¶æ€ï¼Œéœ€è¦åœ¨å…¶ä»–å­èœå•è§†å›¾æ§åˆ¶å™¨ä¸­å¾—åˆ°å…·ä½“å®ç°
  */
 public abstract class MenuViewController{
 
@@ -26,12 +26,12 @@ public abstract class MenuViewController{
 	private TStage tStage;
 
 	/**
-	 * ÎªËã×ÓÌí¼Óµ½Ö¸¶¨Ë÷ÒıµÄ²Ëµ¥×éÖĞ
-	 * ÖØÔØ·½·¨Ä¬ÈÏÊ¹ÓÃ {@link cn.keepfight.frame.menu.MenuItemType.TP_32_TOP} ×÷ÎªÍ¼±êÀàĞÍ¡£
-	 * @param operatorModel ÓûÌí¼Ó²Ëµ¥ÏîµÄËã×Ó¡£
-	 * @param groupIndex ×éË÷Òı£¬ÓÉ0¿ªÊ¼¼ÆÊı£¬×î´ó²»³¬¹ıµ±Ç°¿ÉÓÃ×é
-	 * @param type Ö¸¶¨´´½¨²Ëµ¥ÏîËùÊ¹ÓÃµÄÊÓÍ¼Ä£°å
-	 * @return ²Ëµ¥Ïî¶ÔÓ¦µÄ¿ØÖÆÆ÷£¬³ö´í·µ»Ønull
+	 * ä¸ºç®—å­æ·»åŠ åˆ°æŒ‡å®šç´¢å¼•çš„èœå•ç»„ä¸­
+	 * é‡è½½æ–¹æ³•é»˜è®¤ä½¿ç”¨ {@link cn.keepfight.frame.menu.MenuItemType.TP_32_TOP} ä½œä¸ºå›¾æ ‡ç±»å‹ã€‚
+	 * @param operatorModel æ¬²æ·»åŠ èœå•é¡¹çš„ç®—å­ã€‚
+	 * @param groupIndex ç»„ç´¢å¼•ï¼Œç”±0å¼€å§‹è®¡æ•°ï¼Œæœ€å¤§ä¸è¶…è¿‡å½“å‰å¯ç”¨ç»„
+	 * @param type æŒ‡å®šåˆ›å»ºèœå•é¡¹æ‰€ä½¿ç”¨çš„è§†å›¾æ¨¡æ¿
+	 * @return èœå•é¡¹å¯¹åº”çš„æ§åˆ¶å™¨ï¼Œå‡ºé”™è¿”å›null
 	 */
 	public MenuItemController createMenuItem(int groupIndex, MenuItemType type) {
 		if (groupIndex<0 || groupIndex >= tabPane.getTabs().size()) {
@@ -46,10 +46,10 @@ public abstract class MenuViewController{
 
 			MenuItemController controller = loader.getController();
 
-			// ÉèÖÃÀàĞÍºÍËã×Ó
+			// è®¾ç½®ç±»å‹å’Œç®—å­
 			controller.setMenuItemType(type);
 
-			// ¹ØÁªÃæ°å
+			// å…³è”é¢æ¿
 			controller.attachTStage(tStage);
 
 			return controller;
@@ -74,7 +74,7 @@ public abstract class MenuViewController{
 	public abstract void setTStage(TStage tStage);
 
 	/**
-	 * Ìí¼Ó²Ëµ¥Ïî£¬½«ÔÚ³õÊ¼»¯Ê±±»µ÷ÓÃ
+	 * æ·»åŠ èœå•é¡¹ï¼Œå°†åœ¨åˆå§‹åŒ–æ—¶è¢«è°ƒç”¨
 	 */
 	public abstract void addMenuItem();
 }

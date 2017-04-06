@@ -5,21 +5,21 @@ import cn.keepfight.frame.content.source.InvalidSourceException;
 import javafx.scene.Node;
 
 /**
- * ÄÚÈİ¼ÓÔØÆ÷³éÏóÀà.
+ * å†…å®¹åŠ è½½å™¨æŠ½è±¡ç±».
  * @author Tom
- * @param <T> Êı¾İÔ´·ºĞÍ
+ * @param <T> æ•°æ®æºæ³›å‹
  *
  */
 public abstract class AbstractContentLoader<T extends DataSource, K extends Node>{
 
 
 	/**
-	 * Êı¾İÔ´¶ÔÏó
+	 * æ•°æ®æºå¯¹è±¡
 	 */
 	protected T source;
 
 	/**
-	 * Êı¾İ¼ÓÔØ¶ÔÏó
+	 * æ•°æ®åŠ è½½å¯¹è±¡
 	 */
 	protected K node;
 
@@ -29,9 +29,9 @@ public abstract class AbstractContentLoader<T extends DataSource, K extends Node
 	}
 
 	/**
-	 * ÉèÖÃÊı¾İÔ´£¬»á¶ÔÊı¾İÔ´½øĞĞÒ»´Î¼ì²é£¬µ«²»×Ô¶¯¼ÓÔØ
-	 * @param source ÓûÉèÖÃµÄÊı¾İÔ´
-	 * @throws InvalidSourceException Êı¾İÔ´ÎŞĞ§Òì³£
+	 * è®¾ç½®æ•°æ®æºï¼Œä¼šå¯¹æ•°æ®æºè¿›è¡Œä¸€æ¬¡æ£€æŸ¥ï¼Œä½†ä¸è‡ªåŠ¨åŠ è½½
+	 * @param source æ¬²è®¾ç½®çš„æ•°æ®æº
+	 * @throws InvalidSourceException æ•°æ®æºæ— æ•ˆå¼‚å¸¸
 	 */
 	public void setDataSource(T source) throws InvalidSourceException{
 		source.checkValid();
@@ -42,12 +42,12 @@ public abstract class AbstractContentLoader<T extends DataSource, K extends Node
 	public T getSource(){return source;}
 
 	/**
-	 * ¶ÔÄÚÈİ½øĞĞÖØĞÂ¼ÓÔØ¡£
+	 * å¯¹å†…å®¹è¿›è¡Œé‡æ–°åŠ è½½ã€‚
 	 */
 	public abstract void reload();
 
 	/**
-	 * É¾³ıÄÚÈİ¼ÓÔØÆ÷µÄÊı¾İÔ´²¢Çå¿ÕÃæ°åÄÚÈİ¡£
+	 * åˆ é™¤å†…å®¹åŠ è½½å™¨çš„æ•°æ®æºå¹¶æ¸…ç©ºé¢æ¿å†…å®¹ã€‚
 	 */
 	public abstract void clear();
 }

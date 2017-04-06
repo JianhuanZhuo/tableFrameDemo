@@ -6,7 +6,7 @@ import java.util.List;
 import cn.keepfight.frame.chain.Resource;
 
 /**
- * Ëã×ÓÃüÁî°ü×°Àà
+ * ç®—å­å‘½ä»¤åŒ…è£…ç±»
  * @author Tom
  *
  */

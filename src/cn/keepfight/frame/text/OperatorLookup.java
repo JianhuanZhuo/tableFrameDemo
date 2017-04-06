@@ -8,7 +8,7 @@ import cn.keepfight.frame.menu.ActionResult;
 import cn.keepfight.operator.AbstractOperator;
 
 /**
- * ÎÄ±¾²éÕÒËã×Ó
+ * æ–‡æœ¬æŸ¥æ‰¾ç®—å­
  * @author Tom
  *
  */
@@ -21,9 +21,9 @@ public class OperatorLookup extends AbstractOperator{
 
 	private final int id = 222;
 	private final String name = "lookup";
-	private final String label = "²éÕÒ";
+	private final String label = "æŸ¥æ‰¾";
 	private final String icon = "lookup.png";
-	private final String tips = "²éÕÒÖ¸¶¨µÄ×Ö·û´®";
+	private final String tips = "æŸ¥æ‰¾æŒ‡å®šçš„å­—ç¬¦ä¸²";
 	private final String description = "lookup";
 
 	@Override public int getId() { return id; }
@@ -35,7 +35,7 @@ public class OperatorLookup extends AbstractOperator{
 
 	@Override
 	public ActionResult onAction() {
-		String target = "ÌìĞ«×ù";
+		String target = "å¤©èåº§";
 		int index = tStage.getPaneVC().textArea.getText().indexOf(target);
 		tStage.getPaneVC().textArea.selectRange(index, index+target.length());
 		return null;

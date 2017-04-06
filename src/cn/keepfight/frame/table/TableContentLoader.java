@@ -20,7 +20,7 @@ import javafx.scene.control.TableView;
 import javafx.util.Callback;
 
 /**
- * ±í¸ñÄÚÈİ¼ÓÔØÆ÷Àà. µ¥¸ö±í Frame »áÓĞµ¥¸ö¼ÓÔØÆ÷£¬
+ * è¡¨æ ¼å†…å®¹åŠ è½½å™¨ç±». å•ä¸ªè¡¨ Frame ä¼šæœ‰å•ä¸ªåŠ è½½å™¨ï¼Œ
  *
  * @author Tom
  *
@@ -29,16 +29,16 @@ public class TableContentLoader
 		extends AbstractContentLoader<TableDataSource, TableView<ObservableList<StringProperty>>> {
 
 	/**
-	 * Ä¬ÈÏÃ¿Ò³ÏÔÊ¾¼ÍÂ¼ĞĞÊı£¬¿ÉÒÔÍ¨¹ıµ÷ÓÃº¯Êı{@link #setPageLimit(int)}}½øĞĞ¸Ä±ä¡£
+	 * é»˜è®¤æ¯é¡µæ˜¾ç¤ºçºªå½•è¡Œæ•°ï¼Œå¯ä»¥é€šè¿‡è°ƒç”¨å‡½æ•°{@link #setPageLimit(int)}}è¿›è¡Œæ”¹å˜ã€‚
 	 *
-	 * @TODO ÕâÀïĞèÒª×ö³ÉÅäÖÃ²ÎÊı
+	 * @TODO è¿™é‡Œéœ€è¦åšæˆé…ç½®å‚æ•°
 	 */
 	private int pageLimit = 10;
 
 	private int pageNow = 1;
 
 	/**
-	 * ÁĞÍ·µã»÷ÊÂ¼şÏìÓ¦
+	 * åˆ—å¤´ç‚¹å‡»äº‹ä»¶å“åº”
 	 */
 	private EventHandler<? super MouseEvent> handler;
 
@@ -60,10 +60,10 @@ public class TableContentLoader
 	}
 
 	/**
-	 * ÉèÖÃÃ¿Ò³ÏÔÊ¾ÌõÊı
+	 * è®¾ç½®æ¯é¡µæ˜¾ç¤ºæ¡æ•°
 	 *
 	 * @param pageLimit
-	 *            ÓûÉèÖÃµÄÏÔÊ¾Êı
+	 *            æ¬²è®¾ç½®çš„æ˜¾ç¤ºæ•°
 	 */
 	public void setPageLimit(int pageLimit) {
 		this.pageLimit = pageLimit;
@@ -75,7 +75,7 @@ public class TableContentLoader
 	}
 
 	/**
-	 * Çå¿ÕÔ­ÓĞ±í¸ñÊı¾İ²¢ÖØ¼ÓÔØÊı¾İ¡£
+	 * æ¸…ç©ºåŸæœ‰è¡¨æ ¼æ•°æ®å¹¶é‡åŠ è½½æ•°æ®ã€‚
 	 */
 	@Override
 	public void reload() {
@@ -107,7 +107,7 @@ public class TableContentLoader
 			title = columnTitle;
 		}
 
-		// ÉèÖÃÎª²»¿ÉÅÅĞò
+		// è®¾ç½®ä¸ºä¸å¯æ’åº
 		column.setSortable(false);
 
 		column.setText(title);
@@ -126,7 +126,7 @@ public class TableContentLoader
 				});
 		node.getColumns().add(column);
 
-		// ¸ü»»±íÍ·£¬²¢Ìí¼ÓÊÂ¼ş¼àÌı
+		// æ›´æ¢è¡¨å¤´ï¼Œå¹¶æ·»åŠ äº‹ä»¶ç›‘å¬
 		VBox vBox = new VBox(new Label(columnTitle));
 		vBox.setAlignment(Pos.CENTER);
 		vBox.getProperties().put("column_object", columnIndex);

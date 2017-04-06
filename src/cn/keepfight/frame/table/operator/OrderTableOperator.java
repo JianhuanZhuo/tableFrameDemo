@@ -61,7 +61,7 @@ public class OrderTableOperator extends AbstractOperator{
 
 	@Override
 	public String getLabel() {
-		return "ÅÅĞò";
+		return "æ’åº";
 	}
 
 	@Override
@@ -71,12 +71,12 @@ public class OrderTableOperator extends AbstractOperator{
 
 	@Override
 	public String getTips() {
-		return "Ê¹ÓÃÖ¸¶¨µ¥ĞĞ»ò¶àĞĞ½øĞĞÅÅĞò";
+		return "ä½¿ç”¨æŒ‡å®šå•è¡Œæˆ–å¤šè¡Œè¿›è¡Œæ’åº";
 	}
 
 	@Override
 	public String getDescription() {
-		return "ÔİÊ±ÎŞËã×Ó½âÊÍ";
+		return "æš‚æ—¶æ— ç®—å­è§£é‡Š";
 	}
 
 	@Override
@@ -123,7 +123,7 @@ public class OrderTableOperator extends AbstractOperator{
 	}
 
 	/**
-	 * Ê¹ÓÃ½¨ÔìÕßÄ£Ê½
+	 * ä½¿ç”¨å»ºé€ è€…æ¨¡å¼
 	 * @author Tom
 	 *
 	 */
@@ -169,9 +169,10 @@ public class OrderTableOperator extends AbstractOperator{
 			}
 			if (!orderField.isEmpty()) {
 				StringJoiner strJoiner = new StringJoiner(",");
+
 				orderField.stream().filter(str->(str!=null&&str.trim().length()!=0))
-				.peek(s->{System.out.println("xxx:"+s);})
 				.forEach(str->strJoiner.add(str));
+
 				sql+= " order by "+strJoiner.toString()+" "+sc.getStr();
 			}
 			if (limit) {
@@ -183,14 +184,14 @@ public class OrderTableOperator extends AbstractOperator{
 		public String[] generateParams() {
 			List<String> res = new ArrayList<>();
 			if (!selectField.isEmpty()) {
-				selectField.stream().map(s->"ÏÔÊ¾×Ö¶Î-"+s).forEach(e->res.add(e));
+				selectField.stream().map(s->"æ˜¾ç¤ºå­—æ®µ-"+s).forEach(e->res.add(e));
 			}
 			if (!orderField.isEmpty()) {
-				orderField.stream().map(s->"ÅÅĞò×Ö¶Î-"+s).forEach(e->res.add(e));
+				orderField.stream().map(s->"æ’åºå­—æ®µ-"+s).forEach(e->res.add(e));
 			}
 			if (limit) {
-				res.add("ÆğÊ¼ÅÅÃû-"+offset);
-				res.add("¼ÆÊı×ÜÊı-"+count);
+				res.add("èµ·å§‹æ’å-"+offset);
+				res.add("è®¡æ•°æ€»æ•°-"+count);
 			}
 			return res.toArray(new String[res.size()]);
 		}
@@ -199,15 +200,15 @@ public class OrderTableOperator extends AbstractOperator{
 	private SelectPackage showDialog(List<String> allColumns, List<String> selectColumns){
 		// Create the custom dialog.
 		Dialog<SelectPackage> dialog = new Dialog<>();
-		dialog.setTitle("Ñ¡ÔñÅÅĞò·½Ê½");
-		dialog.setHeaderText("ÇëÑ¡ÔñÅÅĞò·½Ê½£¬ÏµÍ³½«»á¸ù¾İÄúÑ¡ÔñµÄÅÅĞò×Ö¶ÎµÄÓÅÏÈË³Ğò½øĞĞÅÅĞò");
+		dialog.setTitle("é€‰æ‹©æ’åºæ–¹å¼");
+		dialog.setHeaderText("è¯·é€‰æ‹©æ’åºæ–¹å¼ï¼Œç³»ç»Ÿå°†ä¼šæ ¹æ®æ‚¨é€‰æ‹©çš„æ’åºå­—æ®µçš„ä¼˜å…ˆé¡ºåºè¿›è¡Œæ’åº");
 
 		// Set the icon (must be included in the project).
 		dialog.setGraphic(new ImageView(ImageLoadUtil.load(getIcon(), ImageLoadUtil.IMG_SIZE_64)));
 
 		// Set the button types.
-		ButtonType loginButtonOK = new ButtonType("È·¶¨", ButtonData.OK_DONE);
-		ButtonType buttonTypeCancel = new ButtonType("È¡Ïû", ButtonData.CANCEL_CLOSE);
+		ButtonType loginButtonOK = new ButtonType("ç¡®å®š", ButtonData.OK_DONE);
+		ButtonType buttonTypeCancel = new ButtonType("å–æ¶ˆ", ButtonData.CANCEL_CLOSE);
 
 		dialog.getDialogPane().getButtonTypes().addAll(loginButtonOK, buttonTypeCancel);
 
@@ -224,10 +225,10 @@ public class OrderTableOperator extends AbstractOperator{
 		ObservableList<String> options =
 			    FXCollections.observableArrayList(allColumns);
 		VBox cont = new VBox(10);
-		ComboBox<String> order = new ComboBox<>(FXCollections.observableArrayList(Arrays.asList("ÉıĞò", "½µĞò")));
+		ComboBox<String> order = new ComboBox<>(FXCollections.observableArrayList(Arrays.asList("å‡åº", "é™åº")));
 		order.getSelectionModel().select(0);
-		CheckBox onlySelectedFieldBox = new CheckBox("½öÏÔÊ¾Ö¸¶¨×Ö¶Î");
-		Button addNewSelectBtn = new Button("Ìí¼ÓÏÔÊ¾×Ö¶Î");
+		CheckBox onlySelectedFieldBox = new CheckBox("ä»…æ˜¾ç¤ºæŒ‡å®šå­—æ®µ");
+		Button addNewSelectBtn = new Button("æ·»åŠ æ˜¾ç¤ºå­—æ®µ");
 
 		VBox selectVisVBox = new VBox(10);
 		for (String c : allColumns) {
@@ -247,7 +248,7 @@ public class OrderTableOperator extends AbstractOperator{
 		});
 
 		VBox viField = new VBox(new Separator(), new HBox(addNewSelectBtn, selectVisVBox));
-		HBox functionHBox = new HBox(8, new Label("Ö¸¶¨½á¹ûÅÅĞò·½Ê½£¨ÕıĞò»ò·´Ğò£©£º"), order, new Separator(Orientation.VERTICAL), onlySelectedFieldBox);
+		HBox functionHBox = new HBox(8, new Label("æŒ‡å®šç»“æœæ’åºæ–¹å¼ï¼ˆæ­£åºæˆ–ååºï¼‰ï¼š"), order, new Separator(Orientation.VERTICAL), onlySelectedFieldBox);
 		cont.getChildren().add(functionHBox);
 		onlySelectedFieldBox.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -265,7 +266,7 @@ public class OrderTableOperator extends AbstractOperator{
 			}
 		});
 		cont.getChildren().add(new Separator());
-		Button addNew = new Button("Ìí¼ÓÅÅĞò×Ö¶Î");
+		Button addNew = new Button("æ·»åŠ æ’åºå­—æ®µ");
 		VBox hBox = new VBox(10);
 		for (String c : selectColumns) {
 			ComboBox<String> box = new ComboBox<>(options);
@@ -285,12 +286,12 @@ public class OrderTableOperator extends AbstractOperator{
 		cont.getChildren().add(new HBox(addNew, hBox));
 		cont.getChildren().add(new Separator());
 
-		CheckBox isLimit = new CheckBox("½öÈ¡Ö¸¶¨ÅÅÃû");
+		CheckBox isLimit = new CheckBox("ä»…å–æŒ‡å®šæ’å");
 		TextField startField = new TextField();
-		startField.setPromptText("ÆğÊ¼ÅÅÃû(0¿ªÊ¼¼ÆÊı)");
+		startField.setPromptText("èµ·å§‹æ’å(0å¼€å§‹è®¡æ•°)");
 		startField.setDisable(true);
 		TextField endField = new TextField();
-		endField.setPromptText("È¡ÅÅÃû×ÜÊı");
+		endField.setPromptText("å–æ’åæ€»æ•°");
 		endField.setDisable(true);
 		isLimit.setOnAction(e->{
 			if (isLimit.isSelected()) {
@@ -330,7 +331,7 @@ public class OrderTableOperator extends AbstractOperator{
 							int offset = Integer.valueOf(startField.getText().trim());
 							int count = Integer.valueOf(endField.getText().trim());
 							if (offset<0 || count<=0) {
-								throw new RuntimeException("offset count ÊäÈëÒì³££¡");
+								throw new RuntimeException("offset count è¾“å…¥å¼‚å¸¸ï¼");
 							}
 							selectPackage.setLimit(offset, count);
 						} catch (Exception e) {

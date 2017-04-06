@@ -5,7 +5,7 @@ import cn.keepfight.frame.content.source.DataSourceType;
 import cn.keepfight.frame.content.source.InvalidSourceException;
 
 /**
- * 抽象算子数据源类
+ * 鎶借薄绠楀瓙鏁版嵁婧愮被
  * @author Tom
  *
  */

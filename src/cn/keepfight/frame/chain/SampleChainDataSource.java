@@ -6,7 +6,7 @@ import java.util.List;
 public class SampleChainDataSource extends ChainDataSource{
 
 	/**
-	 * ¹¤×÷´úºÅ
+	 * å·¥ä½œä»£å·
 	 */
 	private String workCodeName;
 
@@ -21,12 +21,12 @@ public class SampleChainDataSource extends ChainDataSource{
 //			ResourceWithPosition resource = new ResourceWithPosition();
 //			OperatorResource operatorResource = new OperatorResource(0, "translate");
 //			operatorResource.setIcon("translate.png");
-//			operatorResource.setLabel("×ª»»±í");
-//			operatorResource.setDescription("»»Ëã±íÊÇ:"
-//					+ "¼ÆËãÈËÉí±£ÏÕµÄ±£ÏÕ·Ñ¡¢ÏÖ½ğ¼ÛÖµºÍ×¼±¸½ğÊ±£¬"
-//					+ "½«ÔËËã¹ı³ÌÖĞÓĞ¹æÂÉµÄÊıÖµÔ¤ÏÈËãºÃ±àÖÆ³É±í¸ñ£¬"
-//					+ "±ãÓÚËæÊ±²é¶Ô²¢´úÈë¼ÆËã£¬´Ó¶ø¼ò»¯·±¸´µÄÔËËã³ÌĞò£¬"
-//					+ "ÕâÖÖ±í¸ñ¼´Îª»»Ëã±í¡£¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ªËµĞ¦µÄ£¬ÕâÊÇÑù±¾¶øÒÑ");
+//			operatorResource.setLabel("è½¬æ¢è¡¨");
+//			operatorResource.setDescription("æ¢ç®—è¡¨æ˜¯:"
+//					+ "è®¡ç®—äººèº«ä¿é™©çš„ä¿é™©è´¹ã€ç°é‡‘ä»·å€¼å’Œå‡†å¤‡é‡‘æ—¶ï¼Œ"
+//					+ "å°†è¿ç®—è¿‡ç¨‹ä¸­æœ‰è§„å¾‹çš„æ•°å€¼é¢„å…ˆç®—å¥½ç¼–åˆ¶æˆè¡¨æ ¼ï¼Œ"
+//					+ "ä¾¿äºéšæ—¶æŸ¥å¯¹å¹¶ä»£å…¥è®¡ç®—ï¼Œä»è€Œç®€åŒ–ç¹å¤çš„è¿ç®—ç¨‹åºï¼Œ"
+//					+ "è¿™ç§è¡¨æ ¼å³ä¸ºæ¢ç®—è¡¨ã€‚â€”â€”â€”â€”â€”â€”â€”â€”è¯´ç¬‘çš„ï¼Œè¿™æ˜¯æ ·æœ¬è€Œå·²");
 //
 //			resource.resource = operatorResource;
 //			resource.x = 50;
@@ -36,7 +36,7 @@ public class SampleChainDataSource extends ChainDataSource{
 //		}
 //		{
 //			ResourceWithPosition resource = new ResourceWithPosition();
-//			TableResource operatorResource = new TableResource("wz", "³öĞĞÊı¾İ");
+//			TableResource operatorResource = new TableResource("wz", "å‡ºè¡Œæ•°æ®");
 //			resource.resource = operatorResource;
 //			resource.x = 100;
 //			resource.y = 50;

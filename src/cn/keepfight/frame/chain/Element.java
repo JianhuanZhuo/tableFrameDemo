@@ -8,19 +8,19 @@ import javafx.scene.layout.Region;
 import javafx.scene.shape.Line;
 
 /**
- * ÓĞÏòÎŞ»·Í¼£¬Âß¼­½ÚµãÀà
+ * æœ‰å‘æ— ç¯å›¾ï¼Œé€»è¾‘èŠ‚ç‚¹ç±»
  * @author Tom
  *
  */
 public abstract class Element extends Region implements Dragable{
 
 	/**
-	 * Èë¶ÈÄ¿±ê½Úµã¼¯ºÏ
+	 * å…¥åº¦ç›®æ ‡èŠ‚ç‚¹é›†åˆ
 	 */
 	List<Element> backEles = new ArrayList<Element>();
 
 	/**
-	 * ³ö¶ÈÄ¿±ê½Úµã
+	 * å‡ºåº¦ç›®æ ‡èŠ‚ç‚¹
 	 */
 	List<DirectedEdge> frontEles = new ArrayList<DirectedEdge>();
 
@@ -30,9 +30,9 @@ public abstract class Element extends Region implements Dragable{
 		Element endEle;
 
 		/**
-		 * Ö¸¶¨ÖÕ½ÚµãÉèÖÃÓĞÏò±ß
-		 * @param endEle ÖÕ½Úµã
-		 * @throws GraphicException ÖÕ½ÚµãÎŞĞ§Òì³£
+		 * æŒ‡å®šç»ˆèŠ‚ç‚¹è®¾ç½®æœ‰å‘è¾¹
+		 * @param endEle ç»ˆèŠ‚ç‚¹
+		 * @throws GraphicException ç»ˆèŠ‚ç‚¹æ— æ•ˆå¼‚å¸¸
 		 */
 		public DirectedEdge(Element endEle) throws GraphicException {
 			if (endEle==null) {
@@ -58,17 +58,17 @@ public abstract class Element extends Region implements Dragable{
 	}
 
 	/**
-	 * ¼ì²éÊÇ·ñÎªÆğÊ¼½Úµã
-	 * @return ÊÇ·µ»Øtrue£¬·ñÔò·µ»Øfalse
+	 * æ£€æŸ¥æ˜¯å¦ä¸ºèµ·å§‹èŠ‚ç‚¹
+	 * @return æ˜¯è¿”å›trueï¼Œå¦åˆ™è¿”å›false
 	 */
 	public boolean isStartEle(){
 		return backEles.isEmpty();
 	}
 
 	/**
-	 * ²éÕÒµ±Ç°½ÚµãÖĞËùÓĞÄ©¶Ë°üº¬Ö¸¶¨½ÚµãµÄ±ß
-	 * @param frontElem Ö¸¶¨Ä©¶Ë½Úµã
-	 * @return ËùÓĞ·ûºÏÌõ¼şµÄ±ß
+	 * æŸ¥æ‰¾å½“å‰èŠ‚ç‚¹ä¸­æ‰€æœ‰æœ«ç«¯åŒ…å«æŒ‡å®šèŠ‚ç‚¹çš„è¾¹
+	 * @param frontElem æŒ‡å®šæœ«ç«¯èŠ‚ç‚¹
+	 * @return æ‰€æœ‰ç¬¦åˆæ¡ä»¶çš„è¾¹
 	 */
 	public DirectedEdge[] getFrontEdge(Element frontElem){
 		List<DirectedEdge> edges = new ArrayList<>();
@@ -85,16 +85,16 @@ public abstract class Element extends Region implements Dragable{
 	@Override
 	public void updatePosition() {
 
-		//@TODO ¿¼ÂÇÖÕµãºÍÆğµãÏàµş¼ÓµÄÇé¿ö
+		//@TODO è€ƒè™‘ç»ˆç‚¹å’Œèµ·ç‚¹ç›¸å åŠ çš„æƒ…å†µ
 		double x = getLayoutX()+getLayoutBounds().getWidth()/2;
 		double y = getLayoutY()+getLayoutBounds().getHeight()/2;
-		// ¸üĞÂÇ°ÈÎÁ¬½ÓÏß
+		// æ›´æ–°å‰ä»»è¿æ¥çº¿
 		for (Element element : backEles) {
 			for (DirectedEdge edge : element.getFrontEdge(this)) {
 				edge.updateLineEnd(x, y);
 			};
 		}
-		//¸üĞÂÏÂÈÎÁ¬½ÓÏß
+		//æ›´æ–°ä¸‹ä»»è¿æ¥çº¿
 		for (DirectedEdge directedEdge : frontEles) {
 			directedEdge.updateLineStart(x, y);
 		}

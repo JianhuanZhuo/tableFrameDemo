@@ -6,7 +6,7 @@ import cn.keepfight.frame.chain.Resource;
 import cn.keepfight.frame.chain.ResourceElem;
 
 /**
- * ÄÚÈİ¹ÜÀíÕß½Ó¿Ú
+ * å†…å®¹ç®¡ç†è€…æ¥å£
  * @author Tom
  *
  */
@@ -15,29 +15,29 @@ public interface ContextMaster {
 	public void update(ContextSlave slave);
 
 	/**
-	 * Ëã×ÓÖ´ĞĞÔËËã½á¹û»ã±¨<br/>
-	 * ÖØÔØ·½·¨£¬µ¥Êä³öËã×ÓÖ´ĞĞ
-	 * @param slave Ö´ĞĞ¸ÃÔËËãµÄ×ÓÃæ°å
-	 * @param operator ²Ù×÷Ëã×Ó×ÊÔ´£¬ĞèÒªÔÚËã×ÓÁ´ÖĞÉú³ÉÍ¼±êµÄ
-	 * @param result ÔËËã½á¹û
+	 * ç®—å­æ‰§è¡Œè¿ç®—ç»“æœæ±‡æŠ¥<br/>
+	 * é‡è½½æ–¹æ³•ï¼Œå•è¾“å‡ºç®—å­æ‰§è¡Œ
+	 * @param slave æ‰§è¡Œè¯¥è¿ç®—çš„å­é¢æ¿
+	 * @param operator æ“ä½œç®—å­èµ„æºï¼Œéœ€è¦åœ¨ç®—å­é“¾ä¸­ç”Ÿæˆå›¾æ ‡çš„
+	 * @param result è¿ç®—ç»“æœ
 	 */
 	public void doOperate(ContextSlave slave, Resource operator, Resource result);
 
 	/**
-	 * Ëã×ÓÖ´ĞĞÔËËã½á¹û»ã±¨<br/>
-	 * ÖØÔØ·½·¨£¬¶àÊä³öËã×ÓÖ´ĞĞ
-	 * @param slave Ö´ĞĞ¸ÃÔËËãµÄ×ÓÃæ°å
-	 * @param operator ²Ù×÷Ëã×Ó×ÊÔ´£¬ĞèÒªÔÚËã×ÓÁ´ÖĞÉú³ÉÍ¼±êµÄ
-	 * @param results ÔËËã½á¹û¼¯ºÏ
+	 * ç®—å­æ‰§è¡Œè¿ç®—ç»“æœæ±‡æŠ¥<br/>
+	 * é‡è½½æ–¹æ³•ï¼Œå¤šè¾“å‡ºç®—å­æ‰§è¡Œ
+	 * @param slave æ‰§è¡Œè¯¥è¿ç®—çš„å­é¢æ¿
+	 * @param operator æ“ä½œç®—å­èµ„æºï¼Œéœ€è¦åœ¨ç®—å­é“¾ä¸­ç”Ÿæˆå›¾æ ‡çš„
+	 * @param results è¿ç®—ç»“æœé›†åˆ
 	 */
 	public void doOperate(ContextSlave slave, Resource operator, List<Resource> results);
 
 	/**
-	 * Ëã×ÓÖ´ĞĞÔËËã½á¹û»ã±¨<br/>
-	 * ÖØÔØ·½·¨£¬¶àÊäÈë¶àÊä³öËã×ÓÖ´ĞĞ
-	 * @param slave Ö´ĞĞ¸ÃÔËËãµÄ×ÓÃæ°å¼¯ºÏ
-	 * @param operator ²Ù×÷Ëã×Ó×ÊÔ´£¬ĞèÒªÔÚËã×ÓÁ´ÖĞÉú³ÉÍ¼±êµÄ
-	 * @param results ÔËËã½á¹û¼¯ºÏ
+	 * ç®—å­æ‰§è¡Œè¿ç®—ç»“æœæ±‡æŠ¥<br/>
+	 * é‡è½½æ–¹æ³•ï¼Œå¤šè¾“å…¥å¤šè¾“å‡ºç®—å­æ‰§è¡Œ
+	 * @param slave æ‰§è¡Œè¯¥è¿ç®—çš„å­é¢æ¿é›†åˆ
+	 * @param operator æ“ä½œç®—å­èµ„æºï¼Œéœ€è¦åœ¨ç®—å­é“¾ä¸­ç”Ÿæˆå›¾æ ‡çš„
+	 * @param results è¿ç®—ç»“æœé›†åˆ
 	 */
 //	public void doOperate(List<ContextSlave> slaves, Resource operator, List<Resource> results);
 

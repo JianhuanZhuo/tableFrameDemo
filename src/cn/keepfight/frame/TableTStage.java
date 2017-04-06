@@ -10,7 +10,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 
 /**
- * ±Ì∏Ò√Ê∞Â
+ * Ë°®Ê†ºÈù¢Êùø
  * @author Tom
  *
  */
@@ -24,11 +24,11 @@ public class TableTStage extends TStage<TableDataSource, TableMenuViewController
 	@Override
 	public void onDelete() {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("»∑»œ∂‘ª∞øÚ");
-		alert.setHeaderText("∏√±Ì∏Ò◊ ‘¥‘⁄∏∏√Ê∞Â“—±ª…æ≥˝£¨ «∑Ò±£¥Êµ±«∞√Ê∞Âƒ⁄»›£ø");
-		alert.setContentText("º¥Ω´πÿ±’∏√√Ê∞Â“‘œÏ”¶±£¥Ê”–∏√±Ì∏Ò◊ ‘¥µƒ∏∏√Ê∞Â£¨"
-				+ " «∑Ò±£¥Ê∏√√Ê∞Âµƒƒ⁄»›“‘√‚’˝‘⁄±‡º≠µƒ ˝æ›∑¢…˙∂™ ß£ø"
-				+ "µ„ª˜  « ±£¥Ê∏√√Ê∞Â ˝æ›£¨µ„ª˜ ∑Ò ≤ª±£¥Ê£¨÷±Ω”πÿ±’£°");
+		alert.setTitle("Á°ÆËÆ§ÂØπËØùÊ°Ü");
+		alert.setHeaderText("ËØ•Ë°®Ê†ºËµÑÊ∫êÂú®Áà∂Èù¢ÊùøÂ∑≤Ë¢´Âà†Èô§ÔºåÊòØÂê¶‰øùÂ≠òÂΩìÂâçÈù¢ÊùøÂÜÖÂÆπÔºü");
+		alert.setContentText("Âç≥Â∞ÜÂÖ≥Èó≠ËØ•Èù¢Êùø‰ª•ÂìçÂ∫î‰øùÂ≠òÊúâËØ•Ë°®Ê†ºËµÑÊ∫êÁöÑÁà∂Èù¢ÊùøÔºå"
+				+ "ÊòØÂê¶‰øùÂ≠òËØ•Èù¢ÊùøÁöÑÂÜÖÂÆπ‰ª•ÂÖçÊ≠£Âú®ÁºñËæëÁöÑÊï∞ÊçÆÂèëÁîü‰∏¢Â§±Ôºü"
+				+ "ÁÇπÂáª ÊòØ ‰øùÂ≠òËØ•Èù¢ÊùøÊï∞ÊçÆÔºåÁÇπÂáª Âê¶ ‰∏ç‰øùÂ≠òÔºåÁõ¥Êé•ÂÖ≥Èó≠ÔºÅ");
 
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.get() == ButtonType.OK){

@@ -8,24 +8,24 @@ import java.util.Set;
 import cn.keepfight.frame.chain.Element.DirectedEdge;
 
 /**
- * ÓĞÏòÎŞ»·Í¼£¬Âß¼­½á¹¹
+ * æœ‰å‘æ— ç¯å›¾ï¼Œé€»è¾‘ç»“æ„
  * @author Tom
  *
  */
 public class DAGGraph {
 
 	/**
-	 * ½Úµã¼¯
+	 * èŠ‚ç‚¹é›†
 	 */
 	Set<Element> elements = new HashSet<Element>();
 
 	/**
-	 * Ìí¼Ó½Úµã
-	 * @param elem ÓûÌí¼ÓµÄ½Úµã
-	 * @throws GraphicException ½ÚµãÎª¿ÕÒì³£
+	 * æ·»åŠ èŠ‚ç‚¹
+	 * @param elem æ¬²æ·»åŠ çš„èŠ‚ç‚¹
+	 * @throws GraphicException èŠ‚ç‚¹ä¸ºç©ºå¼‚å¸¸
 	 */
 	public void addElem(Element elem) throws GraphicException{
-		//@TODO ĞèÒª¸Ä½øÒÔ¼ì²éÊÇ·ñÒòÎªËüµÄ¼ÓÈë¶ø²úÉú»·
+		//@TODO éœ€è¦æ”¹è¿›ä»¥æ£€æŸ¥æ˜¯å¦å› ä¸ºå®ƒçš„åŠ å…¥è€Œäº§ç”Ÿç¯
 		if (elem==null) {
 			throw new GraphicException("elem added do not allow null!");
 		}
@@ -33,8 +33,8 @@ public class DAGGraph {
 	}
 
 	/**
-	 * É¾³ı½Úµã
-	 * @param elem É¾³ıÖ¸¶¨½Úµã
+	 * åˆ é™¤èŠ‚ç‚¹
+	 * @param elem åˆ é™¤æŒ‡å®šèŠ‚ç‚¹
 	 */
 	public void removeElem(Element elem) {
 		if (elements.contains(elem)) {
@@ -44,11 +44,11 @@ public class DAGGraph {
 
 
 	/**
-	 * Éú³É´Ó source µ½ target µÄÓĞÏò±ß
-	 * @param source Æğµã
-	 * @param target ÖÕµã
-	 * @throws GraphicException ¼ÓÈë¸Ã±ß¿ÉÄÜ´æÔÚ»Ø»·Òì³££¬Õâ¸ÃDAGÖĞ²»ÔÊĞí
-	 * @return ·µ»ØÒÑÌí¼ÓµÄ±ß
+	 * ç”Ÿæˆä» source åˆ° target çš„æœ‰å‘è¾¹
+	 * @param source èµ·ç‚¹
+	 * @param target ç»ˆç‚¹
+	 * @throws GraphicException åŠ å…¥è¯¥è¾¹å¯èƒ½å­˜åœ¨å›ç¯å¼‚å¸¸ï¼Œè¿™è¯¥DAGä¸­ä¸å…è®¸
+	 * @return è¿”å›å·²æ·»åŠ çš„è¾¹
 	 */
 	public DirectedEdge addEdge(Element source, Element target) throws GraphicException{
 		if (source==target) {
@@ -57,9 +57,9 @@ public class DAGGraph {
 		if (source.frontEles.contains(target)) {
 			throw new GraphicException("edge from source to target exists");
 		}
-		//@TODO ´ıÍê³É
+		//@TODO å¾…å®Œæˆ
 
-		//¼ì²éÍê³É£¬Ìí¼Ó±ß
+		//æ£€æŸ¥å®Œæˆï¼Œæ·»åŠ è¾¹
 		DirectedEdge edge = new DirectedEdge(target);
 		source.frontEles.add(edge);
 		target.backEles.add(source);
@@ -69,21 +69,21 @@ public class DAGGraph {
 
 
 	/**
-	 * ·µ»ØÍØÆËÅÅĞòĞòÁĞ£¬Ëã·¨¼òµ¥¶ø´Ö±©£¬½öÓÃÓÚÇ°ÆÚ¿ª·¢£¬Ã»Ê±¼ä×÷Ê²Ã´ÓÅ»¯¡£
-	 * @return ÍØÆËÅÅĞòĞòÁĞ
+	 * è¿”å›æ‹“æ‰‘æ’åºåºåˆ—ï¼Œç®—æ³•ç®€å•è€Œç²—æš´ï¼Œä»…ç”¨äºå‰æœŸå¼€å‘ï¼Œæ²¡æ—¶é—´ä½œä»€ä¹ˆä¼˜åŒ–ã€‚
+	 * @return æ‹“æ‰‘æ’åºåºåˆ—
 	 */
 	public List<Element> topolSort() {
 		List<Element> resElements = new ArrayList<>();
-		//ÕÒ³öÍêÇ°ÈÎ¶¼²»ÔÚ½á¹ûÁĞ±íÖĞ¼´¿É
+		//æ‰¾å‡ºå®Œå‰ä»»éƒ½ä¸åœ¨ç»“æœåˆ—è¡¨ä¸­å³å¯
 		boolean stateHasChangeFlag = true;
 		while (stateHasChangeFlag) {
 			stateHasChangeFlag = false;
 			for (Element element : elements) {
-				// ÒÑ¼ÓÈëµÄ²»¼ì²é
+				// å·²åŠ å…¥çš„ä¸æ£€æŸ¥
 				if (resElements.contains(element)) {
 					break;
 				}
-				//Ç°ÈÎ¶¼²»ÔÚ½á¹ûÁĞ±íÖĞ
+				//å‰ä»»éƒ½ä¸åœ¨ç»“æœåˆ—è¡¨ä¸­
 				boolean hasBackNotInRes = false;
 				for (Element backEle : element.backEles) {
 					if (!resElements.contains(backEle)) {
@@ -91,10 +91,10 @@ public class DAGGraph {
 						break;
 					}
 				}
-				//Ã»ÓĞÇ°ÈÎÔò¼ÓÈë
+				//æ²¡æœ‰å‰ä»»åˆ™åŠ å…¥
 				if (!hasBackNotInRes) {
 					resElements.add(element);
-					//×´Ì¬ÓĞ±ä»¯£¬¼ÌĞø¼ì²é
+					//çŠ¶æ€æœ‰å˜åŒ–ï¼Œç»§ç»­æ£€æŸ¥
 					stateHasChangeFlag = true;
 				}
 			}

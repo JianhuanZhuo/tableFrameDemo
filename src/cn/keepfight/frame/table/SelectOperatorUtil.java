@@ -22,7 +22,7 @@ import javafx.scene.layout.HBox;
 import javafx.util.Callback;
 
 /**
- * ÁĞÑ¡ÔñËã×Ó¹¤¾ßÀà
+ * åˆ—é€‰æ‹©ç®—å­å·¥å…·ç±»
  * @author Tom
  *
  */
@@ -35,9 +35,9 @@ public class SelectOperatorUtil {
 	}
 
 	/**
-	 * Ëã×Ó×ÔÉí
-	 * ÎÄ×Ö
-	 * Ìí¼ÓÌõ¼ş¡¢ÊıÁ¿¡¢ÊÇ·ñÔÊĞíÏàÍ¬µÄ
+	 * ç®—å­è‡ªèº«
+	 * æ–‡å­—
+	 * æ·»åŠ æ¡ä»¶ã€æ•°é‡ã€æ˜¯å¦å…è®¸ç›¸åŒçš„
 	 *
 	 */
 	public List<String> selectColumn(AbstractOperator operator, Function<List<String>, String> test, String tips){
@@ -54,8 +54,8 @@ public class SelectOperatorUtil {
 		dialog.setGraphic(new ImageView(ImageLoadUtil.load(operator.getIcon(), ImageLoadUtil.IMG_SIZE_64)));
 
 		// Set the button types.
-		ButtonType loginButtonOK = new ButtonType("È·¶¨", ButtonData.OK_DONE);
-		ButtonType buttonTypeCancel = new ButtonType("È¡Ïû", ButtonData.CANCEL_CLOSE);
+		ButtonType loginButtonOK = new ButtonType("ç¡®å®š", ButtonData.OK_DONE);
+		ButtonType buttonTypeCancel = new ButtonType("å–æ¶ˆ", ButtonData.CANCEL_CLOSE);
 
 		dialog.getDialogPane().getButtonTypes().addAll(loginButtonOK, buttonTypeCancel);
 
@@ -95,7 +95,7 @@ public class SelectOperatorUtil {
 		String resString = test.apply(resList);
 		if (resString!=null) {
 			Alert alert = new Alert(AlertType.ERROR);
-			alert.setHeaderText("²Ù×÷´íÎó£¡");
+			alert.setHeaderText("æ“ä½œé”™è¯¯ï¼");
 			alert.setContentText(resString);
 			alert.show();
 			return null;

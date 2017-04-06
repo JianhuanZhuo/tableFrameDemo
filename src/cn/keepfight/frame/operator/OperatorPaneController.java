@@ -100,7 +100,7 @@ public class OperatorPaneController extends PaneController {
 
 	@FXML
 	public void onClose() {
-		//@TODO ÏìÓ¦¹Ø±Õ
+		//@TODO å“åº”å…³é—­
 	}
 
 }

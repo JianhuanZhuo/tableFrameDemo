@@ -10,18 +10,18 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeLineCap;
 
 /**
- * Ñ¡Ôñ¿òÀà.
- * ´¦ÀíÒ»°ãµÄÑ¡Ôñ
+ * é€‰æ‹©æ¡†ç±».
+ * å¤„ç†ä¸€èˆ¬çš„é€‰æ‹©
  */
 public class RubberBandSelection {
 
 	/**
-	 * Ñ¡ÔñÈº
+	 * é€‰æ‹©ç¾¤
 	 */
     SelectionManager selectionModel;
 
     /**
-     * final ÀàÒÔÌá¹©¿É±ä»¯µÄÒì²½·ÃÎÊ
+     * final ç±»ä»¥æä¾›å¯å˜åŒ–çš„å¼‚æ­¥è®¿é—®
      */
     final DragContext dragContext = new DragContext();
     private final class DragContext {
@@ -30,12 +30,12 @@ public class RubberBandSelection {
     }
 
     /**
-     * Ñ¡Ôñ·½¿ò
+     * é€‰æ‹©æ–¹æ¡†
      */
     Rectangle rect;
 
     /**
-     * ¸¸Ãæ°å
+     * çˆ¶é¢æ¿
      */
     final Pane group;
 
@@ -43,7 +43,7 @@ public class RubberBandSelection {
 //    final Label y = new Label();
 
     /**
-     * ¶àµã»÷±£»¤±êÖ¾
+     * å¤šç‚¹å‡»ä¿æŠ¤æ ‡å¿—
      */
     boolean enabled = false;
 
@@ -93,7 +93,7 @@ public class RubberBandSelection {
             try {
                 group.getChildren().add(rect);
 			} catch (Exception e) {
-				//@TODO ½â¾öÕâ¸öÒì³£
+				//@TODO è§£å†³è¿™ä¸ªå¼‚å¸¸
 			}
 
             event.consume();
@@ -109,13 +109,13 @@ public class RubberBandSelection {
         		return;
 			}
 
-//        	System.out.println("·½¿éÊÍ·Å");
+//        	System.out.println("æ–¹å—é‡Šæ”¾");
 
             if( !event.isShiftDown() && !event.isControlDown()) {
                 selectionModel.clear();
             }
 
-            //±ß½çÅö×²±È½ÏÒÔÌá¹©Ñ¡Ôñ£¬ºÍShift¡¢Ctrl¶àÑ¡Ôñ´¦Àí
+            //è¾¹ç•Œç¢°æ’æ¯”è¾ƒä»¥æä¾›é€‰æ‹©ï¼Œå’ŒShiftã€Ctrlå¤šé€‰æ‹©å¤„ç†
             for( Node node: group.getChildren()) {
                 if( node instanceof Dragable) {
                     if( node.getBoundsInParent().intersects( rect.getBoundsInParent())) {
@@ -136,7 +136,7 @@ public class RubberBandSelection {
 
             selectionModel.log();
 
-            //Òş²Ø·½¿é
+            //éšè—æ–¹å—
             rect.setX(0);
             rect.setY(0);
             rect.setWidth(0);
@@ -151,7 +151,7 @@ public class RubberBandSelection {
     };
 
     /**
-     * Ìá¹©Êó±êÍÏ¶¯¸Ä±äÑ¡Ôñ¿ò´¦Àí
+     * æä¾›é¼ æ ‡æ‹–åŠ¨æ”¹å˜é€‰æ‹©æ¡†å¤„ç†
      */
     EventHandler<MouseEvent> onMouseDraggedEventHandler = new EventHandler<MouseEvent>() {
 

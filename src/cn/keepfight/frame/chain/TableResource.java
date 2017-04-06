@@ -7,15 +7,15 @@ import cn.keepfight.frame.table.DBTableDataSource;
 public class TableResource extends Resource {
 
 	/**
-	 * @TODO ´Ë´¦ĞèÒª¸Ä½øÒÔ±ãÖ§³Ö¸ü¹ã·ºµÄ½ÓÈë
+	 * @TODO æ­¤å¤„éœ€è¦æ”¹è¿›ä»¥ä¾¿æ”¯æŒæ›´å¹¿æ³›çš„æ¥å…¥
 	 */
 	String db;
 	String table;
 
 	/**
-	 * Ö¸¶¨Êı¾İ¿âÓëÊı¾İ±íÃû´´½¨Ò»¸ö±í×ÊÔ´
-	 * @param db Êı¾İ¿âÃû
-	 * @param table Êı¾İ±íÃû
+	 * æŒ‡å®šæ•°æ®åº“ä¸æ•°æ®è¡¨ååˆ›å»ºä¸€ä¸ªè¡¨èµ„æº
+	 * @param db æ•°æ®åº“å
+	 * @param table æ•°æ®è¡¨å
 	 */
 	public TableResource(String db, String table) {
 		this.db = db;

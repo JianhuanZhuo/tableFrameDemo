@@ -27,10 +27,10 @@ public class ResourceElemController {
 	}
 
 	/**
-	 * Îª¸Ã²Ëµ¥°´Å¥ÉèÖÃÎÄ×Ö
+	 * ä¸ºè¯¥èœå•æŒ‰é’®è®¾ç½®æ–‡å­—
 	 *
 	 * @param btnText
-	 *            ÓûÉèÖÃµÄÎÄ×Ö
+	 *            æ¬²è®¾ç½®çš„æ–‡å­—
 	 */
 	public void setBtnText(String btnText) {
 		if (btnText != null) {
@@ -39,21 +39,21 @@ public class ResourceElemController {
 	}
 
 	/**
-	 * »ñµÃ°´Å¥µÄÎÄ×Ö
+	 * è·å¾—æŒ‰é’®çš„æ–‡å­—
 	 *
-	 * @return Èô¸Ã²Ëµ¥ÎŞ°´Å¥£¬Ôò·µ»Ønull£¬·ñÔò·µ»ØÒ»¸ö×Ö·û´®£¬×¢Òâ¿ÉÄÜÊÇ¸ö¿Õ×Ö·û´®¡£
+	 * @return è‹¥è¯¥èœå•æ— æŒ‰é’®ï¼Œåˆ™è¿”å›nullï¼Œå¦åˆ™è¿”å›ä¸€ä¸ªå­—ç¬¦ä¸²ï¼Œæ³¨æ„å¯èƒ½æ˜¯ä¸ªç©ºå­—ç¬¦ä¸²ã€‚
 	 */
 	public String getBtnText() {
 		return btn.getText();
 	}
 
 	/**
-	 * Ê¹ÓÃÍ¼±êÃû½øĞĞÉèÖÃ¡£<br/>
-	 * ¸Ã·½·¨½«Ê¹ÓÃ{@link cn.keepfight.utils.ImageLoaderUtil.load(String, int)}
-	 * ½øĞĞ¼ÓÔØ<br/>
+	 * ä½¿ç”¨å›¾æ ‡åè¿›è¡Œè®¾ç½®ã€‚<br/>
+	 * è¯¥æ–¹æ³•å°†ä½¿ç”¨{@link cn.keepfight.utils.ImageLoaderUtil.load(String, int)}
+	 * è¿›è¡ŒåŠ è½½<br/>
 	 *
 	 * @param icon
-	 *            Í¼±êÃû
+	 *            å›¾æ ‡å
 	 * @see cn.keepfight.utils.ImageLoadUtil
 	 */
 	public void setPic(String icon) {
@@ -61,20 +61,20 @@ public class ResourceElemController {
 	}
 
 	/**
-	 * Ö¸¶¨Í¼Æ¬×÷Îª¸Ã½Úµã°´Å¥Í¼±ê¡£
+	 * æŒ‡å®šå›¾ç‰‡ä½œä¸ºè¯¥èŠ‚ç‚¹æŒ‰é’®å›¾æ ‡ã€‚
 	 *
 	 * @param image
-	 *            Ö¸¶¨Í¼Æ¬
+	 *            æŒ‡å®šå›¾ç‰‡
 	 */
 	public void setPic(Image image) {
 		pic.setImage(image);
 	}
 
 	/**
-	 * ÉèÖÃÌáÊ¾ĞÅÏ¢
+	 * è®¾ç½®æç¤ºä¿¡æ¯
 	 *
 	 * @param tip
-	 *            ÓûÉèÖÃµÄÌáÊ¾ĞÅÏ¢
+	 *            æ¬²è®¾ç½®çš„æç¤ºä¿¡æ¯
 	 */
 	public void setTipText(String tip) {
 		if (tip != null) {

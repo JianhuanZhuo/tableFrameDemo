@@ -1,8 +1,8 @@
 package cn.keepfight.frame.content.source;
 
 /**
- * Êı¾İÔ´½Ó¿Ú.
- * ¶¨ÒåÁË×÷ÎªÒ»¸öÊı¾İÔ´¸ÃÓĞµÄĞĞÎªºÍÊôĞÔ¡£
+ * æ•°æ®æºæ¥å£.
+ * å®šä¹‰äº†ä½œä¸ºä¸€ä¸ªæ•°æ®æºè¯¥æœ‰çš„è¡Œä¸ºå’Œå±æ€§ã€‚
  *
  * @author Tom
  *
@@ -10,19 +10,19 @@ package cn.keepfight.frame.content.source;
 public interface DataSource {
 
 	/**
-	 * »ñµÃ¸ÃÊı¾İÔ´µÄÀàĞÍ¡£
-	 * @return Êı¾İÔ´ÀàĞÍ
+	 * è·å¾—è¯¥æ•°æ®æºçš„ç±»å‹ã€‚
+	 * @return æ•°æ®æºç±»å‹
 	 */
 	public DataSourceType getSourceType();
 
 	/**
-	 * »ñµÃ×ÊÔ´±êÊ¶Ãû
-	 * @return ×ÊÔ´±êÊ¶Ãû
+	 * è·å¾—èµ„æºæ ‡è¯†å
+	 * @return èµ„æºæ ‡è¯†å
 	 */
 	public String getSourceIDName();
 
 	/**
-	 * ¼ì²éÊı¾İÔ´µÄÓĞĞ§ĞÔ½øĞĞ¼òµ¥µÄ¼ì²é¡£
+	 * æ£€æŸ¥æ•°æ®æºçš„æœ‰æ•ˆæ€§è¿›è¡Œç®€å•çš„æ£€æŸ¥ã€‚
 	 */
 	public void checkValid() throws InvalidSourceException;
 }

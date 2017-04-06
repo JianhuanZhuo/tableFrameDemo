@@ -18,7 +18,7 @@ import javafx.scene.layout.FlowPane;
 public class FilesPaneController extends PaneController {
 
 	/**
-	 * 画板的根布局
+	 * 鐢绘澘鐨勬牴甯冨眬
 	 */
 	@FXML
 	BorderPane paneRoot;

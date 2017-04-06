@@ -25,40 +25,40 @@ import javafx.util.Pair;
 
 /**
  *
- *Ãæ°åÀà
+ *é¢æ¿ç±»
  *<pre>
  *TStage tStage = new <M extends TStage>;
- *tStage.InitSource(??);//×îÖØÒªµÄÒ»²½¡£
+ *tStage.InitSource(??);//æœ€é‡è¦çš„ä¸€æ­¥ã€‚
  *tStage.show();
  *</pre>
  * @author Tom
  *
- * @param <T> Êı¾İÔ´ÀàĞÍ
- * @param <K> ²Ëµ¥ÊÓÍ¼¿ØÖÆÆ÷ÀàĞÍ
+ * @param <T> æ•°æ®æºç±»å‹
+ * @param <K> èœå•è§†å›¾æ§åˆ¶å™¨ç±»å‹
  */
 public abstract class TStage<T extends DataSource, K extends MenuViewController,
 		J extends PaneController> extends Stage implements ContextSlave{
 
-	//ĞèÒª¿¼ÂÇÃæ°å¼äÍ¨ĞÅÎÊÌâ
+	//éœ€è¦è€ƒè™‘é¢æ¿é—´é€šä¿¡é—®é¢˜
 
 	/**
-	 * Ãæ°åËùĞèÕ¹Ê¾µÄÊı¾İÔ´
+	 * é¢æ¿æ‰€éœ€å±•ç¤ºçš„æ•°æ®æº
 	 */
 	private T source;
 
 	/**
-	 * ²Ëµ¥ÊÓÍ¼¿ØÖÆÆ÷
+	 * èœå•è§†å›¾æ§åˆ¶å™¨
 	 */
 	protected K menuVC;
 
 
 	/**
-	 * »­°åÊÓÍ¼¿ØÖÆÆ÷
+	 * ç”»æ¿è§†å›¾æ§åˆ¶å™¨
 	 */
 	private J paneVC;
 
 	/**
-	 * ¸ù½Úµã
+	 * æ ¹èŠ‚ç‚¹
 	 */
 	@FXML
 	protected BorderPane root;
@@ -67,41 +67,41 @@ public abstract class TStage<T extends DataSource, K extends MenuViewController,
 	ContextMaster master;
 
 	/**
-	 * ÔÚÃæ°å³õÊ¼»¯ºóµ÷ÓÃ½Ó¿Ú£¬¸øÓÃ»§×Ô¶¨ÒåµÄ½Ó¿Ú¡£
+	 * åœ¨é¢æ¿åˆå§‹åŒ–åè°ƒç”¨æ¥å£ï¼Œç»™ç”¨æˆ·è‡ªå®šä¹‰çš„æ¥å£ã€‚
 	 */
 	protected abstract void fixAfter();
 
 	/**
-	 * ÕıÔÚÖ´ĞĞµÄËã×Ó¶ÓÁĞ£¬Èô¿ÕÔòÎª¿ÕÏĞ
+	 * æ­£åœ¨æ‰§è¡Œçš„ç®—å­é˜Ÿåˆ—ï¼Œè‹¥ç©ºåˆ™ä¸ºç©ºé—²
 	 */
 	@SuppressWarnings("rawtypes")
 	private Queue<Pair<Task, EventHandler>> taskQueue = new LinkedList<>();
 	/**
-	 * Ê¹ÓÃÖ¸¶¨µÄÊı¾İÔ´³õÊ¼»¯Ãæ°å
-	 * @param master Ãæ°åËùÊô¸¸Ãæ°å
-	 * @param source Ö¸¶¨µÄÊı¾İÔ´
-	 * @throws InvalidSourceException Êı¾İÔ´ÎŞĞ§Òì³£
-	 * @throws IOException IOÒì³£
+	 * ä½¿ç”¨æŒ‡å®šçš„æ•°æ®æºåˆå§‹åŒ–é¢æ¿
+	 * @param master é¢æ¿æ‰€å±çˆ¶é¢æ¿
+	 * @param source æŒ‡å®šçš„æ•°æ®æº
+	 * @throws InvalidSourceException æ•°æ®æºæ— æ•ˆå¼‚å¸¸
+	 * @throws IOException IOå¼‚å¸¸
 	 */
 	public void initSource(ContextMaster master, T source) throws InvalidSourceException, IOException {
 		source.checkValid();
 		this.source = source;
 
-		//¼ÓÔØÃæ°å½çÃæ£¬Õâ¸ö½çÃæÈËĞóÎŞº¦£¬Óë¾ßÌåÊı¾İÔ´ÀàĞÍÎŞ¹Ø
+		//åŠ è½½é¢æ¿ç•Œé¢ï¼Œè¿™ä¸ªç•Œé¢äººç•œæ— å®³ï¼Œä¸å…·ä½“æ•°æ®æºç±»å‹æ— å…³
 		loadRootView();
 
-		//Éú³É²Ëµ¥ÊÓÍ¼
+		//ç”Ÿæˆèœå•è§†å›¾
 		initializeMenu();
-		//Éú³ÉÄÚÈİÊÓÍ¼ÓëÊı¾İ¼ÓÔØÆ÷
+		//ç”Ÿæˆå†…å®¹è§†å›¾ä¸æ•°æ®åŠ è½½å™¨
 		initializeContent();
 
-		//ÉèÖÃ¸¸Ãæ°å
+		//è®¾ç½®çˆ¶é¢æ¿
 		setContextMaster(master);
 
-		//ÉèÖÃ±êÌâ
+		//è®¾ç½®æ ‡é¢˜
 		setTitleWithType(source.getSourceIDName());
 
-		//Îª»­°åÉèÖÃÊı¾İÔ´
+		//ä¸ºç”»æ¿è®¾ç½®æ•°æ®æº
 		getPaneVC().setDataSource(source);
 
 		getPaneVC().setTStage(this);
@@ -110,10 +110,10 @@ public abstract class TStage<T extends DataSource, K extends MenuViewController,
 		//
 		getMenuVC().addMenuItem();
 
-		//µ÷ÓÃÓÃ»§×Ô¶¨Òå½Ó¿Ú
+		//è°ƒç”¨ç”¨æˆ·è‡ªå®šä¹‰æ¥å£
 		fixAfter();
 
-		//³õÊ¼»¯¼ÓÔØÊı¾İ
+		//åˆå§‹åŒ–åŠ è½½æ•°æ®
 		getPaneVC().load();
 	}
 
@@ -123,21 +123,21 @@ public abstract class TStage<T extends DataSource, K extends MenuViewController,
 	@SuppressWarnings("unchecked")
 	public void reSetSource(DataSource source) throws InvalidSourceException, IOException {
 		source.checkValid();
-		//¼ì²éÁ½¸öÔ´ÊÇ·ñÍ¬ÀàĞÍ£¬²»ÊÇÍ¬ÀàĞÍÔòÓ¦¸Ã¸ü»»Ãæ°å
+		//æ£€æŸ¥ä¸¤ä¸ªæºæ˜¯å¦åŒç±»å‹ï¼Œä¸æ˜¯åŒç±»å‹åˆ™åº”è¯¥æ›´æ¢é¢æ¿
 		if (!this.source.getClass().equals(source.getClass())) {
 			throw new InvalidSourceException("class of target is not equals class of source!");
 		}
 		this.source = (T) source;
 
-		//ÉèÖÃ±êÌâ
+		//è®¾ç½®æ ‡é¢˜
 		setTitleWithType(source.getSourceIDName());
-		//Îª»­°åÉèÖÃĞÂÊı¾İÔ´
+		//ä¸ºç”»æ¿è®¾ç½®æ–°æ•°æ®æº
 		getPaneVC().setDataSource(source);
 
-		//µ÷ÓÃÓÃ»§×Ô¶¨Òå½Ó¿Ú
+		//è°ƒç”¨ç”¨æˆ·è‡ªå®šä¹‰æ¥å£
 		fixAfter();
 
-		//³õÊ¼»¯¼ÓÔØÊı¾İ
+		//åˆå§‹åŒ–åŠ è½½æ•°æ®
 		getPaneVC().load();
 	}
 
@@ -145,38 +145,38 @@ public abstract class TStage<T extends DataSource, K extends MenuViewController,
 		root = (BorderPane)(ViewPathUtil.getLoader("StageView.fxml").load());
 		Scene scene = new Scene(root);
 		setScene(scene);
-		setTitle("ĞÂ½¨Î´ÃüÃûÃæ°å");
+		setTitle("æ–°å»ºæœªå‘½åé¢æ¿");
 	}
 
 	/**
-	 * ÉèÖÃ´øÓĞÀàĞÍÃæ°å×ÖÑùµÄ±êÌâ
-	 * @param title ±êÌâĞĞÎÄ×Ö
+	 * è®¾ç½®å¸¦æœ‰ç±»å‹é¢æ¿å­—æ ·çš„æ ‡é¢˜
+	 * @param title æ ‡é¢˜è¡Œæ–‡å­—
 	 */
 	public void setTitleWithType(String title) {
-		setTitle("["+source.getSourceType().getTypeName_cn()+"Ãæ°å] "+title);
+		setTitle("["+source.getSourceType().getTypeName_cn()+"é¢æ¿] "+title);
 
-		//TODO Ìí¼ÓÀàĞÍÍ¼±ê£¬¸Ä³É16*16£¬, ImageLoadUtil.IMG_SIZE_16
+		//TODO æ·»åŠ ç±»å‹å›¾æ ‡ï¼Œæ”¹æˆ16*16ï¼Œ, ImageLoadUtil.IMG_SIZE_16
 		getIcons().add(ImageLoadUtil.load(source.getSourceType().getIconURL()));
 	}
 
 	@SuppressWarnings("unchecked")
 	void initializeMenu(){
-		//³õÊ¼»¯²Ëµ¥
+		//åˆå§‹åŒ–èœå•
 		menuVC = (K) MenuFactory.generateMenuVC(source.getSourceType());
 		if (menuVC==null) {
 			System.out.println("fail to load!");
 			System.exit(0);
 		}
-		//@FIXME ÕâÀï¿ÉÄÜ»á³öBUG
+		//@FIXME è¿™é‡Œå¯èƒ½ä¼šå‡ºBUG
 		root.setTop(menuVC.getNode());
 		menuVC.getNode().setStyle("-fx-border-color:grey;-fx-border-width:0 0 1 0;");
 	}
 
 	@SuppressWarnings("unchecked")
 	void initializeContent(){
-		//³õÊ¼»¯£¬¼ÓÔØ»­°åºÍÌí¼ÓÄÚÈİ¼ÓÔØÆ÷
+		//åˆå§‹åŒ–ï¼ŒåŠ è½½ç”»æ¿å’Œæ·»åŠ å†…å®¹åŠ è½½å™¨
 		paneVC = (J) ContentFactory.generateContentVC(source.getSourceType());
-		//@FIXME ÕâÀï¿ÉÄÜ»á³öBUG
+		//@FIXME è¿™é‡Œå¯èƒ½ä¼šå‡ºBUG
 		root.setCenter(getPaneVC().getNode());
 	}
 

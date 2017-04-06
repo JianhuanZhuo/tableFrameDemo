@@ -6,7 +6,7 @@ import java.util.Set;
 import javafx.scene.Node;
 
 /**
- * Ñ¡ÔñÄ£ĞÍÀà£¬ÓÃÓÚ¼ÇÂ¼µ±Ç°ÒÑÑ¡ÔñµÄ
+ * é€‰æ‹©æ¨¡å‹ç±»ï¼Œç”¨äºè®°å½•å½“å‰å·²é€‰æ‹©çš„
  *
  */
 public class SelectionManager {
@@ -40,8 +40,8 @@ public class SelectionManager {
     }
 
     /**
-     * »ñµÃµ±Ç°µÄÒÑÑ¡Ôñ½Úµã
-     * @return ÒÑÑ¡Ôñ½Úµã¼¯ºÏ
+     * è·å¾—å½“å‰çš„å·²é€‰æ‹©èŠ‚ç‚¹
+     * @return å·²é€‰æ‹©èŠ‚ç‚¹é›†åˆ
      */
     public Set<Node> getSelection() {
     	Set<Node> result = new HashSet<>();

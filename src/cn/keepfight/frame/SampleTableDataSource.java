@@ -15,7 +15,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
- * ±í¸ñÊı¾İÔ´Ñù±¾
+ * è¡¨æ ¼æ•°æ®æºæ ·æœ¬
  * @author Tom
  *
  */
